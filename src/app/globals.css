@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #f8fafc; /* light slate */
+  --foreground: #0f172a; /* dark slate text */
+  --primary: #0891b2; /* cyan 600 */
+  --primary-glow: rgba(8, 145, 178, 0.05);
+  --accent: #9333ea; /* purple 600 */
+  --accent-glow: rgba(147, 51, 234, 0.05);
+  
+  --card-bg: rgba(255, 255, 255, 0.75);
+  --card-border: rgba(15, 23, 42, 0.08);
+  --text-muted: #475569;
+  --border-subtle: rgba(15, 23, 42, 0.05);
+}
+
+.dark {
+  --background: #030712; /* dark slate/black */
+  --foreground: #f3f4f6; /* light gray text */
+  --primary: #22d3ee; /* cyan 400 */
+  --primary-glow: rgba(34, 211, 238, 0.12);
+  --accent: #c084fc; /* purple 400 */
+  --accent-glow: rgba(192, 132, 252, 0.12);
+  
+  --card-bg: rgba(17, 24, 39, 0.6);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --text-muted: #94a3b8;
+  --border-subtle: rgba(255, 255, 255, 0.05);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: 'Outfit', sans-serif, system-ui;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #1f2937;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Background grid effect */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+}
+.dark .bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  transition: all 0.3s ease;
+}
+
+.glass-panel-hover:hover {
+  border-color: var(--primary);
+  box-shadow: 0 8px 32px 0 var(--primary-glow);
+  transform: translateY(-2px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Glowing text */
+.text-glow-cyan {
+  text-shadow: 0 0 10px var(--primary-glow);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* Hide spline credit logo overlay */
+.spline-container iframe {
+  border: none;
+}
