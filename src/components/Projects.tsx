@@ -36,7 +36,7 @@ export const Projects = () => {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="flex flex-col gap-2">
             <span className="text-xs md:text-sm font-semibold tracking-wider text-cyan-500 dark:text-cyan-400 font-mono uppercase">Showcase</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)]">Proyek Pilihan</h2>
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)]">Project</h2>
             <div className="w-12 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full mt-1" />
           </div>
 
@@ -46,11 +46,10 @@ export const Projects = () => {
               <button
                 key={opt.value}
                 onClick={() => setFilter(opt.value)}
-                className={`px-4 py-2 rounded-xl text-xs md:text-sm font-mono border transition-all duration-300 cursor-pointer ${
-                  filter === opt.value
+                className={`px-4 py-2 rounded-xl text-xs md:text-sm font-mono border transition-all duration-300 cursor-pointer ${filter === opt.value
                     ? "bg-cyan-500/10 border-cyan-500 text-cyan-600 dark:text-cyan-400 shadow-md"
                     : "bg-[var(--card-bg)] border-[var(--card-border)] text-[var(--text-muted)] hover:text-[var(--foreground)] hover:border-cyan-500/30"
-                }`}
+                  }`}
               >
                 {opt.label}
               </button>
@@ -59,7 +58,7 @@ export const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <motion.div 
+        <motion.div
           layout
           className="grid grid-cols-1 md:grid-cols-2 gap-8"
         >
@@ -125,7 +124,7 @@ export const Projects = () => {
                           <span>Code</span>
                         </a>
                       )}
-                      
+
                       {project.liveLink && (
                         <a
                           href={project.liveLink}

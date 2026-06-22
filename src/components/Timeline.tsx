@@ -56,10 +56,15 @@ export const Timeline = () => {
                   </span>
                 </div>
 
-                {/* Body Details */}
-                <p className="text-[var(--text-muted)] text-sm md:text-base leading-relaxed mb-4">
-                  {item.description}
-                </p>
+                {/* Body — Bullet List */}
+                <ul className="flex flex-col gap-2 mb-4">
+                  {item.descriptions.map((desc, i) => (
+                    <li key={i} className="flex items-start gap-2.5 text-sm md:text-base text-[var(--text-muted)] leading-relaxed">
+                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-cyan-500/70 shrink-0" />
+                      <span>{desc}</span>
+                    </li>
+                  ))}
+                </ul>
 
                 {/* Sub tags */}
                 {item.tags && (

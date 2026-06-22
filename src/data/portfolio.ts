@@ -23,7 +23,7 @@ export interface TimelineItem {
   period: string;
   role: string;
   company: string;
-  description: string;
+  descriptions: string[];
   tags?: string[];
 }
 
@@ -51,8 +51,7 @@ export const portfolioData: PortfolioData = {
     name: "Ichsan",
     fullName: "Ichsan",
     role: "Fullstack Web Developer",
-    subRole: "Membangun Aplikasi Web Kios & Kustom dengan PHP, Next.js & PostgreSQL",
-    bio: "Saya adalah seorang Fullstack Developer yang berfokus pada pembangunan aplikasi web interaktif, berkinerja tinggi, dan responsif. Berpengalaman dalam merancang aplikasi kios interaktif, dashboard admin dinamis, serta integrasi sistem modern.",
+    subRole: "Sebagai alumni Web Fullstack Programmer MagangHub,  saya memiliki ketertarikan besar pada problem-solving",
     email: "contact@iichsan.my.id",
     location: "Indonesia",
     github: "https://github.com/Ichiniu",
@@ -77,7 +76,8 @@ export const portfolioData: PortfolioData = {
         { name: "PHP" },
         { name: "CodeIgniter 4" },
         { name: "Laravel" },
-        { name: "Node.js" }
+        { name: "Node.js" },
+        { name: "Prisma ORM " }
       ]
     },
     {
@@ -121,19 +121,55 @@ export const portfolioData: PortfolioData = {
   timeline: [
     {
       id: "exp-1",
-      period: "2024 - Sekarang",
-      role: "Freelance Fullstack Developer",
-      company: "Mandiri",
-      description: "Mengembangkan aplikasi web kustom untuk klien, merancang database PostgreSQL/MySQL, serta mengelola deployment hosting mandiri (CWP/FlyEnv).",
-      tags: ["CI 4", "PostgreSQL", "Next.js", "Hosting Management"]
+      period: "November 2025 - Mei 2026",
+      role: "Web Fullstack Programmer PHP (MagangHub)",
+      company: "PT. Tiga Serangkai",
+      descriptions: [
+        "Mengembangkan website reservasi ruangan berbasis web menggunakan PHP, Framework CodeIgniter, dan database MySQL.",
+        "Membangun fitur utama sistem, meliputi reservasi ruangan, manajemen catering, manajemen profil pengguna, dashboard admin, rekap data, serta export laporan dalam format PDF.",
+        "Merancang dan mengelola struktur database relasional MySQL untuk mendukung penyimpanan data reservasi, pengguna, transaksi catering, dan laporan secara terstruktur.",
+        "Menyusun skenario pengujian, melakukan manual testing, serta mengimplementasikan automated testing menggunakan Cypress untuk memvalidasi alur reservasi secara End-to-End (E2E).",
+        "Mengintegrasikan fitur notifikasi transaksi otomatis melalui email Gmail/SMTP agar pengguna mendapatkan informasi terkait status reservasi dan transaksi secara real-time."
+      ],
+      tags: ["PHP", "CodeIgniter", "MySQL", "Cypress", "Gmail SMTP"]
     },
     {
       id: "exp-2",
-      period: "2023 - 2024",
-      role: "Junior Web Developer",
-      company: "Software House / Klien Lokal",
-      description: "Membangun sistem informasi berbasis web, integrasi API pihak ketiga, dan merancang antarmuka pengguna yang ramah seluler.",
-      tags: ["PHP Laravel", "MySQL", "CSS Grid/Flexbox", "Bootstrap"]
+      period: "Jan 2025 - Sep 2025",
+      role: "Supervisor Outlet",
+      company: "PT. DRR Sejahtera Bersama",
+      descriptions: [
+        "Memastikan operasional restoran berjalan lancar sesuai standar operasional prosedur (SOP).",
+        "Mengelola jadwal karyawan, rotasi shift, dan pencatatan kehadiran.",
+        "Menangani keluhan pelanggan dan permintaan khusus secara profesional.",
+        "Mengajukan permintaan inventaris dan pengadaan barang.",
+        "Mendampingi tim audit saat inspeksi bulanan."
+      ],
+      tags: ["Operasional", "SOP", "Manajemen Tim"]
+    },
+    {
+      id: "exp-3",
+      period: "Jul 2024",
+      role: "Staff Service",
+      company: "Event ASEAN U-16 Boys Championship 2024",
+      descriptions: [
+        "Mengelola tata letak (layout) area layanan konsumsi secara efisien dan bersiaga untuk kebutuhan mendadak.",
+        "Melakukan manajemen stok makanan secara real-time untuk memastikan ketersediaan logistik selama jam pelayanan operasional.",
+        "Menangani berbagai permintaan khusus dari tamu dan delegasi internasional."
+      ],
+      tags: ["Event Management", "Logistik", "Internasional"]
+    },
+    {
+      id: "exp-4",
+      period: "Mar 2024 - Jul 2024",
+      role: "IT Support",
+      company: "PT. Ayo Menebar Kebaikan",
+      descriptions: [
+        "Mengembangkan website company profile perusahaan menggunakan CMS WordPress.",
+        "Melakukan verifikasi dan pengecekan silang terhadap data invoice untuk mencegah terjadinya duplikasi.",
+        "Membantu operasional logistik pada proses pemeriksaan fisik dan validasi paket di area Gudang."
+      ],
+      tags: ["WordPress", "IT Support", "Logistik"]
     }
   ]
 };
