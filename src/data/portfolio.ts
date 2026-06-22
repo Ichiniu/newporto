@@ -40,6 +40,7 @@ export interface PortfolioData {
     github: string;
     linkedin: string;
     instagram?: string;
+    whatsapp?: string;
     splineEmbedUrl: string;
   };
   skillCategories: SkillCategory[];
@@ -54,10 +55,12 @@ export const portfolioData: PortfolioData = {
     role: "Fullstack Web Developer",
     subRole: "Sebagai alumni Web Fullstack Programmer MagangHub,  saya memiliki ketertarikan besar pada problem-solving",
     bio: "Saya fokus pada pembuatan aplikasi web berkualitas tinggi, interaktif, dengan performa terbaik, serta pengalaman pengguna yang mulus.",
-    email: "contact@iichsan.my.id",
+    email: "ikhsanwahyu04@gmail.com",
     location: "Indonesia",
     github: "https://github.com/Ichiniu",
-    linkedin: "https://linkedin.com",
+    linkedin: "https://www.linkedin.com/in/ikhsan-wahyu-utomo-3586701b9/",
+    instagram: "https://instagram.com/iich.in",
+    whatsapp: "https://wa.me/6289649261851",
     splineEmbedUrl: "https://my.spline.design/desksetup-7855e8face4844719546578a4feb0649/"
   },
   skillCategories: [

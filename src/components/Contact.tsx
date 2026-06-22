@@ -4,28 +4,60 @@ import React, { useState } from "react";
 import { Card } from "./ui/Card";
 import { Button } from "./ui/Button";
 import { portfolioData } from "@/data/portfolio";
-import { Mail, Send, CheckCircle2 } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/components/ui/Icons";
+import { Mail, Send, CheckCircle2, MessageSquare } from "lucide-react";
+import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/components/ui/Icons";
 import { motion } from "framer-motion";
 
 export const Contact = () => {
-  const { email, github, linkedin } = portfolioData.personalInfo;
-  
+  const { email, github, linkedin, instagram, whatsapp } = portfolioData.personalInfo;
+
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSent, setIsSent] = useState(false);
   const [isSending, setIsSending] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
-    
+
     setIsSending(true);
-    // Simulate sending email
-    setTimeout(() => {
+    const token = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_TOKEN;
+
+    if (!token) {
+      alert("Konfigurasi pengiriman belum lengkap. Mohon atur NEXT_PUBLIC_WEB3FORMS_ACCESS_TOKEN di file .env.local Anda.");
       setIsSending(false);
-      setIsSent(true);
-      setFormData({ name: "", email: "", message: "" });
-    }, 1200);
+      return;
+    }
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          access_key: token,
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          subject: `Pesan Baru Portofolio dari ${formData.name}`,
+          from_name: "Developer Portofolio",
+        }),
+      });
+
+      const result = await response.json();
+      if (result.success) {
+        setIsSent(true);
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        alert(result.message || "Gagal mengirim pesan. Silakan coba lagi.");
+      }
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+      alert("Terjadi kesalahan koneksi. Silakan hubungi langsung via WhatsApp atau Email.");
+    } finally {
+      setIsSending(false);
+    }
   };
 
   return (
@@ -43,14 +75,14 @@ export const Contact = () => {
 
         {/* Layout: Left Column Contact Card & Info, Right Column Interactive Form */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          
+
           {/* Left Column */}
           <div className="lg:col-span-5 flex flex-col justify-between gap-6">
             <Card className="h-full flex flex-col justify-between gap-8">
               <div className="space-y-4">
                 <h3 className="text-xl md:text-2xl font-bold text-[var(--foreground)]">Mari Berkolaborasi!</h3>
                 <p className="text-[var(--text-muted)] text-sm md:text-base leading-relaxed">
-                  Apakah Anda sedang mencari developer untuk menyelesaikan project Anda, membuat aplikasi kios, atau ingin berdiskusi? 
+                  Apakah Anda sedang mencari developer untuk menyelesaikan project Anda, membuat aplikasi kios, atau ingin berdiskusi?
                   Silakan hubungi saya kapan saja!
                 </p>
               </div>
@@ -66,10 +98,28 @@ export const Contact = () => {
                     <Mail className="w-5 h-5" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-xs text-[var(--text-muted)] font-mono">EMAIL DIRECT</span>
+                    <span className="text-xs text-[var(--text-muted)] font-mono">Email</span>
                     <span className="text-sm md:text-base font-semibold font-mono">{email}</span>
                   </div>
                 </a>
+
+                {whatsapp && (
+                  <a
+                    href={whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-4 p-4 rounded-xl bg-[var(--card-bg)] hover:bg-slate-100 dark:hover:bg-slate-900 border border-[var(--card-border)] hover:border-cyan-500/20 text-[var(--foreground)] hover:text-cyan-600 dark:hover:text-cyan-400 transition-all group"
+                    id="link-whatsapp-direct"
+                  >
+                    <div className="p-3 rounded-lg bg-green-500/10 text-green-600 dark:text-green-400">
+                      <MessageSquare className="w-5 h-5" />
+                    </div>
+                    <div className="flex flex-col">
+                      <span className="text-xs text-[var(--text-muted)] font-mono">Whatsapps</span>
+                      <span className="text-sm md:text-base font-semibold font-mono">+62 896-4926-1851</span>
+                    </div>
+                  </a>
+                )}
               </div>
 
               {/* Social links row */}
@@ -94,6 +144,18 @@ export const Contact = () => {
                 >
                   <LinkedinIcon className="w-5 h-5" />
                 </a>
+                {instagram && (
+                  <a
+                    href={instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] hover:border-cyan-500/30 text-[var(--text-muted)] hover:text-[var(--foreground)] transition-all"
+                    title="Instagram Profile"
+                    id="link-instagram-contact"
+                  >
+                    <InstagramIcon className="w-5 h-5" />
+                  </a>
+                )}
               </div>
             </Card>
           </div>
@@ -103,7 +165,7 @@ export const Contact = () => {
             <Card className="h-full">
               {isSent ? (
                 /* Success Message */
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
                   className="h-full flex flex-col items-center justify-center text-center p-8 gap-4"
@@ -115,9 +177,9 @@ export const Contact = () => {
                   <p className="text-[var(--text-muted)] max-w-sm">
                     Terima kasih telah menghubungi saya, Mas Ichsan. Saya akan segera membalas email Anda secepatnya.
                   </p>
-                  <Button 
-                    id="btn-send-another" 
-                    variant="glow" 
+                  <Button
+                    id="btn-send-another"
+                    variant="glow"
                     onClick={() => setIsSent(false)}
                     className="mt-4"
                   >
