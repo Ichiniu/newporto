@@ -43,11 +43,12 @@ export default function RootLayout({
     <html
       lang="id"
       className={`${outfit.variable} ${inter.variable} h-full antialiased scroll-smooth`}
+      suppressHydrationWarning
     >
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)] font-sans selection:bg-cyan-500/30 selection:text-cyan-600 dark:selection:text-cyan-300 transition-colors duration-300">
+      <body suppressHydrationWarning className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)] font-sans selection:bg-cyan-500/30 selection:text-cyan-600 dark:selection:text-cyan-300 transition-colors duration-300">
         {children}
       </body>
     </html>
