@@ -4,6 +4,7 @@ export interface Project {
   description: string;
   techStack: string[];
   image: string;
+  images?: string[];
   githubLink?: string;
   liveLink?: string;
 }
@@ -107,6 +108,7 @@ export const portfolioData: PortfolioData = {
       description: "Aplikasi Photobooth Kios premium berbasis web. Mendukung live filter real-time, crop & position adjustment, serta Live Photo generator (WebM Video Strip).",
       techStack: ["CodeIgniter 4", "Vanilla CSS", "JavaScript", "PostgreSQL"],
       image: "/assets/projects/photobox.png",
+      images: ["/assets/projects/photobox.png", "/assets/projects/photobox2.png"],
       githubLink: "https://github.com/Ichiniu/photobox"
     },
     {

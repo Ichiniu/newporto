@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, Terminal } from "lucide-react";
 import { GithubIcon } from "@/components/ui/Icons";
@@ -8,16 +9,7 @@ import { Button } from "./ui/Button";
 import { portfolioData } from "@/data/portfolio";
 
 export const Hero = () => {
-  const { name, role, subRole, bio, splineEmbedUrl, github } = portfolioData.personalInfo;
-  const [loadSpline, setLoadSpline] = useState(false);
-
-  // Lazy-load the Spline iframe to prevent blocking initial load
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoadSpline(true);
-    }, 800); // Small delay to let the main UI render first
-    return () => clearTimeout(timer);
-  }, []);
+  const { name, role, subRole, bio, github } = portfolioData.personalInfo;
 
   return (
     <section 
@@ -113,34 +105,39 @@ export const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Right Side: 3D Spline Visualizer */}
-        <div className="lg:col-span-5 h-[350px] md:h-[450px] lg:h-[550px] w-full relative">
-          <div className="absolute inset-0 bg-gradient-to-r from-[var(--background)] via-transparent to-transparent lg:from-[var(--background)] z-20 pointer-events-none" />
+        {/* Right Side: Professional Photo Profile */}
+        <div className="lg:col-span-5 flex justify-center items-center w-full relative">
+          {/* Background decorative glowing circles */}
+          <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-cyan-500 to-purple-600 opacity-20 blur-2xl pointer-events-none -z-10" />
           
-          <div className="w-full h-full rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-[2px] overflow-hidden flex items-center justify-center relative">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            whileHover={{ y: -6, scale: 1.01 }}
+            className="relative w-[280px] h-[350px] sm:w-[320px] sm:h-[400px] lg:w-[350px] lg:h-[450px] rounded-3xl border border-[var(--card-border)] bg-[var(--card-bg)] backdrop-blur-[4px] p-3 shadow-2xl group overflow-hidden"
+          >
+            {/* Inner border line decorative */}
+            <div className="absolute inset-0 border border-cyan-500/10 rounded-3xl pointer-events-none" />
             
-            {/* Loading Placeholder */}
-            {!loadSpline && (
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                <div className="w-10 h-10 border-4 border-cyan-500/20 border-t-cyan-500 rounded-full animate-spin" />
-                <span className="text-xs text-[var(--text-muted)] tracking-wider font-mono">LOADING 3D CANVAS...</span>
-              </div>
-            )}
-
-            {/* Spline Iframe Loaded Asynchronously */}
-            {loadSpline && (
-              <iframe
-                src={splineEmbedUrl}
-                className="w-full h-full border-none z-10 scale-105"
-                title="Spline 3D Interactive Model"
-                loading="lazy"
+            <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[var(--background)]">
+              <Image
+                src="/assets/projects/foto-ikhsan.jpeg"
+                alt="Foto Profil Ikhsan Wahyu Utomo"
+                fill
+                sizes="(max-w-768px) 100vw, 33vw"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+                priority
               />
-            )}
+              {/* Premium dark/light gradient overlays */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)]/30 via-transparent to-transparent pointer-events-none" />
+              <div className="absolute inset-0 ring-1 ring-white/10 rounded-2xl pointer-events-none" />
+            </div>
 
-            {/* Glowing borders around the 3D frame */}
-            <div className="absolute top-0 right-0 w-24 h-24 bg-purple-500/5 blur-[40px] rounded-full pointer-events-none" />
-            <div className="absolute bottom-0 left-0 w-24 h-24 bg-cyan-500/5 blur-[40px] rounded-full pointer-events-none" />
-          </div>
+            {/* Glowing accents */}
+            <div className="absolute -top-12 -right-12 w-24 h-24 bg-purple-500/10 blur-[30px] rounded-full pointer-events-none" />
+            <div className="absolute -bottom-12 -left-12 w-24 h-24 bg-cyan-500/10 blur-[30px] rounded-full pointer-events-none" />
+          </motion.div>
         </div>
 
       </div>
