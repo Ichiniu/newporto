@@ -9,7 +9,12 @@ import { Projects } from "@/components/Projects";
 import { Timeline } from "@/components/Timeline";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
-import { LoadingScreen } from "@/components/LoadingScreen";
+import dynamic from "next/dynamic";
+
+const LoadingScreen = dynamic(
+  () => import("@/components/LoadingScreen").then((mod) => mod.LoadingScreen),
+  { ssr: false }
+);
 
 export default function Home() {
   const [loaded, setLoaded] = useState(false);

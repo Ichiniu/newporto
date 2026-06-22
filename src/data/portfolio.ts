@@ -52,6 +52,7 @@ export const portfolioData: PortfolioData = {
     fullName: "Ichsan",
     role: "Fullstack Web Developer",
     subRole: "Sebagai alumni Web Fullstack Programmer MagangHub,  saya memiliki ketertarikan besar pada problem-solving",
+    bio: "Saya fokus pada pembuatan aplikasi web berkualitas tinggi, interaktif, dengan performa terbaik, serta pengalaman pengguna yang mulus.",
     email: "contact@iichsan.my.id",
     location: "Indonesia",
     github: "https://github.com/Ichiniu",
