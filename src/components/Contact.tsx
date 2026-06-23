@@ -20,10 +20,11 @@ export const Contact = () => {
     if (!formData.name || !formData.email || !formData.message) return;
 
     setIsSending(true);
-    const token = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_TOKEN;
+    // Gunakan Environment Variable Vercel, jika tidak terbaca gunakan token langsung di bawah ini
+    const token = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_TOKEN || "MASUKKAN_ACCESS_KEY_WEB3FORMS_DISINI";
 
-    if (!token) {
-      alert("Konfigurasi pengiriman belum lengkap. Mohon atur NEXT_PUBLIC_WEB3FORMS_ACCESS_TOKEN di file .env.local Anda.");
+    if (!token || token === "MASUKKAN_ACCESS_KEY_WEB3FORMS_DISINI") {
+      alert("Konfigurasi pengiriman belum lengkap. Mohon isi token Web3Forms Anda langsung di file src/components/Contact.tsx atau atur Environment Variable di Vercel.");
       setIsSending(false);
       return;
     }
