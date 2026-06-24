@@ -58,11 +58,11 @@ export const Header = () => {
 
   const navItems = [
     { label: "Home", href: "#hero" },
-    { label: "Tentang", href: "#about" },
+    { label: "About", href: "#about" },
     { label: "Skill", href: "#skills" },
-    { label: "Proyek", href: "#projects" },
-    { label: "Pengalaman", href: "#experience" },
-    { label: "Kontak", href: "#contact" }
+    { label: "Projects", href: "#projects" },
+    { label: "Experience", href: "#experience" },
+    { label: "Contact", href: "#contact" }
   ];
 
   // Fungsi utilitas untuk scroll & tutup menu
