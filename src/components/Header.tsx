@@ -1,8 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Menu, X, Code2, Sun, Moon } from "lucide-react";
+import { X, Code2, Sun, Moon, ArrowRight } from "lucide-react";
 import { Button } from "./ui/Button";
+
+// Pastikan untuk mengimpor gambar latar belakang jejak kaki yang baru saja dibuat
+// Asumsikan gambar disimpan di folder assets/footprints-pattern.png
+// import footprintsPattern from "./assets/footprints-pattern.png"; // Atur path sesuai struktur proyek Anda
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -31,6 +35,16 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Lock/unlock body scroll saat menu terbuka
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => { document.body.style.overflow = ""; };
+  }, [isOpen]);
+
   const toggleTheme = () => {
     const newTheme = theme === "light" ? "dark" : "light";
     setTheme(newTheme);
@@ -43,7 +57,7 @@ export const Header = () => {
   };
 
   const navItems = [
-    { label: "Hero", href: "#hero" },
+    { label: "Home", href: "#hero" },
     { label: "Tentang", href: "#about" },
     { label: "Skill", href: "#skills" },
     { label: "Proyek", href: "#projects" },
@@ -51,124 +65,139 @@ export const Header = () => {
     { label: "Kontak", href: "#contact" }
   ];
 
+  // Fungsi utilitas untuk scroll & tutup menu
+  const handleNavClick = (href) => {
+    setIsOpen(false);
+    // Tambahkan sedikit delay agar animasi tutup selesai sebelum scroll (opsional)
+    setTimeout(() => {
+      const element = document.querySelector(href);
+      if (element) element.scrollIntoView({ behavior: "smooth" });
+    }, 300);
+  };
+
   return (
-    <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
-        scrolled 
-          ? "py-4 bg-[var(--background)]/85 backdrop-blur-md border-b border-[var(--card-border)] shadow-md shadow-slate-200/50 dark:shadow-black/30" 
+    <>
+      {/* ───────────────────────────────────────────────────────── */}
+      {/* HEADER UTAMA (Tampil saat menu tertutup)                  */}
+      {/* ───────────────────────────────────────────────────────── */}
+      <header
+        className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${scrolled
+          ? "py-4 bg-[var(--background)]/85 backdrop-blur-md border-b border-[var(--card-border)] shadow-md shadow-slate-200/50 dark:shadow-black/30"
           : "py-6 bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 xl:px-24 flex items-center justify-between">
-        {/* Logo */}
-        <a 
-          href="#hero" 
-          className="flex items-center gap-2 group cursor-pointer"
-          id="logo-link"
-        >
-          <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 group-hover:bg-cyan-500 group-hover:text-gray-900 transition-all">
-            <Code2 className="w-5 h-5" />
-          </div>
-          <span className="font-mono font-bold text-lg tracking-wider text-[var(--foreground)] group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
-            ICHSAN.DEV
-          </span>
-        </a>
+          }`}
+      >
+        <div className="w-full px-6 md:px-12 flex items-center justify-between relative">
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-6">
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="text-sm font-mono text-[var(--text-muted)] hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors py-1 relative group"
+          {/* KIRI: Tombol Menu */}
+          <button
+            onClick={() => setIsOpen(true)}
+            className="flex items-center gap-3 group text-[var(--text-muted)] hover:text-[var(--foreground)] transition-colors z-10"
+            aria-label="Open Menu"
+          >
+            <div className="flex flex-col gap-[5px] justify-center">
+              <span className="w-5 h-[1.5px] bg-current block transition-all group-hover:w-6"></span>
+              <span className="w-5 h-[1.5px] bg-current block transition-all"></span>
+            </div>
+            <span className="hidden md:block text-sm font-mono font-medium tracking-wide">Menu</span>
+          </button>
+
+          {/* TENGAH: Logo (Absolute Center) */}
+          <a
+            href="#hero"
+            className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-2 group cursor-pointer"
+          >
+
+            <span className="font-mono font-bold text-lg tracking-wider text-[var(--foreground)] group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+              Ikhsan Wahyu utomo
+            </span>
+          </a>
+
+          {/* KANAN: Theme Switcher & CTA */}
+          <div className="flex items-center gap-3 md:gap-6 z-10">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] hover:bg-slate-100 dark:hover:bg-slate-900 text-[var(--text-muted)] hover:text-cyan-500 transition-all cursor-pointer"
+              aria-label="Toggle Theme"
             >
-              {item.label}
-              <span className="absolute bottom-0 left-0 w-0 h-[1.5px] bg-cyan-500 transition-all group-hover:w-full" />
-            </a>
-          ))}
+              {mounted ? (
+                theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />
+              ) : (
+                <div className="w-4 h-4" />
+              )}
+            </button>
 
-          {/* Theme Switcher Button */}
+            <button
+              onClick={() => handleNavClick("#contact")}
+              className="flex items-center gap-2 group text-[var(--text-muted)] hover:text-[var(--foreground)] transition-colors"
+            >
+              <span className="text-sm font-mono font-medium tracking-wide">Hubungi</span>
+              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+        </div>
+      </header>
+
+      {/* ───────────────────────────────────────────────────────── */}
+      {/* MENU FULL-SCREEN (Tampil saat isOpen === true)            */}
+      {/* ───────────────────────────────────────────────────────── */}
+      <div
+        className={`fixed inset-0 z-50 bg-[var(--background)] flex flex-col overflow-hidden transition-transform duration-500 ease-in-out ${isOpen ? "translate-y-0 pointer-events-auto" : "-translate-y-full pointer-events-none"
+          }`}
+      >
+        {/* Tambahkan div latar belakang jejak kaki yang berulang di sini */}
+        <div
+          className="absolute inset-0 z-[-1] opacity-10 bg-repeat bg-[url('/assets/footprints-pattern.png')]"
+          style={{ backgroundImage: `url('/assets/footprints-pattern.png')` }}
+        />
+
+        {/* Header di dalam Full-Screen Menu */}
+        <div className="w-full px-6 md:px-12 py-6 flex items-center justify-between">
+
+          {/* Kiri: Tombol Close (Sesuai Referensi) */}
           <button
-            onClick={toggleTheme}
-            className="p-2 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] hover:bg-slate-100 dark:hover:bg-slate-900 text-[var(--text-muted)] hover:text-cyan-500 transition-all cursor-pointer"
-            aria-label="Toggle Theme"
-            id="btn-theme-toggle"
+            onClick={() => setIsOpen(false)}
+            className="flex items-center gap-2 group text-[var(--foreground)] hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
           >
-            {mounted ? (
-              theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />
-            ) : (
-              <div className="w-4 h-4" />
-            )}
+            <X className="w-5 h-5 group-hover:-rotate-90 transition-transform duration-300" />
+            <span className="text-sm font-mono font-semibold tracking-wide">Close</span>
           </button>
 
-          <Button
-            id="btn-nav-contact"
-            variant="glow"
-            onClick={() => {
-              const element = document.getElementById("contact");
-              if (element) element.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="px-4 py-2 text-xs"
-          >
-            Hubungi
-          </Button>
-        </nav>
+          {/* Tengah: Logo Teks */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 cursor-pointer">
+            <span className="font-mono font-bold text-lg tracking-wider text-[var(--foreground)]">
+              Ikhsan Wahyu Utomo
+            </span>
+          </div>
 
-        {/* Right Controls Mobile */}
-        <div className="flex items-center gap-2 md:hidden">
-          {/* Mobile Theme Switcher */}
+          {/* Kanan: CTA Hubungi */}
           <button
-            onClick={toggleTheme}
-            className="p-2 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] text-[var(--text-muted)] hover:text-cyan-500 transition-all cursor-pointer"
-            aria-label="Toggle Theme Mobile"
-            id="btn-theme-toggle-mobile"
+            onClick={() => handleNavClick("#contact")}
+            className="flex items-center gap-2 group text-[var(--foreground)] hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
           >
-            {mounted ? (
-              theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />
-            ) : (
-              <div className="w-4 h-4" />
-            )}
+            <span className="text-sm font-mono font-semibold tracking-wide">Hubungi</span>
+            <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
           </button>
+        </div>
 
-          {/* Mobile menu trigger */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="p-2 text-[var(--text-muted)] hover:text-[var(--foreground)] transition-colors"
-            aria-label="Toggle Menu"
-            id="btn-mobile-toggle"
-          >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+        {/* Konten Utama Menu (Link Raksasa di Tengah) */}
+        <div className="flex-1 flex flex-col items-center justify-center pb-20">
+          <nav className="flex flex-col items-center gap-2 md:gap-4 text-center">
+            {navItems.map((item) => (
+              <a
+                key={item.label}
+                href={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(item.href);
+                }}
+                className="text-[3rem] sm:text-[4.5rem] md:text-[6rem] lg:text-[7rem] font-bold tracking-tight text-[var(--foreground)] hover:text-cyan-600 dark:hover:text-cyan-400 hover:scale-105 transition-all duration-300 leading-none z-10"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
         </div>
       </div>
-
-      {/* Mobile Drawer */}
-      {isOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-[var(--background)]/95 backdrop-blur-lg border-b border-[var(--card-border)] py-6 px-6 flex flex-col gap-5 shadow-2xl animate-fade-in-down">
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              onClick={() => setIsOpen(false)}
-              className="text-sm font-mono text-[var(--text-muted)] hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors py-2 border-b border-[var(--border-subtle)]"
-            >
-              {item.label}
-            </a>
-          ))}
-          <Button
-            id="btn-mobile-contact"
-            variant="primary"
-            onClick={() => {
-              setIsOpen(false);
-              const element = document.getElementById("contact");
-              if (element) element.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="w-full"
-          >
-            Hubungi Saya
-          </Button>
-        </div>
-      )}
-    </header>
+    </>
   );
 };

@@ -107,19 +107,20 @@ export const portfolioData: PortfolioData = {
   projects: [
     {
       id: "photobox",
-      title: "Chzan Photobox 📸",
-      description: "Aplikasi Photobooth Kios premium berbasis web. Mendukung live filter real-time, crop & position adjustment, serta Live Photo generator (WebM Video Strip).",
+      title: "Chzan Photobox ",
+      description: "Aplikasi Photobooth berbasis web. Mendukung live filter real-time, crop & position adjustment, serta Live Photo generator (WebM Video Strip).",
       techStack: ["CodeIgniter 4", "Vanilla CSS", "JavaScript", "PostgreSQL"],
       image: "/assets/projects/photobox.png",
       images: ["/assets/projects/photobox.png", "/assets/projects/photobox2.png"],
       githubLink: "https://github.com/Ichiniu/photobox"
     },
     {
-      id: "developer-portfolio",
-      title: "3D Developer Portfolio ✨",
-      description: "Portofolio modern premium dengan integrasi visual 3D Spline, Glassmorphic UI, dan animasi mikro responsif.",
-      techStack: ["Next.js (Static)", "Tailwind CSS", "Framer Motion", "Spline"],
-      image: "/assets/projects/portfolio.png",
+      id: "reservasi",
+      title: "Reservasi TSSO",
+      description: "Website Reservasi ruangan yang digunakan untuk kegiatan PT. Tiga Serangkai maupun pihak eksternal.",
+      techStack: ["Codeigniter", "Tailwind CSS", "Integrasi Gmail", "Oauth"],
+      image: "/assets/projects/reservasi.png",
+      images: ["/assets/projects/reservasi.png", "/assets/projects/reservasi2.png"],
       githubLink: "https://github.com/Ichiniu",
       liveLink: "https://iichsan.my.id"
     }
