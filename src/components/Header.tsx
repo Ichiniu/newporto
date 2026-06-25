@@ -66,7 +66,7 @@ export const Header = () => {
   ];
 
   // Fungsi utilitas untuk scroll & tutup menu
-  const handleNavClick = (href) => {
+  const handleNavClick = (href: string) => {
     setIsOpen(false);
     // Tambahkan sedikit delay agar animasi tutup selesai sebelum scroll (opsional)
     setTimeout(() => {
