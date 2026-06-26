@@ -61,8 +61,7 @@ export const Header = () => {
     { label: "About", href: "#about" },
     { label: "Skill", href: "#skills" },
     { label: "Projects", href: "#projects" },
-    { label: "Experience", href: "#experience" },
-    { label: "Contact", href: "#contact" }
+    { label: "Experience", href: "#experience" }
   ];
 
   // Fungsi utilitas untuk scroll & tutup menu

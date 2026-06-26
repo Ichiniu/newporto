@@ -41,7 +41,7 @@ export const About = () => {
 
   /* Stat 2 — Code */
   const [hov2, setHov2] = useState(false);
-  const { val: count2, start: start2, reset: reset2 } = useCounter(10, 700);
+  const { val: count2, start: start2, reset: reset2 } = useCounter(5, 700);
 
   /* Stat 3 — Uptime */
   const [hov3, setHov3] = useState(false);
@@ -127,8 +127,8 @@ export const About = () => {
               >
                 {/* Icon */}
                 <div className={`relative p-4 rounded-xl overflow-hidden transition-all duration-300 ${hov1
-                    ? "bg-cyan-500/25 text-cyan-300 shadow-[0_0_20px_rgba(6,182,212,0.45)] scale-110"
-                    : "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400"
+                  ? "bg-cyan-500/25 text-cyan-300 shadow-[0_0_20px_rgba(6,182,212,0.45)] scale-110"
+                  : "bg-cyan-500/10 text-cyan-600 dark:text-cyan-400"
                   }`}>
                   <Award className={`w-8 h-8 transition-transform duration-300 ${hov1 ? "-translate-y-1" : "translate-y-0"}`} />
                   {/* Shine sweep */}
@@ -145,7 +145,7 @@ export const About = () => {
                     </span>
                   </div>
                   <p className={`text-sm font-mono transition-colors duration-300 ${hov1 ? "text-cyan-400" : "text-[var(--text-muted)]"}`}>
-                    PENGALAMAN CODING
+                    PENGALAMAN
                   </p>
                   {/* Progress bar */}
                   <div className="mt-2 h-1 w-full rounded-full bg-cyan-500/10 overflow-hidden">
@@ -168,8 +168,8 @@ export const About = () => {
               >
                 {/* Icon */}
                 <div className={`relative p-4 rounded-xl transition-all duration-300 ${hov2
-                    ? "bg-purple-500/25 text-purple-400 shadow-[0_0_20px_rgba(168,85,247,0.4)] scale-110"
-                    : "bg-purple-500/10 text-purple-600 dark:text-purple-400"
+                  ? "bg-purple-500/25 text-purple-400 shadow-[0_0_20px_rgba(168,85,247,0.4)] scale-110"
+                  : "bg-purple-500/10 text-purple-600 dark:text-purple-400"
                   }`}>
                   <Code className={`w-8 h-8 transition-transform duration-500 ${hov2 ? "rotate-180" : "rotate-0"}`} />
                   {hov2 && <span className="absolute inset-0 rounded-xl animate-ping bg-purple-500/20 pointer-events-none" />}
@@ -207,8 +207,8 @@ export const About = () => {
               >
                 {/* Icon — angka % */}
                 <div className={`relative p-4 rounded-xl transition-all duration-300 ${hov3
-                    ? "bg-teal-500/25 text-teal-300 shadow-[0_0_20px_rgba(20,184,166,0.45)] scale-110"
-                    : "bg-teal-500/10 text-teal-600 dark:text-teal-400"
+                  ? "bg-teal-500/25 text-teal-300 shadow-[0_0_20px_rgba(20,184,166,0.45)] scale-110"
+                  : "bg-teal-500/10 text-teal-600 dark:text-teal-400"
                   }`}>
                   <Server className={`w-8 h-8 transition-transform duration-300 ${hov3 ? "scale-110" : "scale-100"}`} />
                   {/* Dot indicator */}
