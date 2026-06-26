@@ -106,6 +106,15 @@ export const portfolioData: PortfolioData = {
   ],
   projects: [
     {
+      id: "kasir",
+      title: "Kasir App - Modern POS",
+      description: "Aplikasi Point of Sale (POS) / Kasir modern yang dibangun dengan Next.js 15, Prisma ORM, MySQL, dan shadcn/ui. Dilengkapi manajemen produk, dashboard penjualan interaktif, riwayat transaksi lengkap, laporan keuangan, multi-role (Admin/Kasir), serta keamanan hashing bcrypt.",
+      techStack: ["Next.js 15", "Prisma ORM", "MySQL", "NextAuth.js", "Tailwind CSS", "shadcn/ui"],
+      image: "/assets/projects/project/kasir.png",
+      images: ["/assets/projects/project/kasir.png", "/assets/projects/project/kasir2.png"],
+      githubLink: "https://github.com/Ichiniu/kasir-app"
+    },
+    {
       id: "photobox",
       title: "Chzan Photobox ",
       description: "Aplikasi Photobooth berbasis web. Mendukung live filter real-time, crop & position adjustment, serta Live Photo generator (WebM Video Strip).",
