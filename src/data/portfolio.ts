@@ -115,6 +115,15 @@ export const portfolioData: PortfolioData = {
       githubLink: "https://github.com/Ichiniu/kasir-app"
     },
     {
+      id: "wbot",
+      title: "Personal WhatsApp Assistant Bot",
+      description: "Asisten pribadi berbasis AI pintar yang terintegrasi langsung dengan WhatsApp menggunakan library Baileys. Didukung pemrosesan bahasa alami (Llama 3.3 via Groq API), memori jangka panjang berbasis PostgreSQL, sistem pengingat otomatis (reminder) berbasis waktu alami & Cron, daily planner, serta dashboard web real-time untuk memantau status server dan database.",
+      techStack: ["Node.js", "PostgreSQL", "Groq API (Llama 3.3)", "Baileys WhatsApp", "Express.js", "Tailwind CSS"],
+      image: "/assets/projects/project/chatbot.png",
+      images: ["/assets/projects/project/chatbot.png"],
+      githubLink: "https://github.com/Ichiniu/wbot"
+    },
+    {
       id: "photobox",
       title: "Chzan Photobox ",
       description: "Aplikasi Photobooth berbasis web. Mendukung live filter real-time, crop & position adjustment, serta Live Photo generator (WebM Video Strip).",

@@ -194,13 +194,13 @@ export const Projects = () => {
   const filterOptions = [
     { label: "Semua", value: "all" },
     { label: "PHP / CI4", value: "ci" },
-    { label: "Next.js / React", value: "next" }
+    { label: "JS / React / Node.js", value: "next" }
   ];
 
   const filteredProjects = projects.filter((project) => {
     if (filter === "all") return true;
     if (filter === "ci") return project.techStack.some(tech => tech.toLowerCase().includes("codeigniter"));
-    if (filter === "next") return project.techStack.some(tech => tech.toLowerCase().includes("next.js") || tech.toLowerCase().includes("react"));
+    if (filter === "next") return project.techStack.some(tech => tech.toLowerCase().includes("next.js") || tech.toLowerCase().includes("react") || tech.toLowerCase().includes("node.js"));
     return true;
   });
 
