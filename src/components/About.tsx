@@ -72,9 +72,9 @@ export const About = () => {
                 </p>
                 <p className="text-[var(--text-muted)] leading-relaxed text-sm md:text-base">
                   Perjalanan saya di dunia pemrograman lahir dari rasa ingin tahu yang tak pernah padam.
-                  Sebagai lulusan S1 Teknik Informatika dan pemegang sertifikat Web Fullstack Programmer
+                  Sebagai lulusan S1 Teknik Informatika dan Alumni sertifikat Web Fullstack Programmer
                   (Kemnaker), saya telah membangun fondasi teknis yang kuat di atas tech stack komprehensif
-                  Saya bersyukur mendapat kesempatan merancang solusi end-to-end yang berdampak nyata —
+                  Saya bersyukur mendapat kesempatan merancang solusi end-to-end yang berdampak nyata
                   mulai dari sistem reservasi ruangan (reservasi.tigaserangkai.com) lengkap dengan
                   notifikasi email otomatis dan E2E testing via Cypress, otomasi WhatsApp Bot berbasis Node.js
                   dengan arsitektur Long-Term Memory, hingga aplikasi POS fullstack dengan sistem RBAC dan audit log transaksi.
@@ -82,7 +82,7 @@ export const About = () => {
                   melainkan saat aplikasi yang dibangun benar-benar mengubah cara orang bekerja menjadi lebih mudah dan efisien.
                   Saat ini, saya aktif mendalami administrasi Linux (Ubuntu Server), karena saya percaya aplikasi yang hebat
                   hanya akan bersinar jika ditopang infrastruktur yang stabil, aman, dan andal.
-                  Saya menempatkan diri sebagai seorang lifelong learner — adaptif, kolaboratif, dan selalu terbuka
+                  Saya menempatkan diri sebagai seorang lifelong learner, adaptif, kolaboratif, dan selalu terbuka
                   terhadap teknologi baru — dengan satu tujuan: memberikan dampak positif yang nyata di setiap proyek yang saya kerjakan.
                 </p>
               </div>

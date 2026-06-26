@@ -54,7 +54,7 @@ export const portfolioData: PortfolioData = {
     fullName: "Ichsan",
     role: "Fullstack Web Developer",
     subRole: "Sebagai alumni Web Fullstack Programmer MagangHub,  saya memiliki ketertarikan besar pada problem-solving",
-    bio: "Saya fokus pada pembuatan aplikasi web berkualitas tinggi, interaktif, dengan performa terbaik, serta pengalaman pengguna yang mulus.",
+    bio: "Saya fokus pada pembuatan aplikasi web berkualitas, interaktif, dengan performa terbaik, serta pengalaman pengguna yang mulus.",
     email: "ikhsanwahyu04@gmail.com",
     location: "Indonesia",
     github: "https://github.com/Ichiniu",
@@ -108,7 +108,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "kasir",
       title: "Kasir App - Modern POS",
-      description: "Aplikasi Point of Sale (POS) / Kasir modern yang dibangun dengan Next.js 15, Prisma ORM, MySQL, dan shadcn/ui. Dilengkapi manajemen produk, dashboard penjualan interaktif, riwayat transaksi lengkap, laporan keuangan, multi-role (Admin/Kasir), serta keamanan hashing bcrypt.",
+      description: "Aplikasi Point of Sale (POS) / Kasir modern yang dibangun dengan Next.js 15, Prisma ORM, MySQL, dan shadcn/ui. Dilengkapi manajemen produk, dashboard penjualan interaktif, riwayat transaksi lengkap, laporan keuangan, multi-role (Admin/Kasir).",
       techStack: ["Next.js 15", "Prisma ORM", "MySQL", "NextAuth.js", "Tailwind CSS", "shadcn/ui"],
       image: "/assets/projects/project/kasir.png",
       images: ["/assets/projects/project/kasir.png", "/assets/projects/project/kasir2.png"],
@@ -116,8 +116,8 @@ export const portfolioData: PortfolioData = {
     },
     {
       id: "wbot",
-      title: "Personal WhatsApp Assistant Bot",
-      description: "Asisten pribadi berbasis AI pintar yang terintegrasi langsung dengan WhatsApp menggunakan library Baileys. Didukung pemrosesan bahasa alami (Llama 3.3 via Groq API), memori jangka panjang berbasis PostgreSQL, sistem pengingat otomatis (reminder) berbasis waktu alami & Cron, daily planner, serta dashboard web real-time untuk memantau status server dan database.",
+      title: "Personal WhatsApp Assistant ",
+      description: "Asisten pribadi berbasis AI yang terintegrasi langsung dengan WhatsApp menggunakan library Baileys. Didukung pemrosesan bahasa alami (Llama 3.3 via Groq API), memori jangka panjang berbasis PostgreSQL, sistem pengingat otomatis (reminder) berbasis waktu alami & Cron, daily planner, serta dashboard web real-time untuk memantau status server dan database.",
       techStack: ["Node.js", "PostgreSQL", "Groq API (Llama 3.3)", "Baileys WhatsApp", "Express.js", "Tailwind CSS"],
       image: "/assets/projects/project/chatbot.png",
       images: ["/assets/projects/project/chatbot.png"],
