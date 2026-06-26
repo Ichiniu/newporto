@@ -12,8 +12,8 @@ export const Hero = () => {
   const { name, role, subRole, bio, github } = portfolioData.personalInfo;
 
   return (
-    <section 
-      id="hero" 
+    <section
+      id="hero"
       className="relative min-h-[90vh] md:min-h-screen flex flex-col justify-center px-6 md:px-12 xl:px-24 pt-20 overflow-hidden bg-grid-pattern"
     >
       {/* Background radial glow */}
@@ -21,7 +21,7 @@ export const Hero = () => {
       <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[300px] md:w-[500px] h-[300px] md:h-[500px] rounded-full bg-purple-500/10 blur-[80px] md:blur-[120px] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center z-10">
-        
+
         {/* Left Side: Professional Identity */}
         <div className="lg:col-span-7 flex flex-col gap-6 text-left">
           <motion.div
@@ -43,7 +43,7 @@ export const Hero = () => {
             >
               Halo, Saya <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-teal-400 to-purple-500 text-glow-cyan font-extrabold">{name}</span>
             </motion.h1>
-            
+
             <motion.h2
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
@@ -81,7 +81,7 @@ export const Hero = () => {
               Lihat Proyek
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Button>
-            
+
             <Button
               id="btn-contact-hero"
               variant="secondary"
@@ -93,10 +93,10 @@ export const Hero = () => {
               Hubungi Saya
             </Button>
 
-            <a 
-              href={github} 
-              target="_blank" 
-              rel="noopener noreferrer" 
+            <a
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center justify-center p-3 rounded-xl border border-[var(--card-border)] hover:border-cyan-500/30 bg-[var(--card-bg)] text-[var(--text-muted)] hover:text-cyan-500 transition-all"
               title="GitHub Profile"
             >
@@ -109,8 +109,8 @@ export const Hero = () => {
         <div className="lg:col-span-5 flex justify-center items-center w-full relative">
           {/* Background decorative glowing circles */}
           <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-cyan-500 to-purple-600 opacity-20 blur-2xl pointer-events-none -z-10" />
-          
-          <motion.div 
+
+          <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -119,10 +119,10 @@ export const Hero = () => {
           >
             {/* Inner border line decorative */}
             <div className="absolute inset-0 border border-cyan-500/10 rounded-3xl pointer-events-none" />
-            
+
             <div className="relative w-full h-full rounded-2xl overflow-hidden bg-[var(--background)]">
               <Image
-                src="/assets/projects/foto-ikhsan.jpeg"
+                src="/assets/projects/project/foto-ikhsan.jpeg"
                 alt="Foto Profil Ikhsan Wahyu Utomo"
                 fill
                 sizes="(max-w-768px) 100vw, 33vw"
@@ -141,7 +141,7 @@ export const Hero = () => {
         </div>
 
       </div>
-      
+
       {/* Scroll Down Indicator */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-40 hover:opacity-100 transition-opacity">
         <span className="text-[10px] tracking-widest font-mono text-[var(--text-muted)]">SCROLL DOWN</span>
