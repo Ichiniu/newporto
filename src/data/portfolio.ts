@@ -109,7 +109,7 @@ export const portfolioData: PortfolioData = {
       id: "kasir",
       title: "Kasir App - Modern POS",
       description: "Aplikasi Point of Sale (POS) / Kasir modern yang dibangun dengan Next.js 15, Prisma ORM, MySQL, dan shadcn/ui. Dilengkapi manajemen produk, dashboard penjualan interaktif, riwayat transaksi lengkap, laporan keuangan, multi-role (Admin/Kasir).",
-      techStack: ["Next.js 15", "Prisma ORM", "MySQL", "NextAuth.js", "Tailwind CSS", "shadcn/ui"],
+      techStack: ["Next.js 15", "Prisma ORM", "MySQL", "NextAuth.js", "Tailwind CSS", "shadcn/ui", "Midtrans"],
       image: "/assets/projects/project/kasir.png",
       images: ["/assets/projects/project/kasir.png", "/assets/projects/project/kasir2.png"],
       githubLink: "https://github.com/Ichiniu/kasir-app"
@@ -135,7 +135,7 @@ export const portfolioData: PortfolioData = {
     {
       id: "reservasi",
       title: "Reservasi TSSO",
-      description: "Website Reservasi ruangan yang digunakan untuk kegiatan PT. Tiga Serangkai maupun pihak eksternal.",
+      description: "Website Reservasi ruangan yang digunakan untuk perekapan kegiatan PT. Tiga Serangkai maupun pihak eksternal.",
       techStack: ["Codeigniter", "Tailwind CSS", "Integrasi Gmail", "Oauth"],
       image: "/assets/projects/reservasi.png",
       images: ["/assets/projects/reservasi.png", "/assets/projects/reservasi2.png"],
