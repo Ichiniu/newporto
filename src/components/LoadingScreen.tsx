@@ -592,7 +592,7 @@ const styles = `
   .ls-name {
     font-weight: 700;
     font-style: normal;
-    color: #000000;
+    color: var(--foreground, #000000);
   }
 
   .ls-bottom {

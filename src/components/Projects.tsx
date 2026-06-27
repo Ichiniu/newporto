@@ -293,20 +293,20 @@ export const Projects = () => {
                       e.stopPropagation();
                       setActivePreview(prev => prev ? { ...prev, imageIdx: (prev.imageIdx - 1 + previewImages.length) % previewImages.length } : null);
                     }}
-                    className="absolute -bottom-16 left-1/4 -translate-x-1/2 md:bottom-auto md:left-4 md:top-1/2 md:-translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center backdrop-blur-sm transition-colors border border-white/10 cursor-pointer shadow-lg"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center backdrop-blur-sm transition-colors border border-white/10 cursor-pointer shadow-lg"
                     aria-label="Previous image"
                   >
-                    <ChevronLeft className="w-6 h-6" />
+                    <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
                   </button>
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       setActivePreview(prev => prev ? { ...prev, imageIdx: (prev.imageIdx + 1) % previewImages.length } : null);
                     }}
-                    className="absolute -bottom-16 right-1/4 translate-x-1/2 md:bottom-auto md:right-4 md:top-1/2 md:-translate-y-1/2 z-10 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center backdrop-blur-sm transition-colors border border-white/10 cursor-pointer shadow-lg"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center backdrop-blur-sm transition-colors border border-white/10 cursor-pointer shadow-lg"
                     aria-label="Next image"
                   >
-                    <ChevronRight className="w-6 h-6" />
+                    <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
                   </button>
 
                   {/* Dots Indicator in Modal */}

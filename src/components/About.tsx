@@ -88,7 +88,7 @@ export const About = () => {
               </div>
 
               {/* Core Values grid inside card */}
-              <div className="grid grid-cols-2 gap-4 pt-6 border-t border-[var(--border-subtle)]">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 border-t border-[var(--border-subtle)]">
                 <div className="flex items-start gap-3">
                   <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 mt-1">
                     <Zap className="w-5 h-5" />

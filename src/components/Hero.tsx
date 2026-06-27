@@ -14,7 +14,7 @@ export const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative min-h-[90vh] md:min-h-screen flex flex-col justify-center px-6 md:px-12 xl:px-24 pt-20 overflow-hidden bg-grid-pattern"
+      className="relative min-h-[90vh] md:min-h-screen flex flex-col justify-center px-6 md:px-12 xl:px-24 pt-20 pb-16 md:pb-0 overflow-hidden bg-grid-pattern"
     >
       {/* Background radial glow */}
       <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[500px] h-[300px] md:h-[500px] rounded-full bg-cyan-500/10 blur-[80px] md:blur-[120px] pointer-events-none -z-10" />
