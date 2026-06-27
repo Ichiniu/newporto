@@ -107,7 +107,7 @@ export const Header = () => {
             className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-2 group cursor-pointer whitespace-nowrap"
           >
             <span className="font-mono font-bold text-lg tracking-wider text-[var(--foreground)] group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
-              Ikhsan Wahyu Utomo
+              Ichsan Wahyu Utomo
             </span>
           </a>
 
@@ -140,7 +140,7 @@ export const Header = () => {
           {/* KIRI: Logo */}
           <a href="#hero" className="cursor-pointer">
             <span className="font-mono font-bold text-base tracking-wider text-[var(--foreground)] hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
-              Ikhsan
+              Ichsan
             </span>
           </a>
 

@@ -18,9 +18,8 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
 }) => {
   return (
     <div
-      className={`fixed inset-0 z-50 bg-[var(--background)] flex flex-col overflow-hidden transition-transform duration-500 ease-in-out ${
-        isOpen ? "translate-y-0 pointer-events-auto" : "-translate-y-full pointer-events-none"
-      }`}
+      className={`fixed inset-0 z-50 bg-[var(--background)] flex flex-col overflow-hidden transition-transform duration-500 ease-in-out ${isOpen ? "translate-y-0 pointer-events-auto" : "-translate-y-full pointer-events-none"
+        }`}
     >
       {/* Latar belakang jejak kaki */}
       <div
@@ -42,7 +41,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
         {/* Tengah: Logo */}
         <div className="absolute left-1/2 transform -translate-x-1/2 cursor-pointer whitespace-nowrap">
           <span className="font-mono font-bold text-sm sm:text-base md:text-lg tracking-wider text-[var(--foreground)]">
-            <span className="inline sm:hidden">Ikhsan</span>
+            <span className="inline sm:hidden">Ichsan</span>
             <span className="hidden sm:inline">Ikhsan Wahyu Utomo</span>
           </span>
         </div>
