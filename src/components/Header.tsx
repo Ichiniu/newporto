@@ -179,8 +179,8 @@ export const Header = () => {
         </div>
 
         {/* Konten Utama Menu (Link Raksasa di Tengah) */}
-        <div className="flex-1 flex flex-col items-center justify-center pb-20">
-          <nav className="flex flex-col items-center gap-2 md:gap-4 text-center">
+        <div className="flex-1 flex flex-col items-center justify-center overflow-y-auto py-10">
+          <nav className="flex flex-col items-center gap-2 md:gap-4 text-center my-auto">
             {navItems.map((item) => (
               <a
                 key={item.label}
