@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { X, Code2, Sun, Moon, ArrowRight } from "lucide-react";
+import { X, Code2, Sun, Moon, ArrowRight, Home, User, Cpu, Briefcase } from "lucide-react";
 import { Button } from "./ui/Button";
 import { MobileMenu } from "./MobileMenu";
 
@@ -58,11 +58,11 @@ export const Header = () => {
   };
 
   const navItems = [
-    { label: "Home", href: "#hero" },
-    { label: "About", href: "#about" },
-    { label: "Skill", href: "#skills" },
-    { label: "Projects", href: "#projects" },
-    { label: "Experience", href: "#experience" }
+    { label: "Home", mobileLabel: "Home", href: "#hero", icon: Home },
+    { label: "About", mobileLabel: "About", href: "#about", icon: User },
+    { label: "Skill", mobileLabel: "Skill", href: "#skills", icon: Cpu },
+    { label: "Projects", mobileLabel: "Project", href: "#projects", icon: Code2 },
+    { label: "Experience", mobileLabel: "Exp", href: "#experience", icon: Briefcase }
   ];
 
   // Fungsi utilitas untuk scroll & tutup menu
@@ -86,8 +86,8 @@ export const Header = () => {
           : "py-6 bg-transparent"
           }`}
       >
-        <div className="w-full px-6 md:px-12 flex items-center justify-between relative">
-
+        {/* DESKTOP HEADER (Lebar layar md ke atas - pertahankan konsep lama) */}
+        <div className="hidden md:flex w-full px-12 items-center justify-between relative">
           {/* KIRI: Tombol Menu */}
           <button
             onClick={() => setIsOpen(true)}
@@ -98,7 +98,7 @@ export const Header = () => {
               <span className="w-5 h-[1.5px] bg-current block transition-all group-hover:w-6"></span>
               <span className="w-5 h-[1.5px] bg-current block transition-all"></span>
             </div>
-            <span className="hidden md:block text-sm font-mono font-medium tracking-wide">Menu</span>
+            <span className="text-sm font-mono font-medium tracking-wide">Menu</span>
           </button>
 
           {/* TENGAH: Logo (Absolute Center) */}
@@ -106,14 +106,46 @@ export const Header = () => {
             href="#hero"
             className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-2 group cursor-pointer whitespace-nowrap"
           >
-            <span className="font-mono font-bold text-sm sm:text-base md:text-lg tracking-wider text-[var(--foreground)] group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
-              <span className="inline sm:hidden">Ikhsan</span>
-              <span className="hidden sm:inline">Ikhsan Wahyu Utomo</span>
+            <span className="font-mono font-bold text-lg tracking-wider text-[var(--foreground)] group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+              Ikhsan Wahyu Utomo
             </span>
           </a>
 
           {/* KANAN: Theme Switcher & CTA */}
-          <div className="flex items-center gap-3 md:gap-6 z-10">
+          <div className="flex items-center gap-6 z-10">
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] hover:bg-slate-100 dark:hover:bg-slate-900 text-[var(--text-muted)] hover:text-cyan-500 transition-all cursor-pointer"
+              aria-label="Toggle Theme"
+            >
+              {mounted ? (
+                theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />
+              ) : (
+                <div className="w-4 h-4" />
+              )}
+            </button>
+
+            <button
+              onClick={() => handleNavClick("#contact")}
+              className="flex items-center gap-2 group text-[var(--text-muted)] hover:text-[var(--foreground)] transition-colors"
+            >
+              <span className="text-sm font-mono font-medium tracking-wide">Hubungi</span>
+              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+        </div>
+
+        {/* MOBILE HEADER (Lebar layar di bawah md) */}
+        <div className="flex md:hidden w-full px-6 items-center justify-between relative">
+          {/* KIRI: Logo */}
+          <a href="#hero" className="cursor-pointer">
+            <span className="font-mono font-bold text-base tracking-wider text-[var(--foreground)] hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors">
+              Ikhsan
+            </span>
+          </a>
+
+          {/* KANAN: Theme Switcher & CTA */}
+          <div className="flex items-center gap-3 z-10">
             <button
               onClick={toggleTheme}
               className="p-2 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] hover:bg-slate-100 dark:hover:bg-slate-900 text-[var(--text-muted)] hover:text-cyan-500 transition-all cursor-pointer"
@@ -137,7 +169,32 @@ export const Header = () => {
         </div>
       </header>
 
-      {/* Menu Navigasi Fullscreen / Mobile */}
+      {/* BOTTOM FLOATING NAV BAR (Mobile only, di bawah md) */}
+      <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-2rem)] max-w-[420px] bg-[var(--card-bg)]/80 backdrop-blur-lg border border-[var(--card-border)] rounded-2xl py-2 px-3 shadow-lg shadow-slate-200/50 dark:shadow-black/40">
+        <nav className="flex items-center justify-around w-full gap-0.5">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  // Scroll langsung ke target elemen
+                  const element = document.querySelector(item.href);
+                  if (element) element.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="flex flex-col items-center justify-center gap-1 py-1.5 px-2 rounded-xl text-[var(--text-muted)] hover:text-cyan-500 hover:bg-cyan-500/10 active:bg-cyan-500/10 transition-all cursor-pointer min-w-[56px]"
+              >
+                <Icon className="w-5 h-5" />
+                <span className="text-[9px] min-[360px]:text-[10px] font-mono font-bold leading-none">{item.mobileLabel}</span>
+              </a>
+            );
+          })}
+        </nav>
+      </div>
+
+      {/* Menu Navigasi Fullscreen (Diaktifkan lewat menu Desktop) */}
       <MobileMenu
         isOpen={isOpen}
         onClose={() => setIsOpen(false)}
