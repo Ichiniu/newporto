@@ -5,8 +5,11 @@ import { Card } from "./ui/Card";
 import { portfolioData } from "@/data/portfolio";
 import { Calendar, Briefcase, ChevronRight } from "lucide-react";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 export const Timeline = () => {
-  const { timeline } = portfolioData;
+  const { lang, t } = useLanguage();
+  const { timeline } = portfolioData[lang];
 
   return (
     <section id="experience" className="py-20 px-6 md:px-12 xl:px-24 relative overflow-hidden bg-[var(--background)]">
@@ -16,8 +19,8 @@ export const Timeline = () => {
       <div className="max-w-4xl mx-auto w-full">
         {/* Title */}
         <div className="flex flex-col gap-2 mb-16 text-center items-center">
-          <span className="text-xs md:text-sm font-semibold tracking-wider text-cyan-500 dark:text-cyan-400 font-mono uppercase">Riwayat Karir</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)]">Pengalaman & Perjalanan</h2>
+          <span className="text-xs md:text-sm font-semibold tracking-wider text-cyan-500 dark:text-cyan-400 font-mono uppercase">{t("timelineTitle")}</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)]">{t("timelineSubtitle")}</h2>
           <div className="w-12 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full mt-1" />
         </div>
 

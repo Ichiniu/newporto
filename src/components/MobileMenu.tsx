@@ -2,6 +2,7 @@
 
 import React from "react";
 import { X, ArrowRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -16,6 +17,8 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
   navItems,
   onNavClick,
 }) => {
+  const { lang, t } = useLanguage();
+
   return (
     <div
       className={`fixed inset-0 z-50 bg-[var(--background)] flex flex-col overflow-hidden transition-transform duration-500 ease-in-out ${isOpen ? "translate-y-0 pointer-events-auto" : "-translate-y-full pointer-events-none"
@@ -35,7 +38,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
           className="flex items-center gap-2 group text-[var(--foreground)] hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
         >
           <X className="w-5 h-5 group-hover:-rotate-90 transition-transform duration-300" />
-          <span className="text-sm font-mono font-semibold tracking-wide">Close</span>
+          <span className="text-sm font-mono font-semibold tracking-wide">{lang === "id" ? "Tutup" : "Close"}</span>
         </button>
 
         {/* Tengah: Logo */}
@@ -51,7 +54,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
           onClick={() => onNavClick("#contact")}
           className="flex items-center gap-2 group text-[var(--foreground)] hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
         >
-          <span className="text-sm font-mono font-semibold tracking-wide">Hubungi</span>
+          <span className="text-sm font-mono font-semibold tracking-wide">{t("contact")}</span>
           <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
         </button>
       </div>

@@ -8,8 +8,11 @@ import { Mail, Send, CheckCircle2, MessageSquare } from "lucide-react";
 import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/components/ui/Icons";
 import { motion } from "framer-motion";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 export const Contact = () => {
-  const { email, github, linkedin, instagram, whatsapp } = portfolioData.personalInfo;
+  const { lang, t } = useLanguage();
+  const { email, github, linkedin, instagram, whatsapp } = portfolioData[lang].personalInfo;
 
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSent, setIsSent] = useState(false);
@@ -24,7 +27,9 @@ export const Contact = () => {
     const token = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_TOKEN || "MASUKKAN_ACCESS_KEY_WEB3FORMS_DISINI";
 
     if (!token || token === "MASUKKAN_ACCESS_KEY_WEB3FORMS_DISINI") {
-      alert("Konfigurasi pengiriman belum lengkap. Mohon isi token Web3Forms Anda langsung di file src/components/Contact.tsx atau atur Environment Variable di Vercel.");
+      alert(lang === "id"
+        ? "Konfigurasi pengiriman belum lengkap. Mohon isi token Web3Forms Anda langsung di file src/components/Contact.tsx atau atur Environment Variable di Vercel."
+        : "Submission configuration is incomplete. Please fill in your Web3Forms token directly in the src/components/Contact.tsx file or set the Environment Variable in Vercel.");
       setIsSending(false);
       return;
     }
@@ -41,8 +46,8 @@ export const Contact = () => {
           name: formData.name,
           email: formData.email,
           message: formData.message,
-          subject: `Pesan Baru Portofolio dari ${formData.name}`,
-          from_name: "Developer Portofolio",
+          subject: lang === "id" ? `Pesan Baru Portofolio dari ${formData.name}` : `New Portfolio Message from ${formData.name}`,
+          from_name: lang === "id" ? "Developer Portofolio" : "Portfolio Developer",
         }),
       });
 
@@ -51,11 +56,13 @@ export const Contact = () => {
         setIsSent(true);
         setFormData({ name: "", email: "", message: "" });
       } else {
-        alert(result.message || "Gagal mengirim pesan. Silakan coba lagi.");
+        alert(result.message || (lang === "id" ? "Gagal mengirim pesan. Silakan coba lagi." : "Failed to send message. Please try again."));
       }
     } catch (error) {
       console.error("Error submitting contact form:", error);
-      alert("Terjadi kesalahan koneksi. Silakan hubungi langsung via WhatsApp atau Email.");
+      alert(lang === "id"
+        ? "Terjadi kesalahan koneksi. Silakan hubungi langsung via WhatsApp atau Email."
+        : "Connection error occurred. Please contact directly via WhatsApp or Email.");
     } finally {
       setIsSending(false);
     }
@@ -69,8 +76,8 @@ export const Contact = () => {
       <div className="max-w-6xl mx-auto w-full">
         {/* Title */}
         <div className="flex flex-col gap-2 mb-12 text-center items-center">
-          <span className="text-xs md:text-sm font-semibold tracking-wider text-cyan-500 dark:text-cyan-400 font-mono uppercase">Hubungi</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)]">Hubungi Saya</h2>
+          <span className="text-xs md:text-sm font-semibold tracking-wider text-cyan-500 dark:text-cyan-400 font-mono uppercase">{t("contactTitle")}</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)]">{t("contactSubtitle")}</h2>
           <div className="w-12 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full mt-1" />
         </div>
 
@@ -81,10 +88,9 @@ export const Contact = () => {
           <div className="lg:col-span-5 flex flex-col justify-between gap-6">
             <Card className="h-full flex flex-col justify-between gap-8">
               <div className="space-y-4">
-                <h3 className="text-xl md:text-2xl font-bold text-[var(--foreground)]">Mari Berkolaborasi!</h3>
+                <h3 className="text-xl md:text-2xl font-bold text-[var(--foreground)]">{t("collaborate")}</h3>
                 <p className="text-[var(--text-muted)] text-sm md:text-base leading-relaxed">
-                  Apakah Anda sedang mencari developer untuk menyelesaikan project Anda, membuat aplikasi kios, atau ingin berdiskusi?
-                  Silakan hubungi saya kapan saja!
+                  {t("collaborateDesc")}
                 </p>
               </div>
 
@@ -174,9 +180,9 @@ export const Contact = () => {
                   <div className="p-4 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 animate-pulse">
                     <CheckCircle2 className="w-12 h-12" />
                   </div>
-                  <h3 className="text-2xl font-bold text-[var(--foreground)]">Pesan Terkirim!</h3>
+                  <h3 className="text-2xl font-bold text-[var(--foreground)]">{t("messageSent")}</h3>
                   <p className="text-[var(--text-muted)] max-w-sm">
-                    Terima kasih telah menghubungi saya, Mas Ichsan. Saya akan segera membalas email Anda secepatnya.
+                    {t("messageSentDesc")}
                   </p>
                   <Button
                     id="btn-send-another"
@@ -184,47 +190,47 @@ export const Contact = () => {
                     onClick={() => setIsSent(false)}
                     className="mt-4"
                   >
-                    Kirim Pesan Lain
+                    {t("sendAnother")}
                   </Button>
                 </motion.div>
               ) : (
                 /* Form */
                 <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="input-name" className="text-xs font-mono text-[var(--text-muted)] uppercase tracking-wider">Nama Anda</label>
+                    <label htmlFor="input-name" className="text-xs font-mono text-[var(--text-muted)] uppercase tracking-wider">{t("yourName")}</label>
                     <input
                       type="text"
                       id="input-name"
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="Masukkan nama Anda..."
+                      placeholder={t("enterName")}
                       className="px-4 py-3 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 transition-all text-sm md:text-base font-sans"
                     />
                   </div>
 
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="input-email" className="text-xs font-mono text-[var(--text-muted)] uppercase tracking-wider">Alamat Email</label>
+                    <label htmlFor="input-email" className="text-xs font-mono text-[var(--text-muted)] uppercase tracking-wider">{t("emailAddress")}</label>
                     <input
                       type="email"
                       id="input-email"
                       required
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="Masukkan email Anda..."
+                      placeholder={t("enterEmail")}
                       className="px-4 py-3 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 transition-all text-sm md:text-base font-sans"
                     />
                   </div>
 
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="input-message" className="text-xs font-mono text-[var(--text-muted)] uppercase tracking-wider">Pesan</label>
+                    <label htmlFor="input-message" className="text-xs font-mono text-[var(--text-muted)] uppercase tracking-wider">{t("messageLabel")}</label>
                     <textarea
                       id="input-message"
                       required
                       rows={5}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Ketik pesan Anda di sini..."
+                      placeholder={t("typeMessage")}
                       className="px-4 py-3 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 transition-all text-sm md:text-base font-sans resize-none"
                     />
                   </div>
@@ -239,12 +245,12 @@ export const Contact = () => {
                     {isSending ? (
                       <>
                         <div className="w-5 h-5 border-2 border-gray-900 border-t-transparent rounded-full animate-spin" />
-                        <span>Mengirim...</span>
+                        <span>{t("sending")}</span>
                       </>
                     ) : (
                       <>
                         <Send className="w-4 h-4" />
-                        <span>Kirim Pesan</span>
+                        <span>{t("sendMessage")}</span>
                       </>
                     )}
                   </Button>

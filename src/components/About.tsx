@@ -33,8 +33,11 @@ function useCounter(target: number, duration: number) {
   return { val, start, reset };
 }
 
+import { useLanguage } from "@/context/LanguageContext";
+
 export const About = () => {
-  const { bio } = portfolioData.personalInfo;
+  const { lang, t } = useLanguage();
+  const { bio } = portfolioData[lang].personalInfo;
 
   /* Stat 1 — Award */
   const [hov1, setHov1] = useState(false);
@@ -55,8 +58,8 @@ export const About = () => {
       <div className="max-w-7xl mx-auto w-full">
         {/* Title */}
         <div className="flex flex-col gap-2 mb-12">
-          <span className="text-xs md:text-sm font-semibold tracking-wider text-cyan-500 dark:text-cyan-400 font-mono uppercase">Tentang Saya</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)]">Branding &amp; Filosofi Kerja</h2>
+          <span className="text-xs md:text-sm font-semibold tracking-wider text-cyan-500 dark:text-cyan-400 font-mono uppercase">{t("aboutTitle")}</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)]">{t("aboutSubtitle")}</h2>
           <div className="w-12 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full mt-1" />
         </div>
 
@@ -71,19 +74,7 @@ export const About = () => {
                   {bio}
                 </p>
                 <p className="text-[var(--text-muted)] leading-relaxed text-sm md:text-base">
-                  Perjalanan saya di dunia pemrograman lahir dari rasa ingin tahu yang tak pernah padam.
-                  Sebagai lulusan S1 Teknik Informatika dan Alumni sertifikat Web Fullstack Programmer
-                  (Kemnaker), saya telah membangun fondasi teknis yang kuat di atas tech stack komprehensif
-                  Saya bersyukur mendapat kesempatan merancang solusi end-to-end yang berdampak nyata
-                  mulai dari sistem reservasi ruangan (reservasi.tigaserangkai.com) lengkap dengan
-                  notifikasi email otomatis dan E2E testing via Cypress, otomasi WhatsApp Bot berbasis Node.js
-                  dengan arsitektur Long-Term Memory, hingga aplikasi POS fullstack dengan sistem RBAC dan audit log transaksi.
-                  Bagi saya, kepuasan tertinggi seorang developer bukan sekadar ketika kode berjalan tanpa error,
-                  melainkan saat aplikasi yang dibangun benar-benar mengubah cara orang bekerja menjadi lebih mudah dan efisien.
-                  Saat ini, saya aktif mendalami administrasi Linux (Ubuntu Server), karena saya percaya aplikasi yang hebat
-                  hanya akan bersinar jika ditopang infrastruktur yang stabil, aman, dan andal.
-                  Saya menempatkan diri sebagai seorang lifelong learner, adaptif, kolaboratif, dan selalu terbuka
-                  terhadap teknologi baru — dengan satu tujuan: memberikan dampak positif yang nyata di setiap proyek yang saya kerjakan.
+                  {t("aboutBio2")}
                 </p>
               </div>
 
@@ -94,8 +85,8 @@ export const About = () => {
                     <Zap className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-[var(--foreground)]">Performa Tinggi</h4>
-                    <p className="text-xs text-[var(--text-muted)]">Website cepat &amp; responsif</p>
+                    <h4 className="text-sm font-semibold text-[var(--foreground)]">{t("highPerformance")}</h4>
+                    <p className="text-xs text-[var(--text-muted)]">{t("highPerformanceDesc")}</p>
                   </div>
                 </div>
 
@@ -104,8 +95,8 @@ export const About = () => {
                     <ShieldCheck className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="text-sm font-semibold text-[var(--foreground)]">Keamanan Utama</h4>
-                    <p className="text-xs text-[var(--text-muted)]">Standar coding yang aman</p>
+                    <h4 className="text-sm font-semibold text-[var(--foreground)]">{t("securityFirst")}</h4>
+                    <p className="text-xs text-[var(--text-muted)]">{t("securityFirstDesc")}</p>
                   </div>
                 </div>
               </div>
@@ -138,14 +129,14 @@ export const About = () => {
 
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
-                    <h3 className="text-2xl font-bold text-[var(--foreground)]">1 Tahun</h3>
+                    <h3 className="text-2xl font-bold text-[var(--foreground)]">{t("experienceYears")}</h3>
                     <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full transition-all duration-300 ${hov1 ? "opacity-100 bg-cyan-500/20 text-cyan-400" : "opacity-0"
                       }`}>
-                      &amp; TERUS BELAJAR
+                      {t("keepLearning")}
                     </span>
                   </div>
                   <p className={`text-sm font-mono transition-colors duration-300 ${hov1 ? "text-cyan-400" : "text-[var(--text-muted)]"}`}>
-                    PENGALAMAN
+                    {t("experienceLabel")}
                   </p>
                   {/* Progress bar */}
                   <div className="mt-2 h-1 w-full rounded-full bg-cyan-500/10 overflow-hidden">
@@ -177,14 +168,14 @@ export const About = () => {
 
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
-                    <h3 className="text-2xl font-bold text-[var(--foreground)]">{count2}+ Proyek</h3>
+                    <h3 className="text-2xl font-bold text-[var(--foreground)]">{count2}+ {t("completedProjects")}</h3>
                     <span className={`flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full transition-all duration-300 ${hov2 ? "opacity-100 translate-x-0 bg-purple-500/20 text-purple-400" : "opacity-0 -translate-x-2"
                       }`}>
-                      <ExternalLink className="w-2.5 h-2.5" /> LIVE
+                      <ExternalLink className="w-2.5 h-2.5" /> {t("liveLabel")}
                     </span>
                   </div>
                   <p className={`text-sm font-mono transition-colors duration-300 ${hov2 ? "text-purple-400" : "text-[var(--text-muted)]"}`}>
-                    SELESAI DIDEPLOY
+                    {t("deployedLabel")}
                   </p>
                   {/* Progress bar */}
                   <div className="mt-2 h-1 w-full rounded-full bg-purple-500/10 overflow-hidden">
@@ -221,11 +212,11 @@ export const About = () => {
                     <h3 className="text-2xl font-bold text-[var(--foreground)]">{count3}%</h3>
                     <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full transition-all duration-300 ${hov3 ? "opacity-100 bg-teal-500/20 text-teal-400" : "opacity-0"
                       }`}>
-                      UPTIME
+                      {t("uptimeLabel")}
                     </span>
                   </div>
                   <p className={`text-sm font-mono transition-colors duration-300 ${hov3 ? "text-teal-400" : "text-[var(--text-muted)]"}`}>
-                    KEANDALAN SERVER
+                    {t("serverReliability")}
                   </p>
                   {/* Uptime bar */}
                   <div className="mt-2 h-1 w-full rounded-full bg-teal-500/10 overflow-hidden">

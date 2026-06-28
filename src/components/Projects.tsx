@@ -7,6 +7,7 @@ import { portfolioData, Project } from "@/data/portfolio";
 import { ExternalLink, ChevronLeft, ChevronRight, X, ZoomIn } from "lucide-react";
 import { GithubIcon } from "@/components/ui/Icons";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
 
 const ProjectCard = ({ 
   project, 
@@ -15,6 +16,7 @@ const ProjectCard = ({
   project: Project; 
   onImageClick: (imageIdx: number) => void;
 }) => {
+  const { t } = useLanguage();
   const [currentIdx, setCurrentIdx] = useState(0);
   const hasImages = project.images && project.images.length > 0;
   const imageList = hasImages ? project.images! : [project.image];
@@ -130,7 +132,7 @@ const ProjectCard = ({
               id={`link-github-${project.id}`}
             >
               <GithubIcon className="w-4 h-4" />
-              <span>Code</span>
+              <span>{t("codeLabel")}</span>
             </a>
           )}
 
@@ -143,7 +145,7 @@ const ProjectCard = ({
               id={`link-live-${project.id}`}
             >
               <ExternalLink className="w-4 h-4" />
-              <span>Live Demo</span>
+              <span>{t("liveDemoLabel")}</span>
             </a>
           )}
         </div>
@@ -153,7 +155,8 @@ const ProjectCard = ({
 };
 
 export const Projects = () => {
-  const { projects } = portfolioData;
+  const { lang, t } = useLanguage();
+  const { projects } = portfolioData[lang];
   const [filter, setFilter] = useState("all");
   const [activePreview, setActivePreview] = useState<{ projectId: string; imageIdx: number } | null>(null);
 
@@ -192,7 +195,7 @@ export const Projects = () => {
 
   // Filter options based on projects' tech stack
   const filterOptions = [
-    { label: "Semua", value: "all" },
+    { label: t("allFilter"), value: "all" },
     { label: "PHP / CI4", value: "ci" },
     { label: "JS / React / Node.js", value: "next" }
   ];
@@ -213,8 +216,8 @@ export const Projects = () => {
         {/* Title */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="flex flex-col gap-2">
-            <span className="text-xs md:text-sm font-semibold tracking-wider text-cyan-500 dark:text-cyan-400 font-mono uppercase">Showcase</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)]">Project</h2>
+            <span className="text-xs md:text-sm font-semibold tracking-wider text-cyan-500 dark:text-cyan-400 font-mono uppercase">{t("projectsTitle")}</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)]">{t("projectsSubtitle")}</h2>
             <div className="w-12 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full mt-1" />
           </div>
 

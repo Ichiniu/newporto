@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { X, Code2, Sun, Moon, ArrowRight, Home, User, Cpu, Briefcase } from "lucide-react";
+import { X, Code2, Languages, ArrowRight, Home, User, Cpu, Briefcase } from "lucide-react";
 import { Button } from "./ui/Button";
 import { MobileMenu } from "./MobileMenu";
+import { useLanguage } from "@/context/LanguageContext";
 
 // Pastikan untuk mengimpor gambar latar belakang jejak kaki yang baru saja dibuat
 // Asumsikan gambar disimpan di folder assets/footprints-pattern.png
@@ -12,26 +13,13 @@ import { MobileMenu } from "./MobileMenu";
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [theme, setTheme] = useState("light");
-  const [mounted, setMounted] = useState(false);
+  const { lang, toggleLanguage, t } = useLanguage();
 
-  // Load and apply theme on mount
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
-
-    // Initial theme set
-    const savedTheme = localStorage.getItem("theme") || "light";
-    setTheme(savedTheme);
-    if (savedTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-
-    setMounted(true);
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -46,23 +34,12 @@ export const Header = () => {
     return () => { document.body.style.overflow = ""; };
   }, [isOpen]);
 
-  const toggleTheme = () => {
-    const newTheme = theme === "light" ? "dark" : "light";
-    setTheme(newTheme);
-    localStorage.setItem("theme", newTheme);
-    if (newTheme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  };
-
   const navItems = [
-    { label: "Home", mobileLabel: "Home", href: "#hero", icon: Home },
-    { label: "About", mobileLabel: "About", href: "#about", icon: User },
-    { label: "Skill", mobileLabel: "Skill", href: "#skills", icon: Cpu },
-    { label: "Projects", mobileLabel: "Project", href: "#projects", icon: Code2 },
-    { label: "Experience", mobileLabel: "Exp", href: "#experience", icon: Briefcase }
+    { label: t("home"), mobileLabel: t("home"), href: "#hero", icon: Home },
+    { label: t("about"), mobileLabel: t("about"), href: "#about", icon: User },
+    { label: t("skills"), mobileLabel: t("skills"), href: "#skills", icon: Cpu },
+    { label: t("projects"), mobileLabel: t("projects"), href: "#projects", icon: Code2 },
+    { label: t("experience"), mobileLabel: t("experience"), href: "#experience", icon: Briefcase }
   ];
 
   // Fungsi utilitas untuk scroll & tutup menu
@@ -98,7 +75,7 @@ export const Header = () => {
               <span className="w-5 h-[1.5px] bg-current block transition-all group-hover:w-6"></span>
               <span className="w-5 h-[1.5px] bg-current block transition-all"></span>
             </div>
-            <span className="text-sm font-mono font-medium tracking-wide">Menu</span>
+            <span className="text-sm font-mono font-medium tracking-wide">{t("menu")}</span>
           </button>
 
           {/* TENGAH: Logo (Absolute Center) */}
@@ -114,22 +91,19 @@ export const Header = () => {
           {/* KANAN: Theme Switcher & CTA */}
           <div className="flex items-center gap-6 z-10">
             <button
-              onClick={toggleTheme}
-              className="p-2 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] hover:bg-slate-100 dark:hover:bg-slate-900 text-[var(--text-muted)] hover:text-cyan-500 transition-all cursor-pointer"
-              aria-label="Toggle Theme"
+              onClick={toggleLanguage}
+              className="group flex items-center gap-2 px-3 py-1.5 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] hover:bg-slate-100 text-[var(--text-muted)] hover:text-cyan-600 transition-all cursor-pointer font-mono text-xs font-bold shadow-sm"
+              aria-label="Change Language"
             >
-              {mounted ? (
-                theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />
-              ) : (
-                <div className="w-4 h-4" />
-              )}
+              <Languages className="w-4 h-4 text-cyan-600 transition-transform group-hover:scale-110" />
+              <span className="w-5 text-left">{lang.toUpperCase()}</span>
             </button>
 
             <button
               onClick={() => handleNavClick("#contact")}
               className="flex items-center gap-2 group text-[var(--text-muted)] hover:text-[var(--foreground)] transition-colors"
             >
-              <span className="text-sm font-mono font-medium tracking-wide">Hubungi</span>
+              <span className="text-sm font-mono font-medium tracking-wide">{t("contact")}</span>
               <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
             </button>
           </div>
@@ -147,22 +121,19 @@ export const Header = () => {
           {/* KANAN: Theme Switcher & CTA */}
           <div className="flex items-center gap-3 z-10">
             <button
-              onClick={toggleTheme}
-              className="p-2 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] hover:bg-slate-100 dark:hover:bg-slate-900 text-[var(--text-muted)] hover:text-cyan-500 transition-all cursor-pointer"
-              aria-label="Toggle Theme"
+              onClick={toggleLanguage}
+              className="group flex items-center gap-2 px-3 py-1.5 rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] hover:bg-slate-100 text-[var(--text-muted)] hover:text-cyan-600 transition-all cursor-pointer font-mono text-xs font-bold shadow-sm"
+              aria-label="Change Language"
             >
-              {mounted ? (
-                theme === "light" ? <Moon className="w-4 h-4" /> : <Sun className="w-4 h-4" />
-              ) : (
-                <div className="w-4 h-4" />
-              )}
+              <Languages className="w-4 h-4 text-cyan-600 transition-transform group-hover:scale-110" />
+              <span className="w-5 text-left">{lang.toUpperCase()}</span>
             </button>
 
             <button
               onClick={() => handleNavClick("#contact")}
               className="flex items-center gap-2 group text-[var(--text-muted)] hover:text-[var(--foreground)] transition-colors"
             >
-              <span className="text-sm font-mono font-medium tracking-wide">Hubungi</span>
+              <span className="text-sm font-mono font-medium tracking-wide">{t("contact")}</span>
               <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
             </button>
           </div>

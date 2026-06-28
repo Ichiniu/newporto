@@ -7,9 +7,11 @@ import { ArrowRight, Terminal } from "lucide-react";
 import { GithubIcon } from "@/components/ui/Icons";
 import { Button } from "./ui/Button";
 import { portfolioData } from "@/data/portfolio";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const Hero = () => {
-  const { name, role, subRole, bio, github } = portfolioData.personalInfo;
+  const { lang, t } = useLanguage();
+  const { name, role, subRole, bio, github } = portfolioData[lang].personalInfo;
 
   return (
     <section
@@ -31,7 +33,7 @@ export const Hero = () => {
             className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs md:text-sm font-medium w-fit"
           >
             <Terminal className="w-4 h-4" />
-            <span>Ready for Freelance & Projects</span>
+            <span>{t("freelanceReady")}</span>
           </motion.div>
 
           <div className="flex flex-col gap-2">
@@ -41,7 +43,7 @@ export const Hero = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-4xl md:text-6xl font-bold tracking-tight text-[var(--foreground)] font-sans"
             >
-              Halo, Saya <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-teal-400 to-purple-500 text-glow-cyan font-extrabold">{name}</span>
+              {t("heroGreeting")} <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 via-teal-400 to-purple-500 text-glow-cyan font-extrabold">{name}</span>
             </motion.h1>
 
             <motion.h2
@@ -78,7 +80,7 @@ export const Hero = () => {
                 if (element) element.scrollIntoView({ behavior: "smooth" });
               }}
             >
-              Lihat Proyek
+              {t("viewProjects")}
               <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Button>
 
@@ -90,7 +92,7 @@ export const Hero = () => {
                 if (element) element.scrollIntoView({ behavior: "smooth" });
               }}
             >
-              Hubungi Saya
+              {t("contactMe")}
             </Button>
 
             <a
@@ -144,7 +146,7 @@ export const Hero = () => {
 
       {/* Scroll Down Indicator */}
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-40 hover:opacity-100 transition-opacity">
-        <span className="text-[10px] tracking-widest font-mono text-[var(--text-muted)]">SCROLL DOWN</span>
+        <span className="text-[10px] tracking-widest font-mono text-[var(--text-muted)]">{t("scrollDown")}</span>
         <div className="w-[1.5px] h-6 bg-gradient-to-b from-[var(--text-muted)] to-transparent animate-bounce" />
       </div>
     </section>

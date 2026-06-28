@@ -5,8 +5,11 @@ import { Card } from "./ui/Card";
 import { portfolioData } from "@/data/portfolio";
 import { Server, Layout, Database, Wrench } from "lucide-react";
 
+import { useLanguage } from "@/context/LanguageContext";
+
 export const Skills = () => {
-  const categories = portfolioData.skillCategories;
+  const { lang, t } = useLanguage();
+  const categories = portfolioData[lang].skillCategories;
 
   // Map icons to categories
   const getCategoryIcon = (category: string) => {
@@ -30,8 +33,8 @@ export const Skills = () => {
       <div className="max-w-7xl mx-auto w-full">
         {/* Title */}
         <div className="flex flex-col gap-2 mb-12">
-          <span className="text-xs md:text-sm font-semibold tracking-wider text-cyan-500 dark:text-cyan-400 font-mono uppercase">Keahlian Teknis</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)]">Teknologi yang Digunakan</h2>
+          <span className="text-xs md:text-sm font-semibold tracking-wider text-cyan-500 dark:text-cyan-400 font-mono uppercase">{t("skillsTitle")}</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)]">{t("skillsSubtitle")}</h2>
           <div className="w-12 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full mt-1" />
         </div>
 

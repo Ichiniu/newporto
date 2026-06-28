@@ -1,9 +1,10 @@
-"use client";
-
 import React from "react";
 import { Code2, ArrowUp } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const Footer = () => {
+  const { t } = useLanguage();
+
   const handleScrollTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -22,14 +23,14 @@ export const Footer = () => {
 
         {/* Note */}
         <p className="text-xs text-[var(--text-muted)] font-mono text-center md:text-left">
-          Dibuat dengan Next.js Static Export &amp; Tailwind CSS. Hosted on CWP.
+          {t("createdBy")}
         </p>
 
         {/* Scroll back to top */}
         <button
           onClick={handleScrollTop}
           className="p-3 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] hover:border-cyan-500/30 text-[var(--text-muted)] hover:text-cyan-600 dark:hover:text-cyan-400 transition-all cursor-pointer group"
-          title="Kembali ke atas"
+          title={t("backToTop")}
           id="btn-scroll-top"
         >
           <ArrowUp className="w-4 h-4 transition-transform group-hover:-translate-y-0.5" />

@@ -9,6 +9,7 @@ import { Projects } from "@/components/Projects";
 import { Timeline } from "@/components/Timeline";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
+import { LanguageProvider } from "@/context/LanguageContext";
 import dynamic from "next/dynamic";
 
 const LoadingScreen = dynamic(
@@ -20,7 +21,7 @@ export default function Home() {
   const [loaded, setLoaded] = useState(false);
 
   return (
-    <>
+    <LanguageProvider>
       {/* Modul 4: Loading screen — hilang otomatis setelah animasi selesai */}
       {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
 
@@ -50,7 +51,7 @@ export default function Home() {
 
       {/* Page Footer */}
       <Footer />
-    </>
+    </LanguageProvider>
   );
 }
 
