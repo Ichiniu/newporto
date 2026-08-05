@@ -82,7 +82,7 @@ const translations: Record<Language, Record<string, string>> = {
     sendAnother: "Kirim Pesan Lain",
     
     // Footer
-    createdBy: "Dibuat dengan Next.js Static Export & Tailwind CSS. Hosted on CWP.",
+    createdBy: "Dibuat dengan Next.js Static Export & Tailwind CSS.",
     backToTop: "Kembali ke atas",
   },
   en: {
@@ -153,7 +153,7 @@ const translations: Record<Language, Record<string, string>> = {
     sendAnother: "Send Another Message",
     
     // Footer
-    createdBy: "Made with Next.js Static Export & Tailwind CSS. Hosted on CWP.",
+    createdBy: "Made with Next.js Static Export & Tailwind CSS.",
     backToTop: "Back to top",
   }
 };
