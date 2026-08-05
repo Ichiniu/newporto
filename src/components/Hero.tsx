@@ -3,15 +3,27 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Terminal } from "lucide-react";
-import { GithubIcon } from "@/components/ui/Icons";
+import { ArrowRight, Mail, MapPin, MessageCircle, Terminal } from "lucide-react";
+import { GithubIcon, InstagramIcon, LinkedinIcon } from "@/components/ui/Icons";
 import { Button } from "./ui/Button";
 import { portfolioData } from "@/data/portfolio";
 import { useLanguage } from "@/context/LanguageContext";
 
 export const Hero = () => {
   const { lang, t } = useLanguage();
-  const { name, role, subRole, bio, github } = portfolioData[lang].personalInfo;
+  const {
+    name,
+    fullName,
+    role,
+    subRole,
+    bio,
+    email,
+    location,
+    github,
+    linkedin,
+    instagram,
+    whatsapp
+  } = portfolioData[lang].personalInfo;
 
   return (
     <section
@@ -65,6 +77,29 @@ export const Hero = () => {
             {subRole}. {bio}
           </motion.p>
 
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.35 }}
+            className="flex flex-wrap items-center gap-3 text-xs md:text-sm text-[var(--text-muted)] font-mono"
+          >
+            <span className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)]">
+              <Terminal className="w-4 h-4 text-cyan-600 dark:text-cyan-400" />
+              {fullName}
+            </span>
+            <span className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)]">
+              <MapPin className="w-4 h-4 text-teal-600 dark:text-teal-400" />
+              {location}
+            </span>
+            <a
+              href={`mailto:${email}`}
+              className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-[var(--card-bg)] border border-[var(--card-border)] hover:border-cyan-500/30 hover:text-cyan-600 dark:hover:text-cyan-400 transition-all"
+            >
+              <Mail className="w-4 h-4" />
+              {email}
+            </a>
+          </motion.div>
+
           {/* CTA Buttons */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -104,6 +139,37 @@ export const Hero = () => {
             >
               <GithubIcon className="w-5 h-5" />
             </a>
+            <a
+              href={linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center p-3 rounded-xl border border-[var(--card-border)] hover:border-cyan-500/30 bg-[var(--card-bg)] text-[var(--text-muted)] hover:text-cyan-500 transition-all"
+              title="LinkedIn Profile"
+            >
+              <LinkedinIcon className="w-5 h-5" />
+            </a>
+            {instagram && (
+              <a
+                href={instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center p-3 rounded-xl border border-[var(--card-border)] hover:border-cyan-500/30 bg-[var(--card-bg)] text-[var(--text-muted)] hover:text-cyan-500 transition-all"
+                title="Instagram Profile"
+              >
+                <InstagramIcon className="w-5 h-5" />
+              </a>
+            )}
+            {whatsapp && (
+              <a
+                href={whatsapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center p-3 rounded-xl border border-[var(--card-border)] hover:border-cyan-500/30 bg-[var(--card-bg)] text-[var(--text-muted)] hover:text-cyan-500 transition-all"
+                title="WhatsApp"
+              >
+                <MessageCircle className="w-5 h-5" />
+              </a>
+            )}
           </motion.div>
         </div>
 

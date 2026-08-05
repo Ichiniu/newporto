@@ -68,6 +68,7 @@ const translations: Record<Language, Record<string, string>> = {
     contactSubtitle: "Hubungi Saya",
     collaborate: "Mari Berkolaborasi!",
     collaborateDesc: "Apakah Anda sedang mencari developer untuk menyelesaikan project Anda, membuat aplikasi kios, atau ingin berdiskusi? Silakan hubungi saya kapan saja!",
+    locationLabel: "Lokasi",
     yourName: "Nama Anda",
     enterName: "Masukkan nama Anda...",
     emailAddress: "Alamat Email",
@@ -138,6 +139,7 @@ const translations: Record<Language, Record<string, string>> = {
     contactSubtitle: "Contact Me",
     collaborate: "Let's Collaborate!",
     collaborateDesc: "Are you looking for a developer to complete your project, build a kiosk application, or want to discuss? Please contact me anytime!",
+    locationLabel: "Location",
     yourName: "Your Name",
     enterName: "Enter your name...",
     emailAddress: "Email Address",
@@ -157,17 +159,17 @@ const translations: Record<Language, Record<string, string>> = {
 };
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [lang, setLangState] = useState<Language>("id");
+  const [lang, setLangState] = useState<Language>(() => {
+    if (typeof window === "undefined") return "id";
+
+    const savedLang = localStorage.getItem("lang") as Language;
+    return savedLang === "id" || savedLang === "en" ? savedLang : "id";
+  });
 
   useEffect(() => {
     // Clean up dark mode and theme settings
     document.documentElement.classList.remove("dark");
     localStorage.removeItem("theme");
-
-    const savedLang = localStorage.getItem("lang") as Language;
-    if (savedLang === "id" || savedLang === "en") {
-      setLangState(savedLang);
-    }
   }, []);
 
   const setLang = (newLang: Language) => {

@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Card } from "./ui/Card";
 import { Button } from "./ui/Button";
 import { portfolioData } from "@/data/portfolio";
-import { Mail, Send, CheckCircle2, MessageSquare } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle2, MessageSquare } from "lucide-react";
 import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/components/ui/Icons";
 import { motion } from "framer-motion";
 
@@ -12,7 +12,7 @@ import { useLanguage } from "@/context/LanguageContext";
 
 export const Contact = () => {
   const { lang, t } = useLanguage();
-  const { email, github, linkedin, instagram, whatsapp } = portfolioData[lang].personalInfo;
+  const { email, location, github, linkedin, instagram, whatsapp } = portfolioData[lang].personalInfo;
 
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [isSent, setIsSent] = useState(false);
@@ -122,11 +122,21 @@ export const Contact = () => {
                       <MessageSquare className="w-5 h-5" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-xs text-[var(--text-muted)] font-mono">Whatsapps</span>
+                      <span className="text-xs text-[var(--text-muted)] font-mono">WhatsApp</span>
                       <span className="text-sm md:text-base font-semibold font-mono">+62 896-4926-1851</span>
                     </div>
                   </a>
                 )}
+
+                <div className="flex items-center gap-4 p-4 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)]">
+                  <div className="p-3 rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400">
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-xs text-[var(--text-muted)] font-mono">{t("locationLabel")}</span>
+                    <span className="text-sm md:text-base font-semibold font-mono">{location}</span>
+                  </div>
+                </div>
               </div>
 
               {/* Social links row */}
