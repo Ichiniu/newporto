@@ -69,7 +69,7 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
         category: "Frontend",
         skills: [
           { name: "HTML5 & CSS3" },
-          { name: "JavaScript (ES6+)" },
+          { name: "Vue" },
           { name: "TypeScript" },
           { name: "React.js" },
           { name: "Next.js" },
@@ -83,6 +83,8 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
           { name: "CodeIgniter 4" },
           { name: "Laravel" },
           { name: "Node.js" },
+          { name: "Next.js" },
+          { name: "Express" },
           { name: "Prisma ORM" }
         ]
       },
@@ -101,6 +103,9 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
           { name: "Docker" },
           { name: "Composer" },
           { name: "FlyEnv" },
+           { name: "CI/CD" },
+          { name: "Cloudflare" },
+          { name: "Portainer" },
           { name: "CWP (CentOS Web Panel)" }
         ]
       }
