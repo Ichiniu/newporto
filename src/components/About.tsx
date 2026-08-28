@@ -206,7 +206,6 @@ export const About = () => {
                   <span className={`absolute top-1 right-1 w-2 h-2 rounded-full transition-all duration-300 ${hov3 ? "bg-teal-400 animate-ping" : "bg-teal-600/40"
                     }`} />
                 </div>
-
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
                     <h3 className="text-2xl font-bold text-[var(--foreground)]">{count3}%</h3>
@@ -228,9 +227,7 @@ export const About = () => {
                 </div>
               </div>
             </Card>
-
           </div>
-
         </div>
       </div>
     </section>
