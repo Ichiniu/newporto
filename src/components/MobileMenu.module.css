@@ -1,0 +1,64 @@
+.menu {
+  background: var(--color-bg);
+  isolation: isolate;
+}
+
+.art {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.link {
+  font-family: var(--font-outfit), "Helvetica Neue", Arial, sans-serif;
+  text-shadow: 0 1px 2px var(--color-bg);
+}
+
+.label {
+  display: block;
+  filter: blur(0);
+  opacity: 1;
+  /* Separate from the entrance animation so hover works even during reveal. */
+  transition: filter 350ms ease, opacity 350ms ease;
+}
+
+/* Only the selected word stays in focus; the hit area itself never moves. */
+.nav:has(.link:focus-visible) .link:not(:focus-visible) .label {
+  filter: blur(6px);
+  opacity: 0.38;
+}
+
+/* Avoid sticky hover on phones. Keyboard navigation gets the same treatment. */
+@media (hover: hover) and (pointer: fine) {
+  .nav:has(.link:hover) .link .label {
+    filter: blur(6px);
+    opacity: 0.38;
+  }
+
+  .nav:has(.link:hover) .link:hover .label {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+.open .link {
+  animation: reveal 650ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.open .link:nth-child(2) { animation-delay: 45ms; }
+.open .link:nth-child(3) { animation-delay: 90ms; }
+.open .link:nth-child(4) { animation-delay: 135ms; }
+.open .link:nth-child(5) { animation-delay: 180ms; }
+
+@keyframes reveal {
+  from { opacity: 0; filter: blur(7px); translate: 0 18px; }
+  to { opacity: 1; filter: blur(0); translate: 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .menu { transition: none; }
+  .open .link { animation: none; }
+  .label { transition: none; }
+}

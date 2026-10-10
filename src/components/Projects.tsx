@@ -34,25 +34,24 @@ const ProjectCard = ({
   };
 
   return (
-    <Card className="h-full flex flex-col justify-between overflow-hidden p-0 hover:shadow-2xl hover:shadow-cyan-500/5 group">
+    <Card className="h-full flex flex-col justify-between overflow-hidden p-0 hover:shadow-2xl group">
       {/* Project Image Wrapper with Slider option */}
       <div 
         onClick={() => onImageClick(currentIdx)}
-        className="relative aspect-[16/10] w-full bg-[var(--background)] overflow-hidden border-b border-[var(--card-border)] cursor-zoom-in"
+        className="relative aspect-[16/10] w-full bg-[var(--color-bg)] overflow-hidden border-b border-[var(--color-surface-soft)] cursor-zoom-in"
       >
         <Image
           src={imageList[currentIdx]}
           alt={`${project.title} - Gambar ${currentIdx + 1}`}
           fill
-          sizes="(max-w-768px) 100vw, 50vw"
+          sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
 
         {/* Hover Zoom Overlay */}
-        <div className="absolute inset-0 bg-black/0 hover:bg-black/25 flex items-center justify-center transition-colors duration-300 pointer-events-none">
-          <div className="w-10 h-10 rounded-full bg-black/50 text-white opacity-0 group-hover:opacity-100 flex items-center justify-center backdrop-blur-sm transition-all duration-300 border border-white/10 scale-90 group-hover:scale-100 shadow-lg">
+        <div className="absolute inset-0 bg-transparent flex items-center justify-center transition-colors duration-300 pointer-events-none">
+          <div className="w-10 h-10 rounded-full bg-bg text-text opacity-0 group-hover:opacity-100 flex items-center justify-center backdrop-blur-sm transition-all duration-300 border border-surface-soft scale-90 group-hover:scale-100 shadow-lg">
             <ZoomIn className="w-5 h-5" />
           </div>
         </div>
@@ -62,14 +61,14 @@ const ProjectCard = ({
           <>
             <button
               onClick={handlePrev}
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto cursor-pointer border border-white/10"
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full button-secondary flex items-center justify-center backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto cursor-pointer border border-surface-soft"
               aria-label="Previous image"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={handleNext}
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/40 hover:bg-black/60 text-white flex items-center justify-center backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto cursor-pointer border border-white/10"
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full button-secondary flex items-center justify-center backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-auto cursor-pointer border border-surface-soft"
               aria-label="Next image"
             >
               <ChevronRight className="w-5 h-5" />
@@ -87,8 +86,8 @@ const ProjectCard = ({
                   }}
                   className={`w-1.5 h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                     idx === currentIdx
-                      ? "bg-cyan-400 w-3"
-                      : "bg-white/50 hover:bg-white"
+                      ? "bg-primary-hover w-3"
+                      : "bg-primary hover:bg-primary-hover"
                   }`}
                   aria-label={`Go to slide ${idx + 1}`}
                 />
@@ -101,10 +100,10 @@ const ProjectCard = ({
       {/* Project Details */}
       <div className="p-6 md:p-8 flex flex-col gap-6 flex-grow">
         <div className="space-y-3">
-          <h3 className="text-xl md:text-2xl font-bold text-[var(--foreground)] group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+          <h3 className="text-xl md:text-2xl font-bold text-[var(--color-text)] group-hover:text-text  transition-colors">
             {project.title}
           </h3>
-          <p className="text-[var(--text-muted)] text-sm md:text-base leading-relaxed">
+          <p className="text-[var(--color-text)] text-sm md:text-base leading-relaxed">
             {project.description}
           </p>
         </div>
@@ -114,7 +113,7 @@ const ProjectCard = ({
           {project.techStack.map((tech) => (
             <span
               key={tech}
-              className="px-2.5 py-1 rounded-md text-xs bg-cyan-500/5 border border-cyan-500/10 text-cyan-600 dark:text-cyan-400 font-mono"
+              className="px-2.5 py-1 rounded-md text-xs bg-surface-soft border border-surface-soft text-text  font-mono"
             >
               {tech}
             </span>
@@ -122,13 +121,13 @@ const ProjectCard = ({
         </div>
 
         {/* Action Links */}
-        <div className="flex items-center gap-4 pt-4 border-t border-[var(--border-subtle)] mt-auto">
+        <div className="flex items-center gap-4 pt-4 border-t border-[var(--color-surface-soft)] mt-auto">
           {project.githubLink && (
             <a
               href={project.githubLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-xs md:text-sm font-mono text-[var(--text-muted)] hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors"
+              className="flex items-center gap-2 text-xs md:text-sm font-mono text-[var(--color-text)] hover:text-text  transition-colors"
               id={`link-github-${project.id}`}
             >
               <GithubIcon className="w-4 h-4" />
@@ -141,7 +140,7 @@ const ProjectCard = ({
               href={project.liveLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-xs md:text-sm font-mono text-cyan-600 dark:text-cyan-400 hover:text-cyan-500 dark:hover:text-cyan-300 transition-colors ml-auto"
+              className="flex items-center gap-2 text-xs md:text-sm font-mono text-text  hover:text-text  transition-colors ml-auto"
               id={`link-live-${project.id}`}
             >
               <ExternalLink className="w-4 h-4" />
@@ -208,17 +207,16 @@ export const Projects = () => {
   });
 
   return (
-    <section id="projects" className="py-20 px-6 md:px-12 xl:px-24 relative overflow-hidden bg-[var(--background)]">
+    <section id="projects" className="py-20 px-6 md:px-12 xl:px-24 relative overflow-hidden bg-[var(--color-bg)]">
       {/* Background Glow */}
-      <div className="absolute top-1/4 right-0 w-[300px] h-[300px] rounded-full bg-purple-500/5 blur-[120px] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto w-full">
         {/* Title */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="flex flex-col gap-2">
-            <span className="text-xs md:text-sm font-semibold tracking-wider text-cyan-500 dark:text-cyan-400 font-mono uppercase">{t("projectsTitle")}</span>
-            <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)]">{t("projectsSubtitle")}</h2>
-            <div className="w-12 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full mt-1" />
+            <span className="text-xs md:text-sm font-semibold tracking-wider text-text  font-mono uppercase">{t("projectsTitle")}</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-text)]">{t("projectsSubtitle")}</h2>
+            <div className="w-12 h-1 bg-primary rounded-full mt-1" />
           </div>
 
           {/* Filter Pills */}
@@ -227,10 +225,8 @@ export const Projects = () => {
               <button
                 key={opt.value}
                 onClick={() => setFilter(opt.value)}
-                className={`px-4 py-2 rounded-xl text-xs md:text-sm font-mono border transition-all duration-300 cursor-pointer ${filter === opt.value
-                    ? "bg-cyan-500/10 border-cyan-500 text-cyan-600 dark:text-cyan-400 shadow-md"
-                    : "bg-[var(--card-bg)] border-[var(--card-border)] text-[var(--text-muted)] hover:text-[var(--foreground)] hover:border-cyan-500/30"
-                  }`}
+                aria-pressed={filter === opt.value}
+                className="button-primary px-4 py-2 rounded-xl text-xs md:text-sm font-mono cursor-pointer"
               >
                 {opt.label}
               </button>
@@ -268,7 +264,10 @@ export const Projects = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md p-4 md:p-10"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Preview project"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-bg backdrop-blur-md p-4 md:p-10"
             onClick={() => setActivePreview(null)}
           >
             <motion.div
@@ -282,7 +281,7 @@ export const Projects = () => {
               {/* Close Button */}
               <button
                 onClick={() => setActivePreview(null)}
-                className="absolute -top-12 right-0 md:-top-12 md:-right-4 z-10 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center backdrop-blur-sm transition-colors border border-white/10 cursor-pointer shadow-lg"
+                className="absolute -top-12 right-0 md:-top-12 md:-right-4 z-10 w-10 h-10 rounded-full button-secondary flex items-center justify-center backdrop-blur-sm transition-colors border border-surface-soft cursor-pointer shadow-lg"
                 aria-label="Close preview"
               >
                 <X className="w-6 h-6" />
@@ -296,7 +295,7 @@ export const Projects = () => {
                       e.stopPropagation();
                       setActivePreview(prev => prev ? { ...prev, imageIdx: (prev.imageIdx - 1 + previewImages.length) % previewImages.length } : null);
                     }}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center backdrop-blur-sm transition-colors border border-white/10 cursor-pointer shadow-lg"
+                    className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full button-secondary flex items-center justify-center backdrop-blur-sm transition-colors border border-surface-soft cursor-pointer shadow-lg"
                     aria-label="Previous image"
                   >
                     <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
@@ -306,7 +305,7 @@ export const Projects = () => {
                       e.stopPropagation();
                       setActivePreview(prev => prev ? { ...prev, imageIdx: (prev.imageIdx + 1) % previewImages.length } : null);
                     }}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center backdrop-blur-sm transition-colors border border-white/10 cursor-pointer shadow-lg"
+                    className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 md:w-12 md:h-12 rounded-full button-secondary flex items-center justify-center backdrop-blur-sm transition-colors border border-surface-soft cursor-pointer shadow-lg"
                     aria-label="Next image"
                   >
                     <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
@@ -323,8 +322,8 @@ export const Projects = () => {
                         }}
                         className={`w-2 h-2 rounded-full transition-all duration-300 cursor-pointer ${
                           idx === activePreview.imageIdx
-                            ? "bg-cyan-400 w-4"
-                            : "bg-white/50 hover:bg-white"
+                            ? "bg-primary-hover w-4"
+                            : "bg-primary hover:bg-primary-hover"
                         }`}
                         aria-label={`Go to slide ${idx + 1}`}
                       />

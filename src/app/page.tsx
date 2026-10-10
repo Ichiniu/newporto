@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
@@ -14,17 +14,18 @@ import dynamic from "next/dynamic";
 
 const LoadingScreen = dynamic(
   () => import("@/components/LoadingScreen").then((mod) => mod.LoadingScreen),
-  { ssr: false }
+  { ssr: false, loading: () => <div className="fixed inset-0 z-[9999] bg-bg" aria-busy="true" /> }
 );
 
 export default function Home() {
   const [loaded, setLoaded] = useState(false);
+  const completeIntro = useCallback(() => setLoaded(true), []);
 
   return (
     <LanguageProvider>
-      {/* Modul 4: Loading screen — hilang otomatis setelah animasi selesai */}
-      {!loaded && <LoadingScreen onComplete={() => setLoaded(true)} />}
+      {!loaded && <LoadingScreen onComplete={completeIntro} />}
 
+      <div id="portfolio-content" className="contents">
       {/* Navigation Header */}
       <Header />
 
@@ -51,6 +52,7 @@ export default function Home() {
 
       {/* Page Footer */}
       <Footer />
+      </div>
     </LanguageProvider>
   );
 }

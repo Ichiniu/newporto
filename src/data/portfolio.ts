@@ -145,7 +145,8 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
         techStack: ["Codeigniter", "Tailwind CSS", "Integrasi Gmail", "Oauth"],
         image: "/assets/projects/reservasi.png",
         images: ["/assets/projects/reservasi.png", "/assets/projects/reservasi2.png"],
-        githubLink: "https://github.com/Ichiniu"
+        githubLink: "https://github.com/Ichiniu",
+        liveLink: "https://reservasi.tigaserangkai.com"
       }
     ],
     timeline: [
@@ -294,7 +295,8 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
         techStack: ["Codeigniter", "Tailwind CSS", "Integrasi Gmail", "Oauth"],
         image: "/assets/projects/reservasi.png",
         images: ["/assets/projects/reservasi.png", "/assets/projects/reservasi2.png"],
-        githubLink: "https://github.com/Ichiniu"
+        githubLink: "https://github.com/Ichiniu",
+        liveLink: "https://reservasi.tigaserangkai.com"
       }
     ],
     timeline: [

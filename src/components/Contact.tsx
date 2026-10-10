@@ -69,16 +69,15 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 px-6 md:px-12 xl:px-24 relative overflow-hidden bg-[var(--background)]">
+    <section id="contact" className="py-20 px-6 md:px-12 xl:px-24 relative overflow-hidden bg-[var(--color-bg)]">
       {/* Background Glow */}
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[350px] h-[350px] rounded-full bg-cyan-500/5 blur-[120px] pointer-events-none -z-10" />
 
       <div className="max-w-6xl mx-auto w-full">
         {/* Title */}
         <div className="flex flex-col gap-2 mb-12 text-center items-center">
-          <span className="text-xs md:text-sm font-semibold tracking-wider text-cyan-500 dark:text-cyan-400 font-mono uppercase">{t("contactTitle")}</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[var(--foreground)]">{t("contactSubtitle")}</h2>
-          <div className="w-12 h-1 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full mt-1" />
+          <span className="text-xs md:text-sm font-semibold tracking-wider text-text  font-mono uppercase">{t("contactTitle")}</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-text)]">{t("contactSubtitle")}</h2>
+          <div className="w-12 h-1 bg-primary rounded-full mt-1" />
         </div>
 
         {/* Layout: Left Column Contact Card & Info, Right Column Interactive Form */}
@@ -88,8 +87,8 @@ export const Contact = () => {
           <div className="lg:col-span-5 flex flex-col justify-between gap-6">
             <Card className="h-full flex flex-col justify-between gap-8">
               <div className="space-y-4">
-                <h3 className="text-xl md:text-2xl font-bold text-[var(--foreground)]">{t("collaborate")}</h3>
-                <p className="text-[var(--text-muted)] text-sm md:text-base leading-relaxed">
+                <h3 className="text-xl md:text-2xl font-bold text-[var(--color-text)]">{t("collaborate")}</h3>
+                <p className="text-[var(--color-text)] text-sm md:text-base leading-relaxed">
                   {t("collaborateDesc")}
                 </p>
               </div>
@@ -98,14 +97,14 @@ export const Contact = () => {
               <div className="space-y-4">
                 <a
                   href={`mailto:${email}`}
-                  className="flex items-center gap-4 p-4 rounded-xl bg-[var(--card-bg)] hover:bg-slate-100 dark:hover:bg-slate-900 border border-[var(--card-border)] hover:border-cyan-500/20 text-[var(--foreground)] hover:text-cyan-600 dark:hover:text-cyan-400 transition-all group"
+                  className="flex items-center gap-4 p-4 rounded-xl bg-[var(--color-bg)] hover:bg-bg  border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-text  transition-all group"
                   id="link-mail-direct"
                 >
-                  <div className="p-3 rounded-lg bg-cyan-500/10 text-cyan-600 dark:text-cyan-400">
+                  <div className="p-3 rounded-lg bg-surface-soft text-text ">
                     <Mail className="w-5 h-5" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-xs text-[var(--text-muted)] font-mono">Email</span>
+                    <span className="text-xs text-[var(--color-text)] font-mono">Email</span>
                     <span className="text-sm md:text-base font-semibold font-mono">{email}</span>
                   </div>
                 </a>
@@ -115,37 +114,37 @@ export const Contact = () => {
                     href={whatsapp}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-4 rounded-xl bg-[var(--card-bg)] hover:bg-slate-100 dark:hover:bg-slate-900 border border-[var(--card-border)] hover:border-cyan-500/20 text-[var(--foreground)] hover:text-cyan-600 dark:hover:text-cyan-400 transition-all group"
+                    className="flex items-center gap-4 p-4 rounded-xl bg-[var(--color-bg)] hover:bg-bg  border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-text  transition-all group"
                     id="link-whatsapp-direct"
                   >
-                    <div className="p-3 rounded-lg bg-green-500/10 text-green-600 dark:text-green-400">
+                    <div className="p-3 rounded-lg bg-surface-soft text-text ">
                       <MessageSquare className="w-5 h-5" />
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-xs text-[var(--text-muted)] font-mono">WhatsApp</span>
+                      <span className="text-xs text-[var(--color-text)] font-mono">WhatsApp</span>
                       <span className="text-sm md:text-base font-semibold font-mono">+62 896-4926-1851</span>
                     </div>
                   </a>
                 )}
 
-                <div className="flex items-center gap-4 p-4 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)]">
-                  <div className="p-3 rounded-lg bg-teal-500/10 text-teal-600 dark:text-teal-400">
-                    <MapPin className="w-5 h-5" />
+                <div className="flex items-center gap-4 p-4 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] text-[var(--color-text)]">
+                  <div className="p-3 rounded-lg bg-surface-soft text-text ">
+                    <MapPin data-tone="secondary" className="w-5 h-5" />
                   </div>
                   <div className="flex flex-col">
-                    <span className="text-xs text-[var(--text-muted)] font-mono">{t("locationLabel")}</span>
+                    <span className="text-xs text-[var(--color-text)] font-mono">{t("locationLabel")}</span>
                     <span className="text-sm md:text-base font-semibold font-mono">{location}</span>
                   </div>
                 </div>
               </div>
 
               {/* Social links row */}
-              <div className="flex items-center gap-4 pt-6 border-t border-[var(--border-subtle)]">
+              <div className="flex items-center gap-4 pt-6 border-t border-[var(--color-surface-soft)]">
                 <a
                   href={github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] hover:border-cyan-500/30 text-[var(--text-muted)] hover:text-[var(--foreground)] transition-all"
+                  className="p-3 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-[var(--color-text)] transition-all"
                   title="GitHub Profile"
                   id="link-github-contact"
                 >
@@ -155,7 +154,7 @@ export const Contact = () => {
                   href={linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] hover:border-cyan-500/30 text-[var(--text-muted)] hover:text-[var(--foreground)] transition-all"
+                  className="p-3 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-[var(--color-text)] transition-all"
                   title="LinkedIn Profile"
                   id="link-linkedin-contact"
                 >
@@ -166,7 +165,7 @@ export const Contact = () => {
                     href={instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] hover:border-cyan-500/30 text-[var(--text-muted)] hover:text-[var(--foreground)] transition-all"
+                    className="p-3 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-[var(--color-text)] transition-all"
                     title="Instagram Profile"
                     id="link-instagram-contact"
                   >
@@ -187,11 +186,11 @@ export const Contact = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   className="h-full flex flex-col items-center justify-center text-center p-8 gap-4"
                 >
-                  <div className="p-4 rounded-full bg-cyan-500/10 text-cyan-600 dark:text-cyan-400 animate-pulse">
+                  <div className="p-4 rounded-full bg-surface-soft text-text  animate-pulse">
                     <CheckCircle2 className="w-12 h-12" />
                   </div>
-                  <h3 className="text-2xl font-bold text-[var(--foreground)]">{t("messageSent")}</h3>
-                  <p className="text-[var(--text-muted)] max-w-sm">
+                  <h3 className="text-2xl font-bold text-[var(--color-text)]">{t("messageSent")}</h3>
+                  <p className="text-[var(--color-text)] max-w-sm">
                     {t("messageSentDesc")}
                   </p>
                   <Button
@@ -207,7 +206,7 @@ export const Contact = () => {
                 /* Form */
                 <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="input-name" className="text-xs font-mono text-[var(--text-muted)] uppercase tracking-wider">{t("yourName")}</label>
+                    <label htmlFor="input-name" className="text-xs font-mono text-[var(--color-text)] uppercase tracking-wider">{t("yourName")}</label>
                     <input
                       type="text"
                       id="input-name"
@@ -215,12 +214,12 @@ export const Contact = () => {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder={t("enterName")}
-                      className="px-4 py-3 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 transition-all text-sm md:text-base font-sans"
+                      className="px-4 py-3 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] text-[var(--color-text)] placeholder-text   focus:border-primary-hover transition-all text-sm md:text-base font-sans"
                     />
                   </div>
 
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="input-email" className="text-xs font-mono text-[var(--text-muted)] uppercase tracking-wider">{t("emailAddress")}</label>
+                    <label htmlFor="input-email" className="text-xs font-mono text-[var(--color-text)] uppercase tracking-wider">{t("emailAddress")}</label>
                     <input
                       type="email"
                       id="input-email"
@@ -228,12 +227,12 @@ export const Contact = () => {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder={t("enterEmail")}
-                      className="px-4 py-3 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 transition-all text-sm md:text-base font-sans"
+                      className="px-4 py-3 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] text-[var(--color-text)] placeholder-text   focus:border-primary-hover transition-all text-sm md:text-base font-sans"
                     />
                   </div>
 
                   <div className="flex flex-col gap-2">
-                    <label htmlFor="input-message" className="text-xs font-mono text-[var(--text-muted)] uppercase tracking-wider">{t("messageLabel")}</label>
+                    <label htmlFor="input-message" className="text-xs font-mono text-[var(--color-text)] uppercase tracking-wider">{t("messageLabel")}</label>
                     <textarea
                       id="input-message"
                       required
@@ -241,7 +240,7 @@ export const Contact = () => {
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder={t("typeMessage")}
-                      className="px-4 py-3 rounded-xl bg-[var(--card-bg)] border border-[var(--card-border)] text-[var(--foreground)] placeholder-slate-400 dark:placeholder-slate-500 focus:outline-none focus:border-cyan-500/50 transition-all text-sm md:text-base font-sans resize-none"
+                      className="px-4 py-3 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] text-[var(--color-text)] placeholder-text   focus:border-primary-hover transition-all text-sm md:text-base font-sans resize-none"
                     />
                   </div>
 
@@ -254,7 +253,7 @@ export const Contact = () => {
                   >
                     {isSending ? (
                       <>
-                        <div className="w-5 h-5 border-2 border-gray-900 border-t-transparent rounded-full animate-spin" />
+                        <div className="w-5 h-5 border-2 border-primary-hover border-t-transparent rounded-full animate-spin" />
                         <span>{t("sending")}</span>
                       </>
                     ) : (

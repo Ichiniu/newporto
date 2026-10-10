@@ -48,7 +48,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body suppressHydrationWarning className="min-h-full flex flex-col bg-[var(--background)] text-[var(--foreground)] font-sans selection:bg-cyan-500/30 selection:text-cyan-600 dark:selection:text-cyan-300 transition-colors duration-300">
+      <body suppressHydrationWarning className="min-h-full flex flex-col bg-[var(--color-bg)] text-[var(--color-text)] font-sans transition-colors duration-300">
         {children}
       </body>
     </html>
