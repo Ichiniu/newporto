@@ -67,7 +67,7 @@ const translations: Record<Language, Record<string, string>> = {
     contactTitle: "Hubungi",
     contactSubtitle: "Hubungi Saya",
     collaborate: "Mari Berkolaborasi!",
-    collaborateDesc: "Apakah Anda sedang mencari developer untuk menyelesaikan project Anda, membuat aplikasi kios, atau ingin berdiskusi? Silakan hubungi saya kapan saja!",
+    collaborateDesc: "Butuh bantuan untuk menyelesaikan proyek, membangun aplikasi kios, atau berkonsultasi? Jangan ragu menghubungi saya kapan saja.",
     locationLabel: "Lokasi",
     yourName: "Nama Anda",
     enterName: "Masukkan nama Anda...",

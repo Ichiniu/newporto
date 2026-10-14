@@ -60,7 +60,7 @@ export const Contact = () => {
       }
     } catch (error) {
       console.error("Error submitting contact form:", error);
-      alert(lang === "id"
+        alert(lang === "id"
         ? "Terjadi kesalahan koneksi. Silakan hubungi langsung via WhatsApp atau Email."
         : "Connection error occurred. Please contact directly via WhatsApp or Email.");
     } finally {
@@ -93,8 +93,8 @@ export const Contact = () => {
                 </p>
               </div>
 
-              {/* Direct Info (2 Kolom di Mobile) */}
-              <div className="grid grid-cols-2 gap-2 sm:gap-4">
+              {/* Direct Info (2 Kolom di Mobile, 1 Kolom Penuh di Desktop) */}
+              <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 sm:gap-4">
                 <a
                   href={`mailto:${email}`}
                   className="flex flex-col sm:flex-row items-start sm:items-center gap-1.5 sm:gap-4 p-2.5 sm:p-4 rounded-xl bg-[var(--color-bg)] hover:bg-bg  border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-text  transition-all group min-h-[44px] min-w-0"
@@ -105,7 +105,7 @@ export const Contact = () => {
                   </div>
                   <div className="flex flex-col min-w-0 w-full">
                     <span className="text-[9px] sm:text-xs text-[var(--color-text)] font-mono leading-none mb-0.5">Email</span>
-                    <span className="text-[8.5px] min-[360px]:text-[9.5px] min-[400px]:text-[10.5px] sm:text-sm font-semibold font-mono whitespace-nowrap overflow-hidden text-ellipsis block leading-tight">{email}</span>
+                    <span className="text-[8.5px] min-[360px]:text-[9.5px] min-[400px]:text-[10.5px] sm:text-sm lg:text-base font-semibold font-mono whitespace-nowrap overflow-hidden text-ellipsis block leading-tight">{email}</span>
                   </div>
                 </a>
 
@@ -122,12 +122,12 @@ export const Contact = () => {
                     </div>
                     <div className="flex flex-col min-w-0 w-full">
                       <span className="text-[9px] sm:text-xs text-[var(--color-text)] font-mono leading-none mb-0.5">WhatsApp</span>
-                      <span className="text-[8.5px] min-[360px]:text-[9.5px] min-[400px]:text-[10.5px] sm:text-sm font-semibold font-mono whitespace-nowrap overflow-hidden text-ellipsis block leading-tight">+62 896-4926-1851</span>
+                      <span className="text-[8.5px] min-[360px]:text-[9.5px] min-[400px]:text-[10.5px] sm:text-sm lg:text-base font-semibold font-mono whitespace-nowrap overflow-hidden text-ellipsis block leading-tight">+62 896-4926-1851</span>
                     </div>
                   </a>
                 )}
 
-                <div className="col-span-2 flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] text-[var(--color-text)]">
+                <div className="col-span-2 lg:col-span-1 flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] text-[var(--color-text)]">
                   <div className="p-2 sm:p-3 rounded-lg bg-surface-soft text-text shrink-0">
                     <MapPin data-tone="secondary" className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
