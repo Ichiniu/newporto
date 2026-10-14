@@ -92,6 +92,7 @@ a.button-primary, a.button-secondary { text-decoration: none; }
 
 /* Display only: original photo/project assets are not modified. */
 img { filter: grayscale(1); }
+#projects img, [data-project-img="true"] { filter: none; }
 
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--color-bg); }

@@ -82,7 +82,7 @@ const translations: Record<Language, Record<string, string>> = {
     sendAnother: "Kirim Pesan Lain",
     
     // Footer
-    createdBy: "Dibuat dengan Next.js Static Export & Tailwind CSS.",
+    createdBy: "",
     backToTop: "Kembali ke atas",
   },
   en: {
@@ -160,10 +160,10 @@ const translations: Record<Language, Record<string, string>> = {
 
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [lang, setLangState] = useState<Language>(() => {
-    if (typeof window === "undefined") return "id";
+    if (typeof window === "undefined") return "en";
 
     const savedLang = localStorage.getItem("lang") as Language;
-    return savedLang === "id" || savedLang === "en" ? savedLang : "id";
+    return savedLang === "id" || savedLang === "en" ? savedLang : "en";
   });
 
   useEffect(() => {

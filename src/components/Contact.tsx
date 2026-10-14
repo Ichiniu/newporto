@@ -15,12 +15,21 @@ export const Contact = () => {
   const { email, location, github, linkedin, instagram, whatsapp } = portfolioData[lang].personalInfo;
 
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [emailError, setEmailError] = useState("");
   const [isSent, setIsSent] = useState(false);
   const [isSending, setIsSending] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) return;
+
+    const emailTrimmed = formData.email.trim();
+    const isGmail = /^[a-zA-Z0-9._%+-]+@gmail\.com$/i.test(emailTrimmed);
+    if (!isGmail) {
+      setEmailError(lang === "id" ? "Alamat email harus menggunakan @gmail.com" : "Email must use @gmail.com domain");
+      return;
+    }
+    setEmailError("");
 
     setIsSending(true);
     // Gunakan Environment Variable Vercel, jika tidak terbaca gunakan token langsung di bawah ini
@@ -225,11 +234,21 @@ export const Contact = () => {
                         type="email"
                         id="input-email"
                         required
+                        pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$"
+                        title={lang === "id" ? "Alamat email harus menggunakan domain @gmail.com" : "Email must use @gmail.com domain"}
                         value={formData.email}
-                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder={t("enterEmail")}
+                        onChange={(e) => {
+                          setFormData({ ...formData, email: e.target.value });
+                          if (emailError) setEmailError("");
+                        }}
+                        placeholder="contoh@gmail.com"
                         className="px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] text-[var(--color-text)] placeholder-text focus:border-primary-hover transition-all text-xs sm:text-base font-sans"
                       />
+                      {emailError && (
+                        <span className="text-[11px] sm:text-xs text-[var(--color-text)] font-mono font-medium">
+                          {emailError}
+                        </span>
+                      )}
                     </div>
                   </div>
 

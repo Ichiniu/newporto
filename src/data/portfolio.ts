@@ -80,7 +80,7 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
         category: "Backend",
         skills: [
           { name: "PHP" },
-          { name: "CodeIgniter 4" },
+          { name: "CodeIgniter 3" },
           { name: "Laravel" },
           { name: "Node.js" },
           { name: "Next.js" },
@@ -105,7 +105,8 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
           { name: "FlyEnv" },
            { name: "CI/CD" },
           { name: "Cloudflare" },
-          { name: "Portainer" },
+          { name: "Easypanel" },
+          { name: "N8N" },
           { name: "CWP (CentOS Web Panel)" }
         ]
       }
@@ -147,6 +148,15 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
         images: ["/assets/projects/reservasi.png", "/assets/projects/reservasi2.png"],
         githubLink: "https://github.com/Ichiniu",
         liveLink: "https://reservasi.tigaserangkai.com"
+      },
+      {
+        id: "userguide-fingerspot",
+        title: "Userguide Fingerspot.io",
+        description: "Website panduan pengguna (user guide) resmi untuk fingerspot.io yang dibangun dengan Laravel 5.5 dan database MySQL. Dilengkapi fitur otomatisasi alih bahasa konten secara multibahasa menggunakan integrasi API Qwen 3.5, sistem manajemen artikel bantuan terstruktur, dan navigasi dokumentasi yang cepat dan responsif.",
+        techStack: ["Laravel 5.5", "PHP", "MySQL", "Qwen 3.5 API", "REST API", "Bootstrap"],
+        image: "/assets/projects/userguide-1.jpg",
+        images: ["/assets/projects/userguide-1.jpg", "/assets/projects/userguide-2.jpg"],
+        githubLink: "https://github.com/Ichiniu"
       }
     ],
     timeline: [
@@ -297,6 +307,15 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
         images: ["/assets/projects/reservasi.png", "/assets/projects/reservasi2.png"],
         githubLink: "https://github.com/Ichiniu",
         liveLink: "https://reservasi.tigaserangkai.com"
+      },
+      {
+        id: "userguide-fingerspot",
+        title: "Userguide Fingerspot.io",
+        description: "Official user guide documentation website for fingerspot.io developed with Laravel 5.5 and MySQL. Features automated multi-language content translation powered by the Qwen 3.5 API, structured help article management, and fast responsive documentation navigation.",
+        techStack: ["Laravel 5.5", "PHP", "MySQL", "Qwen 3.5 API", "REST API", "Bootstrap"],
+        image: "/assets/projects/userguide-1.jpg",
+        images: ["/assets/projects/userguide-1.jpg", "/assets/projects/userguide-2.jpg"],
+        githubLink: "https://github.com/Ichiniu"
       }
     ],
     timeline: [

@@ -46,6 +46,7 @@ const ProjectCard = ({
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+          data-project-img="true"
           priority
         />
 
@@ -199,13 +200,13 @@ export const Projects = () => {
   // Filter options based on projects' tech stack
   const filterOptions = [
     { label: t("allFilter"), value: "all" },
-    { label: "PHP / CI4", value: "ci" },
+    { label: "PHP / Laravel / CI4", value: "php" },
     { label: "JS / React / Node.js", value: "next" }
   ];
 
   const filteredProjects = projects.filter((project) => {
     if (filter === "all") return true;
-    if (filter === "ci") return project.techStack.some(tech => tech.toLowerCase().includes("codeigniter"));
+    if (filter === "php" || filter === "ci") return project.techStack.some(tech => tech.toLowerCase().includes("codeigniter") || tech.toLowerCase().includes("laravel") || tech.toLowerCase().includes("php"));
     if (filter === "next") return project.techStack.some(tech => tech.toLowerCase().includes("next.js") || tech.toLowerCase().includes("react") || tech.toLowerCase().includes("node.js"));
     return true;
   });
@@ -347,6 +348,7 @@ export const Projects = () => {
                   alt="Preview Project"
                   fill
                   className="object-contain rounded-lg"
+                  data-project-img="true"
                   sizes="100vw"
                   priority
                 />

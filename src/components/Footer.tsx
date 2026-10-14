@@ -21,10 +21,6 @@ export const Footer = () => {
           </span>
         </div>
 
-        {/* Note */}
-        <p className="text-xs text-[var(--color-text)] font-mono text-center md:text-left">
-          {t("createdBy")}
-        </p>
 
         {/* Scroll back to top */}
         <button
