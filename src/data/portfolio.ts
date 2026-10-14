@@ -51,8 +51,8 @@ export interface PortfolioData {
 export const portfolioData: Record<"id" | "en", PortfolioData> = {
   id: {
     personalInfo: {
-      name: "Ichsan",
-      fullName: "Ichsan",
+      name: "Ikhsan",
+      fullName: "Ikhsan Wahyu Utomo",
       role: "Fullstack Web Developer",
       subRole: "Sebagai alumni Web Fullstack Programmer MagangHub, saya memiliki ketertarikan besar pada problem-solving",
       bio: "Saya fokus pada pembuatan aplikasi web berkualitas, interaktif, dengan performa terbaik, serta pengalaman pengguna yang mulus. Saat ini, saya juga tengah berfokus memperluas keahlian pada manajemen dan konfigurasi server menggunakan Ubuntu dan Docker.",
@@ -206,8 +206,8 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
   },
   en: {
     personalInfo: {
-      name: "Ichsan",
-      fullName: "Ichsan",
+      name: "Ikhsan",
+      fullName: "Ikhsan Wahyu Utomo",
       role: "Fullstack Web Developer",
       subRole: "As an alumnus of the MagangHub Web Fullstack Programmer program, I have a strong passion for problem-solving",
       bio: "I focus on developing high-quality, interactive web applications with optimal performance and seamless user experiences.",

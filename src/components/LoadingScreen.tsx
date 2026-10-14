@@ -28,7 +28,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
     overlay.current?.focus({ preventScroll: true });
     const session = createIntroPlayback({
       video: video.current,
-      source: "/assets/intro/walking-intro.mp4",
+      source: "/assets/intro/landing-intro.mp4",
       onState: setState,
       onProgress: setProgress,
       onComplete,
@@ -89,7 +89,7 @@ export function LoadingScreen({ onComplete }: { onComplete: () => void }) {
       </div>
       <div className={styles.footer}>
         <div className={styles.status}>
-          <span aria-live="polite">{status}</span><span aria-hidden="true">{Math.round(progress)}%</span>
+          <span aria-live="polite">{status}</span><span className={styles.percent} aria-hidden="true">{Math.round(progress)}%</span>
         </div>
         <div className={styles.track} role="progressbar" aria-label={id ? "Progres intro" : "Intro progress"}
           aria-valuenow={Math.round(progress)} aria-valuemin={0} aria-valuemax={100}>

@@ -51,7 +51,7 @@ export const About = () => {
   const { val: count3, start: start3, reset: reset3 } = useCounter(99, 900);
 
   return (
-    <section id="about" className="py-20 px-6 md:px-12 xl:px-24 relative overflow-hidden bg-bg">
+    <section id="about" className="py-12 md:py-20 px-4 sm:px-6 md:px-12 xl:px-24 relative overflow-hidden bg-bg">
       {/* Glow effect */}
 
       <div className="max-w-7xl mx-auto w-full">
@@ -112,6 +112,7 @@ export const About = () => {
             >
               <div
                 className="w-full flex items-center gap-5"
+                onClick={() => setHov1(prev => !prev)}
                 onMouseEnter={() => setHov1(true)}
                 onMouseLeave={() => setHov1(false)}
               >
@@ -153,6 +154,7 @@ export const About = () => {
             >
               <div
                 className="w-full flex items-center gap-5"
+                onClick={() => setHov2(prev => { if (!prev) start2(); else reset2(); return !prev; })}
                 onMouseEnter={() => { setHov2(true); start2(); }}
                 onMouseLeave={() => { setHov2(false); reset2(); }}
               >
@@ -192,6 +194,7 @@ export const About = () => {
             >
               <div
                 className="w-full flex items-center gap-5"
+                onClick={() => setHov3(prev => { if (!prev) start3(); else reset3(); return !prev; })}
                 onMouseEnter={() => { setHov3(true); start3(); }}
                 onMouseLeave={() => { setHov3(false); reset3(); }}
               >

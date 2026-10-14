@@ -16,7 +16,7 @@
 .header { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
 .brand { font: 600 12px var(--font-inter), sans-serif; letter-spacing: 0.08em; }
 .content { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 0; padding: 16px 0; }
-.greeting { text-align: center; position: relative; z-index: 1; }
+.greeting { text-align: center; position: relative; z-index: 1; margin-bottom: 8px; }
 .title { font-size: clamp(26px, 4vw, 48px); line-height: 1.1; font-weight: 600; letter-spacing: -0.045em; margin: 0; }
 .stage {
   width: min(860px, 100%);
@@ -39,10 +39,43 @@
   transition: opacity 500ms ease;
 }
 .ready .video { opacity: 1; }
-.footer { width: min(420px, 100%); margin: 0 auto; }
-.status { display: flex; justify-content: space-between; gap: 16px; font-size: 11px; font-family: var(--font-inter), sans-serif; margin-bottom: 10px; }
-.track { height: 2px; background: var(--color-surface-soft); overflow: hidden; }
-.fill { height: 100%; width: 100%; background: var(--color-primary-hover); transform-origin: left; transition: transform 180ms linear; }
+.footer {
+  width: min(440px, 100%);
+  margin: 0 auto clamp(36px, 8vh, 72px) auto;
+  display: flex;
+  flex-direction: column;
+}
+.status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  font-family: var(--font-outfit), sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  margin-bottom: 10px;
+}
+.percent {
+  font-family: var(--font-outfit), monospace;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-primary-hover);
+}
+.track {
+  height: 3px;
+  background: var(--color-surface-soft);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.fill {
+  height: 100%;
+  width: 100%;
+  background: var(--color-primary-hover);
+  border-radius: 9999px;
+  transform-origin: left;
+  transition: transform 180ms linear;
+}
 
 @media (max-width: 600px) {
   .overlay { padding: 20px; }
@@ -50,6 +83,7 @@
   .content { gap: 24px; }
   .stage { max-height: none; }
   .title { font-size: 28px; }
+  .footer { margin-bottom: 24px; }
 }
 @media (max-height: 520px) and (min-width: 601px) {
   .overlay { padding: 12px 24px; }

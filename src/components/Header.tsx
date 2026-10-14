@@ -8,7 +8,15 @@ import { useLanguage } from "@/context/LanguageContext";
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [isContactCollapsed, setIsContactCollapsed] = useState(false);
   const { lang, toggleLanguage, t } = useLanguage();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsContactCollapsed(true);
+    }, 3000);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -78,10 +86,11 @@ export const Header = () => {
           {/* TENGAH: Logo (Absolute Center) */}
           <a
             href="#hero"
-            className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-2 group cursor-pointer whitespace-nowrap"
+            className="absolute left-1/2 transform -translate-x-1/2 flex items-center gap-2 group cursor-pointer whitespace-nowrap no-underline"
+            style={{ color: "var(--color-text)" }}
           >
-            <span className="font-mono font-bold text-lg tracking-wider text-[var(--color-text)] group-hover:text-text  transition-colors">
-              Ichsan Wahyu Utomo
+            <span className="font-mono font-bold text-lg tracking-wider" style={{ color: "var(--color-text)" }}>
+              Ikhsan Wahyu Utomo
             </span>
           </a>
 
@@ -107,28 +116,19 @@ export const Header = () => {
         </div>
 
         {/* MOBILE HEADER (Lebar layar di bawah md) */}
-        <div className="flex md:hidden w-full px-6 items-center justify-between relative">
+        <div className="flex md:hidden w-full px-4 sm:px-6 items-center justify-between relative min-h-[48px]">
           {/* KIRI: Logo */}
-          <a href="#hero" className="cursor-pointer">
-            <span className="font-mono font-bold text-base tracking-wider text-[var(--color-text)] hover:text-text  transition-colors">
-              Ichsan
+          <a href="#hero" className="cursor-pointer no-underline py-2" style={{ color: "var(--color-text)" }}>
+            <span className="font-mono font-bold text-base tracking-wider" style={{ color: "var(--color-text)" }}>
+              Ikhsan
             </span>
           </a>
 
           {/* KANAN: Theme Switcher & CTA */}
-          <div className="flex items-center gap-3 z-10">
-            <button
-              onClick={() => setIsOpen(true)}
-              aria-label="Open Menu"
-              aria-expanded={isOpen}
-              aria-controls="portfolio-menu"
-              className="p-2 rounded-lg text-text hover:bg-surface-soft"
-            >
-              <Menu className="w-5 h-5" />
-            </button>
+          <div className="flex items-center gap-2 sm:gap-3 z-10">
             <button
               onClick={toggleLanguage}
-              className="group flex items-center gap-2 px-3 py-1.5 rounded-xl border border-[var(--color-surface-soft)] bg-[var(--color-bg)] hover:bg-surface-soft text-[var(--color-text)] hover:text-text transition-all cursor-pointer font-mono text-xs font-bold shadow-sm"
+              className="group flex items-center justify-center gap-1.5 px-2.5 py-1.5 min-h-[44px] rounded-xl border border-[var(--color-surface-soft)] bg-[var(--color-bg)] hover:bg-surface-soft text-[var(--color-text)] hover:text-text transition-all cursor-pointer font-mono text-xs font-bold shadow-sm"
               aria-label="Change Language"
             >
               <Languages data-tone="secondary" className="w-4 h-4 text-text transition-transform group-hover:scale-110" />
@@ -137,17 +137,28 @@ export const Header = () => {
 
             <button
               onClick={() => handleNavClick("#contact")}
-              className="flex items-center gap-2 group text-[var(--color-text)] hover:text-[var(--color-text)] transition-colors"
+              aria-label={t("contact")}
+              className="flex items-center justify-center min-h-[44px] px-3 py-1.5 rounded-xl border border-[var(--color-surface-soft)] bg-[var(--color-bg)] hover:bg-surface-soft text-[var(--color-text)] hover:text-text transition-all duration-500 cursor-pointer shadow-sm group"
             >
-              <span className="text-sm font-mono font-medium tracking-wide">{t("contact")}</span>
-              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform" />
+              <div
+                className={`overflow-hidden transition-all duration-700 ease-in-out flex items-center ${
+                  isContactCollapsed
+                    ? "max-w-0 opacity-0 -translate-x-1"
+                    : "max-w-[80px] opacity-100 translate-x-0 mr-1.5"
+                }`}
+              >
+                <span className="text-xs sm:text-sm font-mono font-medium tracking-wide whitespace-nowrap">
+                  {t("contact")}
+                </span>
+              </div>
+              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 transform group-hover:translate-x-0.5 transition-transform" />
             </button>
           </div>
         </div>
       </header>
 
       {/* BOTTOM FLOATING NAV BAR (Mobile only, di bawah md) */}
-      <div className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-2rem)] max-w-[420px] bg-bg backdrop-blur-lg border border-[var(--color-surface-soft)] rounded-2xl py-2 px-3 shadow-lg ">
+      <div className="md:hidden fixed bottom-[calc(1.25rem+env(safe-area-inset-bottom,0px))] left-1/2 -translate-x-1/2 z-40 w-[calc(100%-1.5rem)] max-w-[420px] bg-bg/95 backdrop-blur-lg border border-[var(--color-surface-soft)] rounded-2xl py-1.5 px-2 shadow-lg">
         <nav className="flex items-center justify-around w-full gap-0.5">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -161,7 +172,7 @@ export const Header = () => {
                   const element = document.querySelector(item.href);
                   if (element) element.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="flex flex-col items-center justify-center gap-1 py-1.5 px-2 rounded-xl text-[var(--color-text)] hover:text-text hover:bg-surface-soft active:bg-surface-soft transition-all cursor-pointer min-w-[56px]"
+                className="flex flex-col items-center justify-center gap-1 py-1 px-1.5 rounded-xl text-[var(--color-text)] hover:text-text hover:bg-surface-soft active:bg-surface-soft transition-all cursor-pointer min-w-[52px] min-h-[44px] no-underline hover:no-underline active:no-underline"
               >
                 <Icon className="w-5 h-5" />
                 <span className="text-[9px] min-[360px]:text-[10px] font-mono font-bold leading-none">{item.mobileLabel}</span>

@@ -12,22 +12,22 @@ export const Timeline = () => {
   const { timeline } = portfolioData[lang];
 
   return (
-    <section id="experience" className="py-20 px-6 md:px-12 xl:px-24 relative overflow-hidden bg-bg">
+    <section id="experience" className="py-12 md:py-20 px-4 sm:px-6 md:px-12 xl:px-24 relative overflow-hidden bg-bg">
       {/* Background Glow */}
 
       <div className="max-w-4xl mx-auto w-full">
         {/* Title */}
-        <div className="flex flex-col gap-2 mb-16 text-center items-center">
+        <div className="flex flex-col gap-2 mb-10 md:mb-16 text-center items-center">
           <span className="text-xs md:text-sm font-semibold tracking-wider text-text  font-mono uppercase">{t("timelineTitle")}</span>
           <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-text)]">{t("timelineSubtitle")}</h2>
           <div className="w-12 h-1 bg-primary rounded-full mt-1" />
         </div>
 
-        {/* Timeline Line & Items */}
-        <div className="relative border-l border-[var(--color-surface-soft)] ml-4 md:ml-6 flex flex-col gap-10">
+        {/* Timeline Line & Items (1 Kolom Vertikal) */}
+        <div className="relative border-l border-[var(--color-surface-soft)] ml-2 sm:ml-4 md:ml-6 flex flex-col gap-8 md:gap-10">
           
           {timeline.map((item, idx) => (
-            <div key={item.id} className="relative pl-8 md:pl-10 group">
+            <div key={item.id} className="relative pl-6 sm:pl-8 md:pl-10 group">
               
               {/* Bullet node on the timeline line */}
               <div className="absolute -left-[9.5px] top-1.5 w-[18px] h-[18px] rounded-full bg-[var(--color-bg)] border-2 border-[var(--color-surface-soft)] group-hover:border-primary group-hover:bg-surface-soft transition-all duration-300 flex items-center justify-center">

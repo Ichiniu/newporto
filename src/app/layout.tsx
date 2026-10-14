@@ -13,21 +13,21 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Ichsan | Fullstack Web Developer Portfolio",
-  description: "Portofolio profesional Ichsan - Fullstack Web Developer yang berspesialisasi dalam membangun aplikasi web interaktif, sistem kios, dan platform modern menggunakan PHP, Next.js, dan PostgreSQL.",
-  keywords: ["Ichsan", "Fullstack Developer", "CodeIgniter 4", "Next.js", "PostgreSQL", "Portfolio", "Indonesia Web Developer"],
-  authors: [{ name: "Ichsan" }],
+  title: "Ikhsan | Fullstack Web Developer Portfolio",
+  description: "Portofolio profesional Ikhsan - Fullstack Web Developer yang berspesialisasi dalam membangun aplikasi web interaktif, sistem kios, dan platform modern menggunakan PHP, Next.js, dan PostgreSQL.",
+  keywords: ["Ikhsan", "Fullstack Developer", "CodeIgniter 4", "Next.js", "PostgreSQL", "Portfolio", "Indonesia Web Developer"],
+  authors: [{ name: "Ikhsan Wahyu Utomo" }],
   openGraph: {
-    title: "Ichsan | Fullstack Web Developer Portfolio",
-    description: "Portofolio profesional Ichsan - Fullstack Web Developer berspesialisasi dalam PHP, Next.js, dan PostgreSQL.",
+    title: "Ikhsan | Fullstack Web Developer Portfolio",
+    description: "Portofolio profesional Ikhsan - Fullstack Web Developer berspesialisasi dalam PHP, Next.js, dan PostgreSQL.",
     url: "https://iichsan.my.id",
-    siteName: "Ichsan Portfolio",
+    siteName: "Ikhsan Portfolio",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ichsan | Fullstack Web Developer Portfolio",
-    description: "Portofolio profesional Ichsan - Fullstack Web Developer berspesialisasi dalam PHP, Next.js, dan PostgreSQL.",
+    title: "Ikhsan | Fullstack Web Developer Portfolio",
+    description: "Portofolio profesional Ikhsan - Fullstack Web Developer berspesialisasi dalam PHP, Next.js, dan PostgreSQL.",
   },
   icons: {
     icon: "/favicon.ico",

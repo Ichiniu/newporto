@@ -69,12 +69,12 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 px-6 md:px-12 xl:px-24 relative overflow-hidden bg-[var(--color-bg)]">
+    <section id="contact" className="py-12 md:py-20 px-4 sm:px-6 md:px-12 xl:px-24 relative overflow-hidden bg-[var(--color-bg)]">
       {/* Background Glow */}
 
       <div className="max-w-6xl mx-auto w-full">
         {/* Title */}
-        <div className="flex flex-col gap-2 mb-12 text-center items-center">
+        <div className="flex flex-col gap-2 mb-8 md:mb-12 text-center items-center">
           <span className="text-xs md:text-sm font-semibold tracking-wider text-text  font-mono uppercase">{t("contactTitle")}</span>
           <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-text)]">{t("contactSubtitle")}</h2>
           <div className="w-12 h-1 bg-primary rounded-full mt-1" />
@@ -93,19 +93,19 @@ export const Contact = () => {
                 </p>
               </div>
 
-              {/* Direct Info */}
-              <div className="space-y-4">
+              {/* Direct Info (2 Kolom di Mobile) */}
+              <div className="grid grid-cols-2 gap-2 sm:gap-4">
                 <a
                   href={`mailto:${email}`}
-                  className="flex items-center gap-4 p-4 rounded-xl bg-[var(--color-bg)] hover:bg-bg  border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-text  transition-all group"
+                  className="flex flex-col sm:flex-row items-start sm:items-center gap-1.5 sm:gap-4 p-2.5 sm:p-4 rounded-xl bg-[var(--color-bg)] hover:bg-bg  border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-text  transition-all group min-h-[44px] min-w-0"
                   id="link-mail-direct"
                 >
-                  <div className="p-3 rounded-lg bg-surface-soft text-text ">
-                    <Mail className="w-5 h-5" />
+                  <div className="p-1.5 sm:p-3 rounded-lg bg-surface-soft text-text shrink-0">
+                    <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <div className="flex flex-col">
-                    <span className="text-xs text-[var(--color-text)] font-mono">Email</span>
-                    <span className="text-sm md:text-base font-semibold font-mono">{email}</span>
+                  <div className="flex flex-col min-w-0 w-full">
+                    <span className="text-[9px] sm:text-xs text-[var(--color-text)] font-mono leading-none mb-0.5">Email</span>
+                    <span className="text-[8.5px] min-[360px]:text-[9.5px] min-[400px]:text-[10.5px] sm:text-sm font-semibold font-mono whitespace-nowrap overflow-hidden text-ellipsis block leading-tight">{email}</span>
                   </div>
                 </a>
 
@@ -114,37 +114,37 @@ export const Contact = () => {
                     href={whatsapp}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-4 p-4 rounded-xl bg-[var(--color-bg)] hover:bg-bg  border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-text  transition-all group"
+                    className="flex flex-col sm:flex-row items-start sm:items-center gap-1.5 sm:gap-4 p-2.5 sm:p-4 rounded-xl bg-[var(--color-bg)] hover:bg-bg  border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-text  transition-all group min-h-[44px] min-w-0"
                     id="link-whatsapp-direct"
                   >
-                    <div className="p-3 rounded-lg bg-surface-soft text-text ">
-                      <MessageSquare className="w-5 h-5" />
+                    <div className="p-1.5 sm:p-3 rounded-lg bg-surface-soft text-text shrink-0">
+                      <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5" />
                     </div>
-                    <div className="flex flex-col">
-                      <span className="text-xs text-[var(--color-text)] font-mono">WhatsApp</span>
-                      <span className="text-sm md:text-base font-semibold font-mono">+62 896-4926-1851</span>
+                    <div className="flex flex-col min-w-0 w-full">
+                      <span className="text-[9px] sm:text-xs text-[var(--color-text)] font-mono leading-none mb-0.5">WhatsApp</span>
+                      <span className="text-[8.5px] min-[360px]:text-[9.5px] min-[400px]:text-[10.5px] sm:text-sm font-semibold font-mono whitespace-nowrap overflow-hidden text-ellipsis block leading-tight">+62 896-4926-1851</span>
                     </div>
                   </a>
                 )}
 
-                <div className="flex items-center gap-4 p-4 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] text-[var(--color-text)]">
-                  <div className="p-3 rounded-lg bg-surface-soft text-text ">
-                    <MapPin data-tone="secondary" className="w-5 h-5" />
+                <div className="col-span-2 flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] text-[var(--color-text)]">
+                  <div className="p-2 sm:p-3 rounded-lg bg-surface-soft text-text shrink-0">
+                    <MapPin data-tone="secondary" className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <div className="flex flex-col">
-                    <span className="text-xs text-[var(--color-text)] font-mono">{t("locationLabel")}</span>
-                    <span className="text-sm md:text-base font-semibold font-mono">{location}</span>
+                  <div className="flex flex-col min-w-0">
+                    <span className="text-[10px] sm:text-xs text-[var(--color-text)] font-mono">{t("locationLabel")}</span>
+                    <span className="text-xs sm:text-base font-semibold font-mono">{location}</span>
                   </div>
                 </div>
               </div>
 
               {/* Social links row */}
-              <div className="flex items-center gap-4 pt-6 border-t border-[var(--color-surface-soft)]">
+              <div className="flex items-center gap-3 sm:gap-4 pt-6 border-t border-[var(--color-surface-soft)]">
                 <a
                   href={github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-[var(--color-text)] transition-all"
+                  className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-[var(--color-text)] transition-all"
                   title="GitHub Profile"
                   id="link-github-contact"
                 >
@@ -154,7 +154,7 @@ export const Contact = () => {
                   href={linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-[var(--color-text)] transition-all"
+                  className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-[var(--color-text)] transition-all"
                   title="LinkedIn Profile"
                   id="link-linkedin-contact"
                 >
@@ -165,7 +165,7 @@ export const Contact = () => {
                     href={instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-[var(--color-text)] transition-all"
+                    className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-[var(--color-text)] transition-all"
                     title="Instagram Profile"
                     id="link-instagram-contact"
                   >
@@ -204,31 +204,33 @@ export const Contact = () => {
                 </motion.div>
               ) : (
                 /* Form */
-                <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="input-name" className="text-xs font-mono text-[var(--color-text)] uppercase tracking-wider">{t("yourName")}</label>
-                    <input
-                      type="text"
-                      id="input-name"
-                      required
-                      value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder={t("enterName")}
-                      className="px-4 py-3 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] text-[var(--color-text)] placeholder-text   focus:border-primary-hover transition-all text-sm md:text-base font-sans"
-                    />
-                  </div>
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4 sm:gap-5">
+                  <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                    <div className="flex flex-col gap-1.5 sm:gap-2">
+                      <label htmlFor="input-name" className="text-xs font-mono text-[var(--color-text)] uppercase tracking-wider">{t("yourName")}</label>
+                      <input
+                        type="text"
+                        id="input-name"
+                        required
+                        value={formData.name}
+                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        placeholder={t("enterName")}
+                        className="px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] text-[var(--color-text)] placeholder-text focus:border-primary-hover transition-all text-xs sm:text-base font-sans"
+                      />
+                    </div>
 
-                  <div className="flex flex-col gap-2">
-                    <label htmlFor="input-email" className="text-xs font-mono text-[var(--color-text)] uppercase tracking-wider">{t("emailAddress")}</label>
-                    <input
-                      type="email"
-                      id="input-email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder={t("enterEmail")}
-                      className="px-4 py-3 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] text-[var(--color-text)] placeholder-text   focus:border-primary-hover transition-all text-sm md:text-base font-sans"
-                    />
+                    <div className="flex flex-col gap-1.5 sm:gap-2">
+                      <label htmlFor="input-email" className="text-xs font-mono text-[var(--color-text)] uppercase tracking-wider">{t("emailAddress")}</label>
+                      <input
+                        type="email"
+                        id="input-email"
+                        required
+                        value={formData.email}
+                        onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                        placeholder={t("enterEmail")}
+                        className="px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] text-[var(--color-text)] placeholder-text focus:border-primary-hover transition-all text-xs sm:text-base font-sans"
+                      />
+                    </div>
                   </div>
 
                   <div className="flex flex-col gap-2">
