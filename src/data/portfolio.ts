@@ -79,7 +79,7 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
       {
         category: "Backend",
         skills: [
-          { name: "PHP" },
+          { name: "Go" },
           { name: "CodeIgniter 3" },
           { name: "Laravel" },
           { name: "Node.js" },
@@ -101,7 +101,8 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
         skills: [
           { name: "Git & GitHub" },
           { name: "Docker" },
-          { name: "Composer" },
+          { name: "Playwright" },
+          { name: "Cypress" },
           { name: "FlyEnv" },
            { name: "CI/CD" },
           { name: "Cloudflare" },
@@ -152,7 +153,7 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
       {
         id: "userguide-fingerspot",
         title: "Userguide Fingerspot.io",
-        description: "Website panduan pengguna (user guide) resmi untuk fingerspot.io yang dibangun dengan Laravel 5.5 dan database MySQL. Dilengkapi fitur otomatisasi alih bahasa konten secara multibahasa menggunakan integrasi API Qwen 3.5, sistem manajemen artikel bantuan terstruktur, dan navigasi dokumentasi yang cepat dan responsif.",
+        description: "Website panduan pengguna (user guide) resmi untuk fingerspot.io yang dibangun dengan Laravel 5.5 dan database MySQL. Dilengkapi fitur otomatisasi alih bahasa konten secara multibahasa menggunakan integrasi API Qwen 3.5, sistem manajemen artikel bantuan terstruktur, dan navigasi dokumentasi yang cepat dan responsif. Mengembangkan panel admin yang mendukung penambahan tag HTML sehingga pengelola bebas mengatur format teks",
         techStack: ["Laravel 5.5", "PHP", "MySQL", "Qwen 3.5 API", "REST API", "Bootstrap"],
         image: "/assets/projects/userguide-1.jpg",
         images: ["/assets/projects/userguide-1.jpg", "/assets/projects/userguide-2.jpg"],
@@ -160,6 +161,19 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
       }
     ],
     timeline: [
+      {
+        id: "exp-fingerspot",
+        period: "2026",
+        role: "Quality Assurance",
+        company: "Fingerspot",
+        descriptions: [
+          "Mengembangkan website panduan pengguna (user guide) resmi untuk fingerspot.io menggunakan Laravel 5.5 dan database MySQL.",
+          "Mengintegrasikan API Qwen 3.5 untuk fitur otomatisasi alih bahasa konten secara multibahasa.",
+          "Membangun sistem manajemen artikel bantuan terstruktur serta navigasi dokumentasi yang cepat dan responsif.",
+          "Mengembangkan panel admin yang mendukung penambahan tag HTML sehingga pengelola bebas mengatur format teks."
+        ],
+        tags: ["Laravel 5.5", "PHP", "MySQL", "Qwen 3.5 API", "REST API", "Bootstrap"]
+      },
       {
         id: "exp-1",
         period: "November 2025 - Mei 2026",
@@ -234,7 +248,7 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
         category: "Frontend",
         skills: [
           { name: "HTML5 & CSS3" },
-          { name: "JavaScript (ES6+)" },
+          { name: "JavaScript" },
           { name: "TypeScript" },
           { name: "React.js" },
           { name: "Next.js" },
@@ -264,8 +278,9 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
         skills: [
           { name: "Git & GitHub" },
           { name: "Docker" },
-          { name: "Composer" },
+          { name: "N8N" },
           { name: "FlyEnv" },
+          { name: "Easypanel" },
           { name: "CWP (CentOS Web Panel)" }
         ]
       }
@@ -319,6 +334,19 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
       }
     ],
     timeline: [
+      {
+        id: "exp-fingerspot",
+        period: "2026",
+        role: "Fullstack Web Developer",
+        company: "fingerspot.io",
+        descriptions: [
+          "Developed the official user guide documentation website for fingerspot.io using Laravel 5.5 and MySQL database.",
+          "Integrated Qwen 3.5 API for automated multi-language translation of guide content.",
+          "Built a structured help article management system with fast and responsive documentation navigation.",
+          "Implemented an admin management panel supporting HTML tags for flexible text formatting and content customization."
+        ],
+        tags: ["Laravel 5.5", "PHP", "MySQL", "Qwen 3.5 API", "REST API", "Bootstrap"]
+      },
       {
         id: "exp-1",
         period: "November 2025 - May 2026",
