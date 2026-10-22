@@ -85,7 +85,8 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
           { name: "Node.js" },
           { name: "Next.js" },
           { name: "Express" },
-          { name: "Prisma ORM" }
+          { name: "Prisma ORM" },
+          { name: "Webhook" }
         ]
       },
       {
@@ -102,9 +103,10 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
           { name: "Git & GitHub" },
           { name: "Docker" },
           { name: "Playwright" },
+          { name: "Postman" },
           { name: "Cypress" },
           { name: "FlyEnv" },
-           { name: "CI/CD" },
+          { name: "CI/CD" },
           { name: "Cloudflare" },
           { name: "Easypanel" },
           { name: "N8N" },
@@ -120,7 +122,8 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
         techStack: ["Next.js 15", "Prisma ORM", "MySQL", "NextAuth.js", "Tailwind CSS", "shadcn/ui", "Midtrans"],
         image: "/assets/projects/project/kasir.png",
         images: ["/assets/projects/project/kasir.png", "/assets/projects/project/kasir2.png"],
-        githubLink: "https://github.com/Ichiniu/kasir-app"
+        githubLink: "https://github.com/Ichiniu/kasir-app",
+        liveLink: "https://casirplus.my.id"
       },
       {
         id: "wbot",
@@ -129,7 +132,8 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
         techStack: ["Node.js", "PostgreSQL", "Groq API (Llama 3.3)", "Baileys WhatsApp", "Express.js", "Tailwind CSS"],
         image: "/assets/projects/project/chatbot.png",
         images: ["/assets/projects/project/chatbot.png"],
-        githubLink: "https://github.com/Ichiniu/wbot"
+        githubLink: "https://github.com/Ichiniu/wbot",
+        liveLink: "https://wa.me/6285111045721"
       },
       {
         id: "photobox",
@@ -164,15 +168,15 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
       {
         id: "exp-fingerspot",
         period: "2026",
-        role: "Quality Assurance",
+        role: "Quality Assurance & Web Developer",
         company: "Fingerspot",
         descriptions: [
-          "Mengembangkan website panduan pengguna (user guide) resmi untuk fingerspot.io menggunakan Laravel 5.5 dan database MySQL.",
-          "Mengintegrasikan API Qwen 3.5 untuk fitur otomatisasi alih bahasa konten secara multibahasa.",
-          "Membangun sistem manajemen artikel bantuan terstruktur serta navigasi dokumentasi yang cepat dan responsif.",
-          "Mengembangkan panel admin yang mendukung penambahan tag HTML sehingga pengelola bebas mengatur format teks."
+          "Pembuatan website userguide untuk penggunaan website fingerspot.io.",
+          "QA analyst pada beberapa macam perangkat absensi.",
+          "Testing website dan desktop app secara manual dan automation dengan menggunakan Playwright.",
+          "Pengecekan source code lama memastikan dapat terhubung ke perangkat spesifik."
         ],
-        tags: ["Laravel 5.5", "PHP", "MySQL", "Qwen 3.5 API", "REST API", "Bootstrap"]
+        tags: ["Laravel", "Playwright", "Postman", "Webhook", "PHP", "MySQL"]
       },
       {
         id: "exp-1",
@@ -262,7 +266,8 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
           { name: "CodeIgniter 4" },
           { name: "Laravel" },
           { name: "Node.js" },
-          { name: "Prisma ORM" }
+          { name: "Prisma ORM" },
+          { name: "Webhook" }
         ]
       },
       {
@@ -278,6 +283,10 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
         skills: [
           { name: "Git & GitHub" },
           { name: "Docker" },
+          { name: "Playwright" },
+          { name: "Postman" },
+          { name: "Cypress" },
+          { name: "CI/CD" },
           { name: "N8N" },
           { name: "FlyEnv" },
           { name: "Easypanel" },
@@ -293,7 +302,8 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
         techStack: ["Next.js 15", "Prisma ORM", "MySQL", "NextAuth.js", "Tailwind CSS", "shadcn/ui", "Midtrans"],
         image: "/assets/projects/project/kasir.png",
         images: ["/assets/projects/project/kasir.png", "/assets/projects/project/kasir2.png"],
-        githubLink: "https://github.com/Ichiniu/kasir-app"
+        githubLink: "https://github.com/Ichiniu/kasir-app",
+        liveLink: "https://casirplus.my.id"
       },
       {
         id: "wbot",
@@ -302,7 +312,8 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
         techStack: ["Node.js", "PostgreSQL", "Groq API (Llama 3.3)", "Baileys WhatsApp", "Express.js", "Tailwind CSS"],
         image: "/assets/projects/project/chatbot.png",
         images: ["/assets/projects/project/chatbot.png"],
-        githubLink: "https://github.com/Ichiniu/wbot"
+        githubLink: "https://github.com/Ichiniu/wbot",
+        liveLink: "https://wa.me/6285111045721"
       },
       {
         id: "photobox",
@@ -337,15 +348,15 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
       {
         id: "exp-fingerspot",
         period: "2026",
-        role: "Fullstack Web Developer",
-        company: "fingerspot.io",
+        role: "Quality Assurance",
+        company: "Fingerspot",
         descriptions: [
-          "Developed the official user guide documentation website for fingerspot.io using Laravel 5.5 and MySQL database.",
-          "Integrated Qwen 3.5 API for automated multi-language translation of guide content.",
-          "Built a structured help article management system with fast and responsive documentation navigation.",
-          "Implemented an admin management panel supporting HTML tags for flexible text formatting and content customization."
+          "Developed the userguide documentation website for fingerspot.io.",
+          "Served as QA Analyst across various attendance devices and biometric hardware.",
+          "Conducted manual and automated testing for websites and desktop applications using Playwright.",
+          "Inspected and validated legacy source code to ensure reliable integration with specific hardware devices."
         ],
-        tags: ["Laravel 5.5", "PHP", "MySQL", "Qwen 3.5 API", "REST API", "Bootstrap"]
+        tags: ["Laravel", "Playwright", "Postman", "Webhook", "PHP", "MySQL"]
       },
       {
         id: "exp-1",
