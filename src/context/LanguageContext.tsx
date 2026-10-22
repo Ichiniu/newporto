@@ -162,19 +162,20 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const [lang, setLangState] = useState<Language>(() => {
     if (typeof window === "undefined") return "en";
 
-    const savedLang = localStorage.getItem("lang") as Language;
-    return savedLang === "id" || savedLang === "en" ? savedLang : "en";
+    const sessionLang = sessionStorage.getItem("lang") as Language;
+    return sessionLang === "id" || sessionLang === "en" ? sessionLang : "en";
   });
 
   useEffect(() => {
-    // Clean up dark mode and theme settings
+    // Clean up dark mode and legacy localStorage language
     document.documentElement.classList.remove("dark");
     localStorage.removeItem("theme");
+    localStorage.removeItem("lang");
   }, []);
 
   const setLang = (newLang: Language) => {
     setLangState(newLang);
-    localStorage.setItem("lang", newLang);
+    sessionStorage.setItem("lang", newLang);
   };
 
   const toggleLanguage = () => {
