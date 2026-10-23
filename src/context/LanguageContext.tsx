@@ -157,25 +157,25 @@ const translations: Record<Language, Record<string, string>> = {
     backToTop: "Back to top",
   }
 };
-
+  
 export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [lang, setLangState] = useState<Language>(() => {
-    if (typeof window === "undefined") return "en";
-
-    const sessionLang = sessionStorage.getItem("lang") as Language;
-    return sessionLang === "id" || sessionLang === "en" ? sessionLang : "en";
-  });
+  const [lang, setLangState] = useState<Language>("en");
 
   useEffect(() => {
-    // Clean up dark mode and legacy localStorage language
+    // Clean up dark mode and theme settings
     document.documentElement.classList.remove("dark");
     localStorage.removeItem("theme");
-    localStorage.removeItem("lang");
+
+    // Sinkronkan bahasa dari localStorage setelah komponen mount di client
+    const savedLang = localStorage.getItem("lang") as Language;
+    if (savedLang === "id" || savedLang === "en") {
+      setLangState(savedLang);
+    }
   }, []);
 
   const setLang = (newLang: Language) => {
     setLangState(newLang);
-    sessionStorage.setItem("lang", newLang);
+    localStorage.setItem("lang", newLang);
   };
 
   const toggleLanguage = () => {

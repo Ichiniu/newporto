@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Mail, MapPin, MessageCircle, Terminal } from "lucide-react";
 import { GithubIcon, InstagramIcon, LinkedinIcon } from "@/components/ui/Icons";
 import { Button } from "./ui/Button";
+import { SpotlightBackground } from "./SpotlightBackground";
 import { portfolioData } from "@/data/portfolio";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -30,12 +31,13 @@ export const Hero = () => {
       id="hero"
       className="relative min-h-[90vh] md:min-h-screen flex flex-col justify-center px-4 sm:px-6 md:px-12 xl:px-24 pt-24 pb-20 md:py-0 overflow-hidden bg-bg"
     >
-      {/* Background radial glow */}
+      {/* Interactive Spotlight Light Beam + Content Reveal */}
+      <SpotlightBackground targetContentId="hero-left-content" />
 
       <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12 items-center z-10">
 
         {/* Left Side: Professional Identity */}
-        <div className="lg:col-span-7 flex flex-col gap-5 md:gap-6 text-left">
+        <div id="hero-left-content" className="lg:col-span-7 flex flex-col gap-5 md:gap-6 text-left">
           <motion.div
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -177,7 +179,11 @@ export const Hero = () => {
 
         {/* Right Side: Professional Photo Profile */}
         <div className="lg:col-span-5 flex justify-center items-center w-full relative">
-          {/* Background decorative glowing circles */}
+          {/* Subtle radial glow sage di belakang foto profil */}
+          <div
+            aria-hidden="true"
+            className="absolute -inset-6 sm:-inset-10 rounded-full bg-[radial-gradient(circle,rgba(143,158,139,0.22)_0%,rgba(204,213,174,0.12)_45%,transparent_70%)] blur-2xl pointer-events-none -z-10"
+          />
 
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
@@ -209,7 +215,7 @@ export const Hero = () => {
       </div>
 
       {/* Scroll Down Indicator (hidden on mobile to prevent collision with bottom nav) */}
-      <div className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-1 opacity-100 transition-opacity">
+      <div className="hidden md:flex absolute bottom-6 left-1/2 -translate-x-1/2 flex-col items-center gap-1 opacity-100 transition-opacity z-10">
         <span className="text-[10px] tracking-widest font-mono text-[var(--color-text)]">{t("scrollDown")}</span>
         <div className="w-[1.5px] h-6 bg-primary animate-bounce" />
       </div>

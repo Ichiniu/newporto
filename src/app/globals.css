@@ -112,6 +112,17 @@ img { filter: grayscale(1); }
 }
 .spline-container iframe { border: none; }
 
+@keyframes spotlight-pulse {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.05);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html, body { scroll-behavior: auto !important; }
   *, *::before, *::after {

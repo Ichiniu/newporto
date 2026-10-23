@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Code2, Languages, ArrowRight, Home, User, Cpu, Briefcase, Menu } from "lucide-react";
+import { Code2, Languages, ArrowRight, Home, User, Cpu, Briefcase } from "lucide-react";
 import { MobileMenu } from "./MobileMenu";
 import { useLanguage } from "@/context/LanguageContext";
 
@@ -99,10 +99,11 @@ export const Header = () => {
             <button
               onClick={toggleLanguage}
               className="group flex items-center gap-2 px-3 py-1.5 rounded-xl border border-[var(--color-surface-soft)] bg-[var(--color-bg)] hover:bg-surface-soft text-[var(--color-text)] hover:text-text transition-all cursor-pointer font-mono text-xs font-bold shadow-sm"
+              id="btn-translate-lang"
               aria-label="Change Language"
             >
               <Languages data-tone="secondary" className="w-4 h-4 text-text transition-transform group-hover:scale-110" />
-              <span className="w-5 text-left">{lang.toUpperCase()}</span>
+              <span className="w-5 text-left" suppressHydrationWarning>{lang.toUpperCase()}</span>
             </button>
 
             <button
@@ -129,10 +130,11 @@ export const Header = () => {
             <button
               onClick={toggleLanguage}
               className="group flex items-center justify-center gap-1.5 px-2.5 py-1.5 min-h-[44px] rounded-xl border border-[var(--color-surface-soft)] bg-[var(--color-bg)] hover:bg-surface-soft text-[var(--color-text)] hover:text-text transition-all cursor-pointer font-mono text-xs font-bold shadow-sm"
+              id="btn-translate-lang"
               aria-label="Change Language"
             >
               <Languages data-tone="secondary" className="w-4 h-4 text-text transition-transform group-hover:scale-110" />
-              <span className="w-5 text-left">{lang.toUpperCase()}</span>
+              <span className="w-5 text-left" suppressHydrationWarning>{lang.toUpperCase()}</span>
             </button>
 
             <button
