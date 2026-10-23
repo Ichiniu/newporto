@@ -3,18 +3,24 @@ export type IntroState = "loading" | "playing" | "leaving";
 interface IntroOptions {
   video: HTMLVideoElement;
   source: string;
+  playbackRate?: number;
   onState: (state: IntroState) => void;
   onProgress: (percent: number) => void;
   onComplete: () => void;
 }
 
 /** A single, disposable playback session. Progress measures the video, not page load. */
-export function createIntroPlayback({ video, source, onState, onProgress, onComplete }: IntroOptions) {
+export function createIntroPlayback({ video, source, playbackRate = 2.0, onState, onProgress, onComplete }: IntroOptions) {
   const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
   let disposed = false, leaving = false, attempt = 0;
   let exitTimer: ReturnType<typeof setTimeout> | undefined;
   let watchdog: ReturnType<typeof setInterval> | undefined;
   let lastTime = 0, lastProgressAt = performance.now();
+
+  const applySpeed = () => {
+    video.defaultPlaybackRate = playbackRate;
+    video.playbackRate = playbackRate;
+  };
 
   const finish = (immediate = false) => {
     if (disposed || leaving) return;
@@ -23,7 +29,7 @@ export function createIntroPlayback({ video, source, onState, onProgress, onComp
     video.pause();
     clearInterval(watchdog);
     onState("leaving");
-    exitTimer = setTimeout(() => { if (!disposed) onComplete(); }, immediate ? 0 : 500);
+    exitTimer = setTimeout(() => { if (!disposed) onComplete(); }, immediate ? 0 : 350);
   };
 
   const play = () => {
@@ -31,6 +37,7 @@ export function createIntroPlayback({ video, source, onState, onProgress, onComp
     lastProgressAt = performance.now();
     const id = ++attempt;
     onState("loading");
+    applySpeed();
     video.play().catch(() => {
       if (disposed || leaving || document.hidden || id !== attempt) return;
       finish();
@@ -39,6 +46,7 @@ export function createIntroPlayback({ video, source, onState, onProgress, onComp
   const onPlaying = () => {
     if (disposed || leaving || document.hidden) return;
     lastProgressAt = performance.now();
+    applySpeed();
     onState("playing");
   };
   const onTime = () => {
@@ -59,7 +67,8 @@ export function createIntroPlayback({ video, source, onState, onProgress, onComp
     else play();
   };
   const onMotion = () => { if (motion.matches) finish(true); };
-  const events = { playing: onPlaying, timeupdate: onTime, ended: onEnded, error: onError, waiting: onWaiting };
+  const onLoadedMetadata = () => { applySpeed(); };
+  const events = { playing: onPlaying, timeupdate: onTime, ended: onEnded, error: onError, waiting: onWaiting, loadedmetadata: onLoadedMetadata };
   for (const [name, handler] of Object.entries(events)) video.addEventListener(name, handler);
   document.addEventListener("visibilitychange", onVisibility);
   motion.addEventListener("change", onMotion);
@@ -69,11 +78,13 @@ export function createIntroPlayback({ video, source, onState, onProgress, onComp
     finish(true);
   } else {
     video.muted = true;
+    applySpeed();
     video.src = source;
     video.load();
+    applySpeed();
     play();
     watchdog = setInterval(() => {
-      if (!document.hidden && performance.now() - lastProgressAt > 8000) finish();
+      if (!document.hidden && performance.now() - lastProgressAt > 5000) finish();
     }, 1000);
   }
 

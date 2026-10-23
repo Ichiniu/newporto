@@ -1,0 +1,21 @@
+.assembly { position: relative; z-index: 1; }
+.assembly .piece {
+  --remaining: clamp(0, calc(1 - (var(--assembly, 1) - var(--delay, 0)) * 1.42857143), 1);
+  transform: translate(calc(var(--scatter-x) * var(--remaining)), calc(var(--scatter-y) * var(--remaining))) rotate(calc(var(--scatter-angle) * var(--remaining)));
+  transition-property: color, background-color, border-color, box-shadow;
+}
+.email { --scatter-x: -72px; --scatter-y: -32px; --scatter-angle: -7deg; --delay: 0; }
+.whatsapp { --scatter-x: 48px; --scatter-y: 36px; --scatter-angle: 6deg; --delay: 0.045; }
+.location { --scatter-x: -56px; --scatter-y: 76px; --scatter-angle: -5deg; --delay: 0.09; }
+.github { --scatter-x: -64px; --scatter-y: 104px; --scatter-angle: -16deg; --delay: 0.135; }
+.linkedin { --scatter-x: 20px; --scatter-y: 120px; --scatter-angle: 12deg; --delay: 0.18; }
+.instagram { --scatter-x: 72px; --scatter-y: 96px; --scatter-angle: -12deg; --delay: 0.225; }
+
+/* Focus keeps contact links stationary while navigating or activating them. */
+.assembly:has(:focus-visible) .piece { transform: none; }
+@media (max-width: 1023px) {
+  .assembly .piece { --scatter-x: 0px; --scatter-y: 32px; --scatter-angle: 0deg; }
+}
+@media (prefers-reduced-motion: reduce), print {
+  .assembly .piece { transform: none; }
+}

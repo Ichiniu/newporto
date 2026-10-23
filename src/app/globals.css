@@ -92,7 +92,7 @@ a.button-primary, a.button-secondary { text-decoration: none; }
 
 /* Display only: original photo/project assets are not modified. */
 img { filter: grayscale(1); }
-#projects img, [data-project-img="true"] { filter: none; }
+#projects img, #certificates img, [data-project-img="true"], [data-certificate-img="true"] { filter: none; }
 
 ::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: var(--color-bg); }
@@ -121,6 +121,26 @@ img { filter: grayscale(1); }
     opacity: 0.85;
     transform: scale(1.05);
   }
+}
+
+@keyframes marquee-scroll-right {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0%, 0, 0);
+  }
+}
+
+.animate-marquee-right {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll-right 30s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-right:hover {
+  animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {

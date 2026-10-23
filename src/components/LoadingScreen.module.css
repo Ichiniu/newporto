@@ -9,7 +9,7 @@
   color: var(--color-text);
   overflow: auto;
   opacity: 1;
-  transition: opacity 500ms ease, visibility 500ms ease;
+  transition: opacity 350ms ease, visibility 350ms ease;
 }
 .leaving { opacity: 0; visibility: hidden; pointer-events: none; }
 .overlay:focus { outline: none; }

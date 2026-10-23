@@ -1,18 +1,22 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Card } from "./ui/Card";
 import { Button } from "./ui/Button";
 import { portfolioData } from "@/data/portfolio";
 import { Mail, MapPin, Send, CheckCircle2, MessageSquare } from "lucide-react";
 import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/components/ui/Icons";
-import { motion } from "framer-motion";
+import { motion, useScroll, type MotionStyle } from "framer-motion";
+import assembly from "./ContactAssembly.module.css";
 
 import { useLanguage } from "@/context/LanguageContext";
 
 export const Contact = () => {
   const { lang, t } = useLanguage();
   const { email, location, github, linkedin, instagram, whatsapp } = portfolioData[lang].personalInfo;
+
+  const contactCard = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: contactCard, offset: ["start 95%", "end 95%"] });
 
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [emailError, setEmailError] = useState("");
@@ -93,8 +97,8 @@ export const Contact = () => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
           {/* Left Column */}
-          <div className="lg:col-span-5 flex flex-col justify-between gap-6">
-            <Card className="h-full flex flex-col justify-between gap-8">
+          <motion.div ref={contactCard} style={{ "--assembly": scrollYProgress } as MotionStyle} className={`${assembly.assembly} lg:col-span-5 flex flex-col justify-between gap-6`}>
+            <Card animateEntrance={false} className="h-full flex flex-col justify-between gap-8">
               <div className="space-y-4">
                 <h3 className="text-xl md:text-2xl font-bold text-[var(--color-text)]">{t("collaborate")}</h3>
                 <p className="text-[var(--color-text)] text-sm md:text-base leading-relaxed">
@@ -106,7 +110,7 @@ export const Contact = () => {
               <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 sm:gap-4">
                 <a
                   href={`mailto:${email}`}
-                  className="flex flex-col sm:flex-row items-start sm:items-center gap-1.5 sm:gap-4 p-2.5 sm:p-4 rounded-xl bg-[var(--color-bg)] hover:bg-bg  border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-text  transition-all group min-h-[44px] min-w-0"
+                  className={`${assembly.piece} ${assembly.email} flex flex-col sm:flex-row items-start sm:items-center gap-1.5 sm:gap-4 p-2.5 sm:p-4 rounded-xl bg-[var(--color-bg)] hover:bg-bg  border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-text  transition-all group min-h-[44px] min-w-0`}
                   id="link-mail-direct"
                 >
                   <div className="p-1.5 sm:p-3 rounded-lg bg-surface-soft text-text shrink-0">
@@ -123,7 +127,7 @@ export const Contact = () => {
                     href={whatsapp}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex flex-col sm:flex-row items-start sm:items-center gap-1.5 sm:gap-4 p-2.5 sm:p-4 rounded-xl bg-[var(--color-bg)] hover:bg-bg  border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-text  transition-all group min-h-[44px] min-w-0"
+                    className={`${assembly.piece} ${assembly.whatsapp} flex flex-col sm:flex-row items-start sm:items-center gap-1.5 sm:gap-4 p-2.5 sm:p-4 rounded-xl bg-[var(--color-bg)] hover:bg-bg  border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-text  transition-all group min-h-[44px] min-w-0`}
                     id="link-whatsapp-direct"
                   >
                     <div className="p-1.5 sm:p-3 rounded-lg bg-surface-soft text-text shrink-0">
@@ -136,7 +140,7 @@ export const Contact = () => {
                   </a>
                 )}
 
-                <div className="col-span-2 lg:col-span-1 flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] text-[var(--color-text)]">
+                <div className={`${assembly.piece} ${assembly.location} col-span-2 lg:col-span-1 flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] text-[var(--color-text)]`}>
                   <div className="p-2 sm:p-3 rounded-lg bg-surface-soft text-text shrink-0">
                     <MapPin data-tone="secondary" className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
@@ -153,7 +157,7 @@ export const Contact = () => {
                   href={github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-[var(--color-text)] transition-all"
+                  className={`${assembly.piece} ${assembly.github} p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-[var(--color-text)] transition-all`}
                   title="GitHub Profile"
                   id="link-github-contact"
                 >
@@ -163,7 +167,7 @@ export const Contact = () => {
                   href={linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-[var(--color-text)] transition-all"
+                  className={`${assembly.piece} ${assembly.linkedin} p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-[var(--color-text)] transition-all`}
                   title="LinkedIn Profile"
                   id="link-linkedin-contact"
                 >
@@ -174,7 +178,7 @@ export const Contact = () => {
                     href={instagram}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-[var(--color-text)] transition-all"
+                    className={`${assembly.piece} ${assembly.instagram} p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-[var(--color-text)] transition-all`}
                     title="Instagram Profile"
                     id="link-instagram-contact"
                   >
@@ -183,7 +187,7 @@ export const Contact = () => {
                 )}
               </div>
             </Card>
-          </div>
+          </motion.div>
 
           {/* Right Column (Form) */}
           <div className="lg:col-span-7">

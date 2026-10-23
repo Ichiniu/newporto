@@ -81,6 +81,13 @@ const translations: Record<Language, Record<string, string>> = {
     messageSentDesc: "Terima kasih telah menghubungi saya, Mas Ichsan. Saya akan segera membalas email Anda secepatnya.",
     sendAnother: "Kirim Pesan Lain",
     
+    // Certificates
+    certificatesTitle: "Sertifikasi & Lisensi",
+    certificatesSubtitle: "Kredensial & Pencapaian Profesional",
+    certificatesBadge: "Terus Bergeser",
+    certificateZoom: "Klik untuk melihat pratinjau sertifikat",
+    closeCertificate: "Tutup Pratinjau",
+
     // Footer
     createdBy: "",
     backToTop: "Kembali ke atas",
@@ -151,6 +158,13 @@ const translations: Record<Language, Record<string, string>> = {
     messageSent: "Message Sent!",
     messageSentDesc: "Thank you for reaching out. I have received your message and will get back to you shortly.",
     sendAnother: "Send Another Message",
+
+    // Certificates
+    certificatesTitle: "Certifications & Credentials",
+    certificatesSubtitle: "Professional Credentials & Achievements",
+    certificatesBadge: "Continuous Learning",
+    certificateZoom: "Click to preview certificate",
+    closeCertificate: "Close Preview",
     
     // Footer
     createdBy: "Made with Next.js Static Export & Tailwind CSS.",
@@ -166,22 +180,30 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     document.documentElement.classList.remove("dark");
     localStorage.removeItem("theme");
 
-    // Sinkronkan bahasa dari localStorage setelah komponen mount di client
-    const savedLang = localStorage.getItem("lang") as Language;
+    // Bersihkan legacy storage "lang" agar tidak memaksa default ke "id"
+    localStorage.removeItem("lang");
+
+    // Sinkronkan preferensi bahasa jika user pernah memilih secara manual
+    const savedLang = localStorage.getItem("portfolio_lang_v2") as Language | null;
     if (savedLang === "id" || savedLang === "en") {
       queueMicrotask(() => {
         setLangState(savedLang);
       });
+      document.documentElement.lang = savedLang;
+    } else {
+      document.documentElement.lang = "en";
     }
   }, []);
 
   const setLang = (newLang: Language) => {
     setLangState(newLang);
-    localStorage.setItem("lang", newLang);
+    localStorage.setItem("portfolio_lang_v2", newLang);
+    document.documentElement.lang = newLang;
   };
 
   const toggleLanguage = () => {
-    setLang(lang === "id" ? "en" : "id");
+    const nextLang = lang === "id" ? "en" : "id";
+    setLang(nextLang);
   };
 
   const t = (key: string) => {
