@@ -104,12 +104,12 @@ const translations: Record<Language, Record<string, string>> = {
     
     // About
     aboutTitle: "About Me",
-    aboutSubtitle: "Branding & Work Philosophy",
-    aboutBio2: "My journey in the programming world was born from an unquenchable curiosity. As an IT Bachelor graduate and a certified Web Fullstack Programmer alumnus (Kemnaker), I have built a strong technical foundation on a comprehensive tech stack. I am grateful for the opportunity to design impactful end-to-end solutions, ranging from a room reservation system (reservasi.tigaserangkai.com) complete with automated email notifications and E2E testing via Cypress, a Node.js-based WhatsApp Bot automation with Long-Term Memory architecture, to a fullstack POS application with RBAC and transaction audit logs. For me, a developer's ultimate satisfaction is not just when the code runs without errors, but when the built application truly transforms how people work, making it easier and more efficient. Currently, I am actively diving into Linux administration (Ubuntu Server), believing that great applications can only shine if supported by a stable, secure, and reliable infrastructure. I position myself as a lifelong learner, adaptive, collaborative, and always open to new technologies — with one single goal: to deliver a real positive impact in every project I work on.",
+    aboutSubtitle: "Professional Profile & Work Philosophy",
+    aboutBio2: "My journey in software engineering is driven by an enduring passion for problem-solving and innovation. Holding a Bachelor's degree in Informatics and certified as a Web Fullstack Programmer by Kemnaker, I have built a solid technical foundation across a modern, comprehensive tech stack. I have architected and deployed impactful end-to-end solutions, including an enterprise room reservation platform (reservasi.tigaserangkai.com) featuring automated email workflows and Cypress E2E testing, a Node.js-powered WhatsApp automation agent with Long-Term Memory architecture, and a fullstack POS application with granular RBAC and audit logging. To me, engineering excellence extends beyond bug-free code—it lies in building intuitive software that enhances productivity and solves real-world challenges. Currently expanding my expertise in Linux server administration (Ubuntu Server) and containerization, I continuously strive to deliver robust, scalable, and secure digital experiences.",
     highPerformance: "High Performance",
-    highPerformanceDesc: "Fast & responsive website",
+    highPerformanceDesc: "Fast, accessible & responsive web applications",
     securityFirst: "Security First",
-    securityFirstDesc: "Secure coding standards",
+    securityFirstDesc: "Adherence to secure coding standards & best practices",
     experienceYears: "1 Year",
     keepLearning: "& KEEP LEARNING",
     experienceLabel: "EXPERIENCE",
@@ -138,7 +138,7 @@ const translations: Record<Language, Record<string, string>> = {
     contactTitle: "Contact",
     contactSubtitle: "Contact Me",
     collaborate: "Let's Collaborate!",
-    collaborateDesc: "Are you looking for a developer to complete your project, build a kiosk application, or want to discuss? Please contact me anytime!",
+    collaborateDesc: "Looking for a developer to bring your project to life, build scalable web solutions, or discuss technical challenges? Let's connect.",
     locationLabel: "Location",
     yourName: "Your Name",
     enterName: "Enter your name...",
@@ -149,7 +149,7 @@ const translations: Record<Language, Record<string, string>> = {
     sending: "Sending...",
     sendMessage: "Send Message",
     messageSent: "Message Sent!",
-    messageSentDesc: "Thank you for contacting me. I will get back to you as soon as possible.",
+    messageSentDesc: "Thank you for reaching out. I have received your message and will get back to you shortly.",
     sendAnother: "Send Another Message",
     
     // Footer
@@ -169,7 +169,9 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     // Sinkronkan bahasa dari localStorage setelah komponen mount di client
     const savedLang = localStorage.getItem("lang") as Language;
     if (savedLang === "id" || savedLang === "en") {
-      setLangState(savedLang);
+      queueMicrotask(() => {
+        setLangState(savedLang);
+      });
     }
   }, []);
 
