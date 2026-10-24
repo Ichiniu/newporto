@@ -167,7 +167,7 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
     timeline: [
       {
         id: "exp-fingerspot",
-        period: "2026",
+        period: "Agustus - September 2026 ",
         role: "Quality Assurance & Web Developer",
         company: "Fingerspot",
         descriptions: [

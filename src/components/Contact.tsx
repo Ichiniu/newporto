@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useState } from "react";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { Card } from "./ui/Card";
 import { Button } from "./ui/Button";
 import { portfolioData } from "@/data/portfolio";
@@ -22,10 +23,21 @@ export const Contact = () => {
   const [emailError, setEmailError] = useState("");
   const [isSent, setIsSent] = useState(false);
   const [isSending, setIsSending] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState("");
+  const [formError, setFormError] = useState("");
+  const captcha = useRef<HCaptcha>(null);
+  const submitting = useRef(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
+    if (submitting.current || new FormData(e.currentTarget).get("botcheck")) return;
+    const name = formData.name.trim();
+    const message = formData.message.trim();
+    setFormError("");
+    if (!name || !message || name.length > 100 || message.length > 5000 || formData.email.trim().length > 254) {
+      setFormError(lang === "id" ? "Lengkapi nama dan pesan sesuai batas panjang kolom." : "Please complete your name and message within the field limits.");
+      return;
+    }
 
     const emailTrimmed = formData.email.trim();
     const isGmail = /^[a-zA-Z0-9._%+-]+@gmail\.com$/i.test(emailTrimmed);
@@ -35,49 +47,55 @@ export const Contact = () => {
     }
     setEmailError("");
 
-    setIsSending(true);
-    // Gunakan Environment Variable Vercel, jika tidak terbaca gunakan token langsung di bawah ini
-    const token = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_TOKEN || "MASUKKAN_ACCESS_KEY_WEB3FORMS_DISINI";
-
-    if (!token || token === "MASUKKAN_ACCESS_KEY_WEB3FORMS_DISINI") {
-      alert(lang === "id"
-        ? "Konfigurasi pengiriman belum lengkap. Mohon isi token Web3Forms Anda langsung di file src/components/Contact.tsx atau atur Environment Variable di Vercel."
-        : "Submission configuration is incomplete. Please fill in your Web3Forms token directly in the src/components/Contact.tsx file or set the Environment Variable in Vercel.");
-      setIsSending(false);
+    if (!captchaToken) {
+      setFormError(lang === "id" ? "Selesaikan verifikasi keamanan terlebih dahulu." : "Please complete the security check first.");
       return;
     }
 
+    const token = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_TOKEN;
+    if (!token || token === "MASUKKAN_ACCESS_KEY_WEB3FORMS_DISINI") {
+      setFormError(lang === "id" ? "Form belum tersedia. Silakan hubungi melalui email atau WhatsApp." : "The form is unavailable. Please contact me by email or WhatsApp.");
+      return;
+    }
+
+    submitting.current = true;
+    setIsSending(true);
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
+        signal: AbortSignal.timeout(15000),
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify({
           access_key: token,
-          name: formData.name,
-          email: formData.email,
-          message: formData.message,
-          subject: lang === "id" ? `Pesan Baru Portofolio dari ${formData.name}` : `New Portfolio Message from ${formData.name}`,
+          name,
+          email: emailTrimmed,
+          message,
+          botcheck: false,
+          "h-captcha-response": captchaToken,
+          subject: lang === "id" ? `Pesan Baru Portofolio dari ${name}` : `New Portfolio Message from ${name}`,
           from_name: lang === "id" ? "Developer Portofolio" : "Portfolio Developer",
         }),
       });
 
       const result = await response.json();
-      if (result.success) {
+      if (response.ok && result.success === true) {
         setIsSent(true);
         setFormData({ name: "", email: "", message: "" });
       } else {
-        alert(result.message || (lang === "id" ? "Gagal mengirim pesan. Silakan coba lagi." : "Failed to send message. Please try again."));
+        setFormError(lang === "id" ? "Pesan belum terkirim. Verifikasi ulang lalu coba lagi, atau hubungi melalui email." : "Your message was not sent. Verify again and retry, or contact me by email.");
       }
-    } catch (error) {
-      console.error("Error submitting contact form:", error);
-        alert(lang === "id"
-        ? "Terjadi kesalahan koneksi. Silakan hubungi langsung via WhatsApp atau Email."
-        : "Connection error occurred. Please contact directly via WhatsApp or Email.");
+    } catch {
+      setFormError(lang === "id"
+        ? "Koneksi bermasalah atau terlalu lama. Silakan coba lagi atau hubungi melalui WhatsApp atau email."
+        : "The connection failed or timed out. Please retry or contact me by WhatsApp or email.");
     } finally {
+      submitting.current = false;
       setIsSending(false);
+      setCaptchaToken("");
+      captcha.current?.resetCaptcha();
     }
   };
 
@@ -217,13 +235,15 @@ export const Contact = () => {
                 </motion.div>
               ) : (
                 /* Form */
-                <form onSubmit={handleSubmit} className="flex flex-col gap-4 sm:gap-5">
+                <form onSubmit={handleSubmit} aria-busy={isSending} className="flex flex-col gap-4 sm:gap-5">
+                  <input type="checkbox" name="botcheck" className="hidden" tabIndex={-1} aria-hidden="true" autoComplete="off" />
                   <div className="grid grid-cols-2 gap-3 sm:gap-4">
                     <div className="flex flex-col gap-1.5 sm:gap-2">
                       <label htmlFor="input-name" className="text-xs font-mono text-[var(--color-text)] uppercase tracking-wider">{t("yourName")}</label>
                       <input
                         type="text"
                         id="input-name"
+                        maxLength={100}
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -237,6 +257,7 @@ export const Contact = () => {
                       <input
                         type="email"
                         id="input-email"
+                        maxLength={254}
                         required
                         pattern="^[a-zA-Z0-9._%+-]+@gmail\.com$"
                         title={lang === "id" ? "Alamat email harus menggunakan domain @gmail.com" : "Email must use @gmail.com domain"}
@@ -260,6 +281,7 @@ export const Contact = () => {
                     <label htmlFor="input-message" className="text-xs font-mono text-[var(--color-text)] uppercase tracking-wider">{t("messageLabel")}</label>
                     <textarea
                       id="input-message"
+                      maxLength={5000}
                       required
                       rows={5}
                       value={formData.message}
@@ -267,6 +289,26 @@ export const Contact = () => {
                       placeholder={t("typeMessage")}
                       className="px-4 py-3 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] text-[var(--color-text)] placeholder-text   focus:border-primary-hover transition-all text-sm md:text-base font-sans resize-none"
                     />
+                  </div>
+
+                  <div className="space-y-2">
+                    <p className="text-xs font-mono text-[var(--color-text)]">
+                      {lang === "id" ? "Verifikasi keamanan" : "Security check"}
+                    </p>
+                    <HCaptcha
+                      ref={captcha}
+                      sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
+                      reCaptchaCompat={false}
+                      size="compact"
+                      languageOverride={lang}
+                      onVerify={(value) => { setCaptchaToken(value); setFormError(""); }}
+                      onExpire={() => setCaptchaToken("")}
+                      onError={() => {
+                        setCaptchaToken("");
+                        setFormError(lang === "id" ? "Verifikasi gagal dimuat. Muat ulang halaman atau hubungi melalui email atau WhatsApp." : "Verification could not load. Reload the page or contact me by email or WhatsApp.");
+                      }}
+                    />
+                    {formError && <p role="alert" className="text-xs text-[var(--color-text)]">{formError}</p>}
                   </div>
 
                   <Button
