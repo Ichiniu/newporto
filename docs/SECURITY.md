@@ -9,6 +9,14 @@
 
 Panduan resmi: https://docs.web3forms.com/getting-started/customizations/spam-protection/hcaptcha
 
+## Pengujian lokal hCaptcha
+
+Jalankan `npm run dev`, lalu buka http://portfolio.localhost:3000/#contact (sesuaikan port jika server memakai port lain). Browser modern mengarahkan hostname `.localhost` ke komputer sendiri, tanpa mengubah DNS produksi atau file hosts Windows.
+
+hCaptcha menolak hostname `localhost` dan `127.0.0.1`. Jika konsol menampilkan `Warning: localhost detected. Please use a valid host.`, gunakan alamat di atas. Memilih gambar pada domain produksi merupakan alur verifikasi normal. Jangan mengganti site key produksi dengan test key atau melewati pemeriksaan token untuk mengatasi masalah lokal.
+
+Referensi: https://docs.hcaptcha.com/#local-development
+
 ## Perlindungan di kode
 
 - Next.js dan eslint-config-next diperbarui ke 16.4.2 dengan lockfile baru.

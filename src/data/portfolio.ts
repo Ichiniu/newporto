@@ -166,17 +166,31 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
     ],
     timeline: [
       {
+        id: "exp-aqnesia",
+        period: "Sekarang",
+        role: "Staf IT",
+        company: "PT Aqnesia Multi Usaha",
+        descriptions: [
+          "Memantau dan memastikan kelancaran workflow otomasi yang berjalan di n8n.",
+          "Melakukan pemeliharaan website berbasis WordPress.",
+          "Mengonfigurasi email forwarding menggunakan Cloudflare Email Routing.",
+          "Membuat dan mengelola akun email staf melalui cPanel.",
+          "Memantau log server menggunakan Easypanel untuk menelusuri dan menangani kendala."
+        ],
+        tags: ["n8n", "WordPress", "Cloudflare", "cPanel", "IT Support", "Easypanel"]
+      },
+      {
         id: "exp-fingerspot",
-        period: "Agustus - September 2026 ",
-        role: "Quality Assurance & Web Developer",
-        company: "Fingerspot",
+        period: "Agustus - September 2026",
+        role: "Quality Assurance",
+        company: "Fingerspot.io",
         descriptions: [
           "Pembuatan website userguide untuk penggunaan website fingerspot.io.",
           "QA analyst pada beberapa macam perangkat absensi.",
           "Testing website dan desktop app secara manual dan automation dengan menggunakan Playwright.",
           "Pengecekan source code lama memastikan dapat terhubung ke perangkat spesifik."
         ],
-        tags: ["Laravel", "Playwright", "Postman", "Webhook", "PHP", "MySQL"]
+        tags: ["Laravel", "Playwright", "Postman", "Webhook", "MySQL"]
       },
       {
         id: "exp-1",
@@ -346,17 +360,30 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
     ],
     timeline: [
       {
-        id: "exp-fingerspot",
-        period: "2026",
-        role: "Quality Assurance",
-        company: "Fingerspot",
+        id: "exp-aqnesia",
+        period: "Now",
+        role: "IT Staff",
+        company: "PT Aqnesia Multi Usaha",
         descriptions: [
-          "Developed the userguide documentation website for fingerspot.io.",
-          "Served as QA Analyst across various attendance devices and biometric hardware.",
-          "Conducted manual and automated testing for websites and desktop applications using Playwright.",
-          "Inspected and validated legacy source code to ensure reliable integration with specific hardware devices."
+          "Monitored active workflows running in n8n.",
+          "Maintained WordPress-based websites.",
+          "Configured email forwarding with Cloudflare.",
+          "Created and managed staff email accounts with cPanel."
         ],
-        tags: ["Laravel", "Playwright", "Postman", "Webhook", "PHP", "MySQL"]
+        tags: ["n8n", "WordPress", "Cloudflare", "cPanel", "IT Support"]
+      },
+      {
+        id: "exp-fingerspot",
+        period: "August - September 2026",
+        role: "Quality Assurance",
+        company: "Fingerspot.io",
+        descriptions: [
+          "Developed the user guide documentation website for fingerspot.io.",
+          "QA analyst on various types of attendance devices.",
+          "Manual and automated testing of web and desktop applications using Playwright.",
+          "Checked legacy source code to ensure proper connectivity with specific devices."
+        ],
+        tags: ["Laravel", "Playwright", "Postman", "Webhook", "MySQL"]
       },
       {
         id: "exp-1",

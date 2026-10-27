@@ -5,7 +5,7 @@ import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { Card } from "./ui/Card";
 import { Button } from "./ui/Button";
 import { portfolioData } from "@/data/portfolio";
-import { Mail, MapPin, Send, CheckCircle2, MessageSquare } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle2, MessageSquare, ShieldCheck } from "lucide-react";
 import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/components/ui/Icons";
 import { motion, useScroll, type MotionStyle } from "framer-motion";
 import assembly from "./ContactAssembly.module.css";
@@ -291,24 +291,57 @@ export const Contact = () => {
                     />
                   </div>
 
-                  <div className="space-y-2">
-                    <p className="text-xs font-mono text-[var(--color-text)]">
-                      {lang === "id" ? "Verifikasi keamanan" : "Security check"}
-                    </p>
-                    <HCaptcha
-                      ref={captcha}
-                      sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
-                      reCaptchaCompat={false}
-                      size="compact"
-                      languageOverride={lang}
-                      onVerify={(value) => { setCaptchaToken(value); setFormError(""); }}
-                      onExpire={() => setCaptchaToken("")}
-                      onError={() => {
-                        setCaptchaToken("");
-                        setFormError(lang === "id" ? "Verifikasi gagal dimuat. Muat ulang halaman atau hubungi melalui email atau WhatsApp." : "Verification could not load. Reload the page or contact me by email or WhatsApp.");
-                      }}
-                    />
-                    {formError && <p role="alert" className="text-xs text-[var(--color-text)]">{formError}</p>}
+                  <div className="p-3.5 sm:p-4 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] space-y-3 transition-all">
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex items-center gap-2">
+                        <div className={`p-1.5 rounded-lg transition-colors ${captchaToken ? "bg-[var(--color-surface-soft)]" : "bg-[var(--color-surface-soft)]/60"}`}>
+                          <ShieldCheck className="w-4 h-4 text-[var(--color-primary-hover)]" />
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold font-mono tracking-wide text-[var(--color-text)]">
+                            {lang === "id" ? "Verifikasi Keamanan" : "Security Check"}
+                          </p>
+                          <p className="text-[10px] text-[var(--color-text)]/70 font-mono">
+                            {lang === "id" ? "Perlindungan anti-spam" : "Anti-bot protection"}
+                          </p>
+                        </div>
+                      </div>
+
+                      <span className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-mono transition-all duration-300 ${
+                        captchaToken
+                          ? "bg-[var(--color-primary-hover)] text-white font-medium"
+                          : "bg-[var(--color-surface-soft)] text-[var(--color-text)]"
+                      }`}>
+                        {captchaToken ? (
+                          <>
+                            <CheckCircle2 className="w-3.5 h-3.5 text-white" />
+                            <span>{lang === "id" ? "Terverifikasi" : "Verified"}</span>
+                          </>
+                        ) : (
+                          <>
+                            <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                            <span>{lang === "id" ? "Menunggu Verifikasi" : "Required"}</span>
+                          </>
+                        )}
+                      </span>
+                    </div>
+
+                    <div className="flex justify-center sm:justify-start overflow-x-auto py-1">
+                      <HCaptcha
+                        ref={captcha}
+                        sitekey="50b2fe65-b00b-4b9e-ad62-3ba471098be2"
+                        reCaptchaCompat={false}
+                        size="normal"
+                        languageOverride={lang}
+                        onVerify={(value) => { setCaptchaToken(value); setFormError(""); }}
+                        onExpire={() => setCaptchaToken("")}
+                        onError={() => {
+                          setCaptchaToken("");
+                          setFormError(lang === "id" ? "Verifikasi gagal dimuat. Muat ulang halaman atau hubungi melalui email atau WhatsApp." : "Verification could not load. Reload the page or contact me by email or WhatsApp.");
+                        }}
+                      />
+                    </div>
+                    {formError && <p role="alert" className="text-xs text-red-500 font-mono">{formError}</p>}
                   </div>
 
                   <Button

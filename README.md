@@ -14,7 +14,9 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://portfolio.localhost:3000](http://portfolio.localhost:3000) with your browser to see the result. Modern browsers resolve this `.localhost` hostname to your own computer.
+
+Use this address when testing the contact form: hCaptcha rejects the bare `localhost` and `127.0.0.1` hostnames. The production domain on Vercel is unaffected. Keep the real Web3Forms site key; test keys cannot be used to send real messages through Web3Forms.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
