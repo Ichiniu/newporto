@@ -365,12 +365,13 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
         role: "IT Staff",
         company: "PT Aqnesia Multi Usaha",
         descriptions: [
-          "Monitored active workflows running in n8n.",
-          "Maintained WordPress-based websites.",
-          "Configured email forwarding with Cloudflare.",
-          "Created and managed staff email accounts with cPanel."
+          "Monitored and ensured smooth execution of automation workflows running in n8n.",
+          "Maintained and managed WordPress-based websites.",
+          "Configured email forwarding using Cloudflare Email Routing.",
+          "Created and managed staff email accounts through cPanel.",
+          "Monitored server logs using Easypanel to troubleshoot and resolve issues."
         ],
-        tags: ["n8n", "WordPress", "Cloudflare", "cPanel", "IT Support"]
+        tags: ["n8n", "WordPress", "Cloudflare", "cPanel", "IT Support", "Easypanel"]
       },
       {
         id: "exp-fingerspot",

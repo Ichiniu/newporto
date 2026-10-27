@@ -327,7 +327,7 @@ export const Projects = () => {
   // Filter options based on projects' tech stack
   const filterOptions = [
     { label: t("allFilter"), value: "all" },
-    { label: "PHP / Laravel / CI4", value: "php" },
+    { label: "PHP / Laravel / CI3", value: "php" },
     { label: "JS / React / Node.js", value: "next" }
   ];
 

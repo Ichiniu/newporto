@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Card } from "./ui/Card";
-import { portfolioData } from "@/data/portfolio";
 import { Award, Zap, Code, ShieldCheck, ExternalLink, Server } from "lucide-react";
 
 /* ── hook counter generik ── */
@@ -36,8 +35,7 @@ function useCounter(target: number, duration: number) {
 import { useLanguage } from "@/context/LanguageContext";
 
 export const About = () => {
-  const { lang, t } = useLanguage();
-  const { bio } = portfolioData[lang].personalInfo;
+  const { t } = useLanguage();
 
   /* Stat 1 — Award */
   const [hov1, setHov1] = useState(false);
@@ -69,9 +67,6 @@ export const About = () => {
           <div className="lg:col-span-7 flex flex-col justify-between">
             <Card className="h-full flex flex-col justify-between gap-6">
               <div className="space-y-4">
-                <p className="text-[var(--color-text)] leading-relaxed text-sm md:text-base">
-                  {bio}
-                </p>
                 <p className="text-[var(--color-text)] leading-relaxed text-sm md:text-base">
                   {t("aboutBio2")}
                 </p>
