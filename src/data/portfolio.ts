@@ -40,7 +40,6 @@ export interface PortfolioData {
     github: string;
     linkedin: string;
     instagram?: string;
-    whatsapp?: string;
     splineEmbedUrl: string;
   };
   skillCategories: SkillCategory[];
@@ -61,7 +60,6 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
       github: "https://github.com/Ichiniu",
       linkedin: "https://www.linkedin.com/in/ikhsan-wahyu-utomo-3586701b9/",
       instagram: "https://instagram.com/iich.in",
-      whatsapp: "https://wa.me/6289649261851",
       splineEmbedUrl: "https://my.spline.design/desksetup-7855e8face4844719546578a4feb0649/"
     },
     skillCategories: [
@@ -258,7 +256,6 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
       github: "https://github.com/Ichiniu",
       linkedin: "https://www.linkedin.com/in/ikhsan-wahyu-utomo-3586701b9/",
       instagram: "https://instagram.com/iich.in",
-      whatsapp: "https://wa.me/6289649261851",
       splineEmbedUrl: "https://my.spline.design/desksetup-7855e8face4844719546578a4feb0649/"
     },
     skillCategories: [

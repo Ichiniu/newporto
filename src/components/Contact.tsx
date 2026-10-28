@@ -5,7 +5,7 @@ import HCaptcha from "@hcaptcha/react-hcaptcha";
 import { Card } from "./ui/Card";
 import { Button } from "./ui/Button";
 import { portfolioData } from "@/data/portfolio";
-import { Mail, MapPin, Send, CheckCircle2, MessageSquare, ShieldCheck } from "lucide-react";
+import { Mail, MapPin, Send, CheckCircle2, ShieldCheck } from "lucide-react";
 import { GithubIcon, LinkedinIcon, InstagramIcon } from "@/components/ui/Icons";
 import { motion, useScroll, type MotionStyle } from "framer-motion";
 import assembly from "./ContactAssembly.module.css";
@@ -14,7 +14,7 @@ import { useLanguage } from "@/context/LanguageContext";
 
 export const Contact = () => {
   const { lang, t } = useLanguage();
-  const { email, location, github, linkedin, instagram, whatsapp } = portfolioData[lang].personalInfo;
+  const { email, location, github, linkedin, instagram } = portfolioData[lang].personalInfo;
 
   const contactCard = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: contactCard, offset: ["start 95%", "end 95%"] });
@@ -54,7 +54,7 @@ export const Contact = () => {
 
     const token = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_TOKEN;
     if (!token || token === "MASUKKAN_ACCESS_KEY_WEB3FORMS_DISINI") {
-      setFormError(lang === "id" ? "Form belum tersedia. Silakan hubungi melalui email atau WhatsApp." : "The form is unavailable. Please contact me by email or WhatsApp.");
+      setFormError(lang === "id" ? "Form belum tersedia. Silakan hubungi melalui email." : "The form is unavailable. Please contact me by email.");
       return;
     }
 
@@ -89,8 +89,8 @@ export const Contact = () => {
       }
     } catch {
       setFormError(lang === "id"
-        ? "Koneksi bermasalah atau terlalu lama. Silakan coba lagi atau hubungi melalui WhatsApp atau email."
-        : "The connection failed or timed out. Please retry or contact me by WhatsApp or email.");
+        ? "Koneksi bermasalah atau terlalu lama. Silakan coba lagi atau hubungi melalui email."
+        : "The connection failed or timed out. Please retry or contact me by email.");
     } finally {
       submitting.current = false;
       setIsSending(false);
@@ -124,41 +124,23 @@ export const Contact = () => {
                 </p>
               </div>
 
-              {/* Direct Info (2 Kolom di Mobile, 1 Kolom Penuh di Desktop) */}
-              <div className="grid grid-cols-2 lg:grid-cols-1 gap-2 sm:gap-4">
+              {/* Direct Info */}
+              <div className="grid grid-cols-1 gap-2.5 sm:gap-4">
                 <a
                   href={`mailto:${email}`}
-                  className={`${assembly.piece} ${assembly.email} flex flex-col sm:flex-row items-start sm:items-center gap-1.5 sm:gap-4 p-2.5 sm:p-4 rounded-xl bg-[var(--color-bg)] hover:bg-bg  border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-text  transition-all group min-h-[44px] min-w-0`}
+                  className={`${assembly.piece} ${assembly.email} flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-[var(--color-bg)] hover:bg-bg border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-text transition-all group min-h-[44px] min-w-0`}
                   id="link-mail-direct"
                 >
-                  <div className="p-1.5 sm:p-3 rounded-lg bg-surface-soft text-text shrink-0">
+                  <div className="p-2 sm:p-3 rounded-lg bg-surface-soft text-text shrink-0">
                     <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
-                  <div className="flex flex-col min-w-0 w-full">
-                    <span className="text-[9px] sm:text-xs text-[var(--color-text)] font-mono leading-none mb-0.5">Email</span>
-                    <span className="text-[8.5px] min-[360px]:text-[9.5px] min-[400px]:text-[10.5px] sm:text-sm lg:text-base font-semibold font-mono whitespace-nowrap overflow-hidden text-ellipsis block leading-tight">{email}</span>
+                  <div className="flex flex-col min-w-0">
+                    <span className="text-[10px] sm:text-xs text-[var(--color-text)] font-mono">Email</span>
+                    <span className="text-xs sm:text-base font-semibold font-mono whitespace-nowrap overflow-hidden text-ellipsis">{email}</span>
                   </div>
                 </a>
 
-                {whatsapp && (
-                  <a
-                    href={whatsapp}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`${assembly.piece} ${assembly.whatsapp} flex flex-col sm:flex-row items-start sm:items-center gap-1.5 sm:gap-4 p-2.5 sm:p-4 rounded-xl bg-[var(--color-bg)] hover:bg-bg  border border-[var(--color-surface-soft)] hover:border-primary-hover text-[var(--color-text)] hover:text-text  transition-all group min-h-[44px] min-w-0`}
-                    id="link-whatsapp-direct"
-                  >
-                    <div className="p-1.5 sm:p-3 rounded-lg bg-surface-soft text-text shrink-0">
-                      <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5" />
-                    </div>
-                    <div className="flex flex-col min-w-0 w-full">
-                      <span className="text-[9px] sm:text-xs text-[var(--color-text)] font-mono leading-none mb-0.5">WhatsApp</span>
-                      <span className="text-[8.5px] min-[360px]:text-[9.5px] min-[400px]:text-[10.5px] sm:text-sm lg:text-base font-semibold font-mono whitespace-nowrap overflow-hidden text-ellipsis block leading-tight">+62 896-4926-1851</span>
-                    </div>
-                  </a>
-                )}
-
-                <div className={`${assembly.piece} ${assembly.location} col-span-2 lg:col-span-1 flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] text-[var(--color-text)]`}>
+                <div className={`${assembly.piece} ${assembly.location} flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-xl bg-[var(--color-bg)] border border-[var(--color-surface-soft)] text-[var(--color-text)] min-h-[44px]`}>
                   <div className="p-2 sm:p-3 rounded-lg bg-surface-soft text-text shrink-0">
                     <MapPin data-tone="secondary" className="w-4 h-4 sm:w-5 sm:h-5" />
                   </div>
@@ -337,7 +319,7 @@ export const Contact = () => {
                         onExpire={() => setCaptchaToken("")}
                         onError={() => {
                           setCaptchaToken("");
-                          setFormError(lang === "id" ? "Verifikasi gagal dimuat. Muat ulang halaman atau hubungi melalui email atau WhatsApp." : "Verification could not load. Reload the page or contact me by email or WhatsApp.");
+                          setFormError(lang === "id" ? "Verifikasi gagal dimuat. Muat ulang halaman atau hubungi melalui email." : "Verification could not load. Reload the page or contact me by email.");
                         }}
                       />
                     </div>

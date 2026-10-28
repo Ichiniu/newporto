@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, Mail, MapPin, MessageCircle, Terminal } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Terminal } from "lucide-react";
 import { GithubIcon, InstagramIcon, LinkedinIcon } from "@/components/ui/Icons";
 import { Button } from "./ui/Button";
 import { SpotlightBackground } from "./SpotlightBackground";
@@ -22,8 +22,7 @@ export const Hero = () => {
     location,
     github,
     linkedin,
-    instagram,
-    whatsapp
+    instagram
   } = portfolioData[lang].personalInfo;
 
   return (
@@ -160,17 +159,6 @@ export const Hero = () => {
                   title="Instagram Profile"
                 >
                   <InstagramIcon className="w-5 h-5" />
-                </a>
-              )}
-              {whatsapp && (
-                <a
-                  href={whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center p-3 min-w-[44px] min-h-[44px] rounded-xl border border-[var(--color-surface-soft)] hover:border-primary-hover bg-[var(--color-bg)] text-[var(--color-text)] hover:text-text transition-all"
-                  title="WhatsApp"
-                >
-                  <MessageCircle className="w-5 h-5" />
                 </a>
               )}
             </div>

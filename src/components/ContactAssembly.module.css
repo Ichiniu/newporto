@@ -5,7 +5,6 @@
   transition-property: color, background-color, border-color, box-shadow;
 }
 .email { --scatter-x: -72px; --scatter-y: -32px; --scatter-angle: -7deg; --delay: 0; }
-.whatsapp { --scatter-x: 48px; --scatter-y: 36px; --scatter-angle: 6deg; --delay: 0.045; }
 .location { --scatter-x: -56px; --scatter-y: 76px; --scatter-angle: -5deg; --delay: 0.09; }
 .github { --scatter-x: -64px; --scatter-y: 104px; --scatter-angle: -16deg; --delay: 0.135; }
 .linkedin { --scatter-x: 20px; --scatter-y: 120px; --scatter-angle: 12deg; --delay: 0.18; }
