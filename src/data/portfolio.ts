@@ -173,9 +173,11 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
           "Melakukan pemeliharaan website berbasis WordPress.",
           "Mengonfigurasi email forwarding menggunakan Cloudflare Email Routing.",
           "Membuat dan mengelola akun email staf melalui cPanel.",
-          "Memantau log server menggunakan Easypanel untuk menelusuri dan menangani kendala."
+          "Memantau log server menggunakan Easypanel untuk menelusuri dan menangani kendala.",
+          "Merancang, membangun, dan mengembangkan website internal yang disesuaikan dengan kebutuhan operasional dan kondisi organisasi.",
+          "Mengelola domain, hosting, dan infrastruktur server untuk menjamin ketersediaan, keamanan, dan performa layanan."
         ],
-        tags: ["n8n", "WordPress", "Cloudflare", "cPanel", "IT Support", "Easypanel"]
+        tags: ["n8n", "WordPress", "Cloudflare", "cPanel", "Easypanel"]
       },
       {
         id: "exp-fingerspot",
@@ -366,9 +368,11 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
           "Maintained and managed WordPress-based websites.",
           "Configured email forwarding using Cloudflare Email Routing.",
           "Created and managed staff email accounts through cPanel.",
-          "Monitored server logs using Easypanel to troubleshoot and resolve issues."
+          "Monitored server logs using Easypanel to troubleshoot and resolve issues.",
+          "Designed, built, and developed internal websites tailored to operational needs and organizational requirements.",
+          "Managed domains, hosting, and server infrastructure to ensure service availability, security, and performance."
         ],
-        tags: ["n8n", "WordPress", "Cloudflare", "cPanel", "IT Support", "Easypanel"]
+        tags: ["n8n", "WordPress", "Cloudflare", "cPanel", "Easypanel"]
       },
       {
         id: "exp-fingerspot",
