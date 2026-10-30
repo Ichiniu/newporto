@@ -175,9 +175,9 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
           "Membuat dan mengelola akun email staf melalui cPanel.",
           "Memantau log server menggunakan Easypanel untuk menelusuri dan menangani kendala.",
           "Merancang, membangun, dan mengembangkan website internal yang disesuaikan dengan kebutuhan operasional dan kondisi organisasi.",
-          "Mengelola domain, hosting, dan infrastruktur server untuk menjamin ketersediaan, keamanan, dan performa layanan."
+          "Mengelola domain, Subdomain, production, dan infrastruktur server untuk menjamin ketersediaan, keamanan, dan performa layanan."
         ],
-        tags: ["n8n", "WordPress", "Cloudflare", "cPanel", "Easypanel"]
+        tags: ["n8n", "Next.js", "Go", "WordPress", "Cloudflare", "cPanel", "","Easypanel"]
       },
       {
         id: "exp-fingerspot",
