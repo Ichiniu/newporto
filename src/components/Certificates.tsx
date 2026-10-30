@@ -113,6 +113,19 @@ const certificates: CertificateItem[] = [
     badge: "National"
   },
   {
+    id: "cert-kemenpora",
+    title: {
+      id: "Seminar Literasi Digital Pemuda",
+      en: "Youth Digital Literacy Seminar"
+    },
+    issuer: {
+      id: "Kementerian Pemuda dan Olahraga Republik Indonesia",
+      en: "Ministry of Youth and Sports Republic of Indonesia"
+    },
+    image: "/assets/certificate/sertif-kemenpora.jpeg",
+    badge: "Seminar Nasional"
+  },
+  {
     id: "cert-amk",
     title: {
       id: "IT Support & Logistik Operasional",
