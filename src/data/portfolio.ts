@@ -361,7 +361,7 @@ export const portfolioData: Record<"id" | "en", PortfolioData> = {
       {
         id: "exp-aqnesia",
         period: "Now",
-        role: "IT Staff",
+        role: "Software Engineer",
         company: "PT Aqnesia Multi Usaha",
         descriptions: [
           "Monitored and ensured smooth execution of automation workflows running in n8n.",
