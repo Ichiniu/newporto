@@ -29,42 +29,28 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
     if (!video.getAttribute("src")) {
       video.src = "/assets/menu/navigation-background.mp4";
     }
-    video.defaultPlaybackRate = 0.7;
-    video.playbackRate = 0.7;
+    video.defaultPlaybackRate = 2.0;
+    video.playbackRate = 2.0;
     video.currentTime = 0;
-    let completed = false;
-    let frameRequest = 0;
-    const holdFinalFrame = () => {
-      if (completed) return;
-      completed = true;
-      video.pause();
-    };
-    const watchFrame = (_now: number, metadata: VideoFrameCallbackMetadata) => {
-      if (metadata.mediaTime >= 6.9) {
-        holdFinalFrame();
-        return;
-      }
-      frameRequest = video.requestVideoFrameCallback(watchFrame);
-    };
+
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     const syncPlayback = () => {
-      if (completed || document.hidden || reducedMotion.matches) {
+      if (document.hidden || reducedMotion.matches) {
         video.pause();
       } else {
+        video.playbackRate = 2.0;
         // A blocked autoplay must never prevent navigation from working.
         void video.play().catch(() => {});
       }
     };
 
-    frameRequest = video.requestVideoFrameCallback(watchFrame);
-    video.addEventListener("ended", holdFinalFrame);
     syncPlayback();
+    video.addEventListener("loadedmetadata", syncPlayback);
     document.addEventListener("visibilitychange", syncPlayback);
     reducedMotion.addEventListener("change", syncPlayback);
     return () => {
       video.pause();
-      video.cancelVideoFrameCallback(frameRequest);
-      video.removeEventListener("ended", holdFinalFrame);
+      video.removeEventListener("loadedmetadata", syncPlayback);
       document.removeEventListener("visibilitychange", syncPlayback);
       reducedMotion.removeEventListener("change", syncPlayback);
     };
@@ -79,11 +65,12 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
       className={`${styles.menu} ${isOpen ? styles.open : ""} fixed inset-0 z-50 flex flex-col overflow-hidden transition-transform duration-500 ease-in-out ${isOpen ? "translate-y-0 pointer-events-auto" : "-translate-y-full pointer-events-none"
         }`}
     >
-      {/* Video latar diputar ulang setiap kali navigasi dibuka. */}
+      {/* Video latar diputar berulang dengan kecepatan 2x setiap kali navigasi dibuka. */}
       <div className={styles.art} aria-hidden="true">
         <video
           ref={videoRef}
           className={styles.video}
+          loop
           muted
           playsInline
           preload="none"
