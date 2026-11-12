@@ -136,7 +136,6 @@ img { filter: grayscale(1); }
   display: flex;
   width: max-content;
   animation: marquee-scroll-right 30s linear infinite;
-  will-change: transform;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -147,7 +146,7 @@ img { filter: grayscale(1); }
 
 @media (prefers-reduced-motion: reduce) {
   html, body { scroll-behavior: auto !important; }
-  *, *::before, *::after {
+  *:not(.animate-marquee-right), *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
