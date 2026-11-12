@@ -62,8 +62,8 @@ export const Header = () => {
       {/* ───────────────────────────────────────────────────────── */}
       <header
         className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 ${scrolled
-          ? "py-4 bg-bg backdrop-blur-md border-b border-[var(--color-surface-soft)] shadow-md "
-          : "py-6 bg-bg"
+          ? "py-3 md:py-4 bg-bg backdrop-blur-md border-b border-[var(--color-surface-soft)] shadow-md "
+          : "py-3.5 md:py-6 bg-bg"
           }`}
       >
         {/* DESKTOP HEADER (Lebar layar md ke atas - pertahankan konsep lama) */}
@@ -122,50 +122,42 @@ export const Header = () => {
         </div>
 
         {/* MOBILE HEADER (Lebar layar di bawah md) */}
-        <div className="flex md:hidden w-full px-4 sm:px-6 items-center justify-between relative min-h-[48px]">
-          {/* KIRI: Logo */}
-          <a href="#hero" className="cursor-pointer no-underline py-2" style={{ color: "var(--color-text)" }}>
-            <span className="font-mono font-bold text-base tracking-wider" style={{ color: "var(--color-text)" }}>
-              Ikhsan
-            </span>
-          </a>
+        <div className="flex md:hidden w-full px-4 sm:px-6 items-center justify-between relative">
+          {/* KIRI: Theme Switcher */}
+          <button
+            onClick={toggleLanguage}
+            className="relative group flex items-center justify-center gap-1.5 h-8 px-2.5 rounded-lg border border-[var(--color-surface-soft)] bg-[var(--color-bg)] hover:bg-surface-soft text-[var(--color-text)] hover:text-text transition-all cursor-pointer font-mono text-[11px] font-bold shadow-sm after:content-[''] after:absolute after:-inset-1.5"
+            id="btn-translate-mobile"
+            aria-label={lang === "en" ? "Translate to Bahasa Indonesia" : "Switch to English"}
+            title={lang === "en" ? "Translate to Bahasa Indonesia" : "Switch to English"}
+          >
+            <Languages data-tone="secondary" className="w-3.5 h-3.5 text-text transition-transform group-hover:scale-110" />
+            <div className="flex items-center gap-1 tracking-wider" suppressHydrationWarning>
+              <span className={lang === "en" ? "text-primary font-black" : "opacity-40"}>EN</span>
+              <span className="opacity-25 font-normal">/</span>
+              <span className={lang === "id" ? "text-primary font-black" : "opacity-40"}>ID</span>
+            </div>
+          </button>
 
-          {/* KANAN: Theme Switcher & CTA */}
-          <div className="flex items-center gap-2 sm:gap-3 z-10">
-            <button
-              onClick={toggleLanguage}
-              className="group flex items-center justify-center gap-1.5 px-2.5 py-1.5 min-h-[44px] rounded-xl border border-[var(--color-surface-soft)] bg-[var(--color-bg)] hover:bg-surface-soft text-[var(--color-text)] hover:text-text transition-all cursor-pointer font-mono text-xs font-bold shadow-sm"
-              id="btn-translate-mobile"
-              aria-label={lang === "en" ? "Translate to Bahasa Indonesia" : "Switch to English"}
-              title={lang === "en" ? "Translate to Bahasa Indonesia" : "Switch to English"}
+          {/* KANAN: CTA */}
+          <button
+            onClick={() => handleNavClick("#contact")}
+            aria-label={t("contact")}
+            className="relative flex items-center justify-center h-8 px-2.5 rounded-lg border border-[var(--color-surface-soft)] bg-[var(--color-bg)] hover:bg-surface-soft text-[var(--color-text)] hover:text-text transition-all duration-500 cursor-pointer shadow-sm group after:content-[''] after:absolute after:-inset-1.5"
+          >
+            <div
+              className={`overflow-hidden transition-all duration-700 ease-in-out flex items-center ${
+                isContactCollapsed
+                  ? "max-w-0 opacity-0 -translate-x-1"
+                  : "max-w-[80px] opacity-100 translate-x-0 mr-1"
+              }`}
             >
-              <Languages data-tone="secondary" className="w-4 h-4 text-text transition-transform group-hover:scale-110" />
-              <div className="flex items-center gap-1 tracking-wider" suppressHydrationWarning>
-                <span className={lang === "en" ? "text-primary font-black" : "opacity-40"}>EN</span>
-                <span className="opacity-25 font-normal">/</span>
-                <span className={lang === "id" ? "text-primary font-black" : "opacity-40"}>ID</span>
-              </div>
-            </button>
-
-            <button
-              onClick={() => handleNavClick("#contact")}
-              aria-label={t("contact")}
-              className="flex items-center justify-center min-h-[44px] px-3 py-1.5 rounded-xl border border-[var(--color-surface-soft)] bg-[var(--color-bg)] hover:bg-surface-soft text-[var(--color-text)] hover:text-text transition-all duration-500 cursor-pointer shadow-sm group"
-            >
-              <div
-                className={`overflow-hidden transition-all duration-700 ease-in-out flex items-center ${
-                  isContactCollapsed
-                    ? "max-w-0 opacity-0 -translate-x-1"
-                    : "max-w-[80px] opacity-100 translate-x-0 mr-1.5"
-                }`}
-              >
-                <span className="text-xs sm:text-sm font-mono font-medium tracking-wide whitespace-nowrap">
-                  {t("contact")}
-                </span>
-              </div>
-              <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 shrink-0 transform group-hover:translate-x-0.5 transition-transform" />
-            </button>
-          </div>
+              <span className="text-[11px] font-mono font-medium tracking-wide whitespace-nowrap">
+                {t("contact")}
+              </span>
+            </div>
+            <ArrowRight className="w-3.5 h-3.5 shrink-0 transform group-hover:translate-x-0.5 transition-transform" />
+          </button>
         </div>
       </header>
 
