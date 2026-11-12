@@ -283,9 +283,7 @@ export const Contact = () => {
                           <p className="text-xs font-semibold font-mono tracking-wide text-[var(--color-text)]">
                             {lang === "id" ? "Verifikasi Keamanan" : "Security Check"}
                           </p>
-                          <p className="text-[10px] text-[var(--color-text)]/70 font-mono">
-                            {lang === "id" ? "Perlindungan anti-spam" : "Anti-bot protection"}
-                          </p>
+                         
                         </div>
                       </div>
 
